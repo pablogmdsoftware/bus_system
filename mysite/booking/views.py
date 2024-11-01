@@ -1,3 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
+def about(request):
+    context = {}
+    render(request,"booking/about.html",context)
