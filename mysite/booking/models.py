@@ -25,4 +25,4 @@ class Bus(models.Model):
 
     def __str__(self):
         total_seats = self.seats + self.seats_reduced_mobility
-        return f"BusID: {self.bus_id}. Total Seats: {total_seats}({self.seats_reduced_mobility}rn)."
+        return f"ID: {self.bus_id}. Total Seats: {total_seats} ({self.seats_reduced_mobility}rm)."
