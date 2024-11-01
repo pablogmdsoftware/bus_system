@@ -16,9 +16,13 @@ class Customer(models.Model):
 
 class Bus(models.Model):
     """Table to store bus entities owned by the business, the id in this country will 
-    be XXYY where X are letters and Y are numbers. Sears number does not have into
-    account the other types of seats."""
+    be XXYY where X are letters and Y are numbers. Seats number have into account 
+    the reduced mobility seats."""
     bus_id = models.CharField(max_length=7)
     seats = models.PositiveSmallIntegerField()
     seats_first_row = models.PositiveSmallIntegerField()
     seats_reduced_mobility = models.PositiveSmallIntegerField()
+
+    def __str__(self):
+        total_seats = self.seats + self.seats_reduced_mobility
+        return f"BusID: {self.bus_id}. Total Seats: {total_seats}({self.seats_reduced_mobility}rn)."
