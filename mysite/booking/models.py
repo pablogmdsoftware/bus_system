@@ -49,3 +49,29 @@ class PassType(models.Model):
 
     def __str__(self):
         return f"{self.name}"
+
+cities = {
+    "M":"Madrid",
+    "B":"Barcelona",
+    "TO":"Toledo",
+    "BU":"Burgos",
+    "SO":"Soria",
+    "OV":"Oviedo",
+    "PO":"Pontevedra",
+}
+
+class Pass(models.Model):
+    """Personal passes."""
+    customer = models.ForeignKey(Customer,on_delete=models.CASCADE)
+    pass_type = models.ForeignKey(PassType,on_delete=models.CASCADE)
+    num_travels_done = models.PositiveSmallIntegerField()
+    num_travels_uncompleted = models.PositiveSmallIntegerField()
+    purchased_datetime = models.DateTimeField(auto_now_add=True)
+    validity_date = models.DateField()
+    first_city = models.CharField(max_length=2,choices=cities)
+    second_city = models.CharField(max_length=2,choices=cities)
+
+    def __str__(self):
+        customer_name = f"{self.customer.first_name} {self.customer.last_name}".title()
+        return f"""{self.pass_type.name} puchased by {customer_name}. Validity: {self.validity_date}. 
+                Direction: {self.first_city}-{self.second_city}."""
