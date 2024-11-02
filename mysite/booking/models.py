@@ -1,7 +1,7 @@
 from django.db import models
 
 class Customer(models.Model):
-    """Customers and their necessary information to buy tickets"""
+    """Customers and their necessary information to buy tickets."""
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=50)
     birt_date = models.DateField()
@@ -26,3 +26,26 @@ class Bus(models.Model):
     def __str__(self):
         total_seats = self.seats + self.seats_reduced_mobility
         return f"ID: {self.bus_id}. Total Seats: {total_seats} ({self.seats_reduced_mobility}rm)."
+
+pass_type_names = {
+    "ten_ticket_pass":"ten_ticket_pass",
+    "ten_ticket_pass_multi_route":"ten_ticket_pass_multi_route",
+    "monthly_pass":"monthly_pass",
+    "monthly_pass_multi_route":"monthly_pass_multi_route",
+    "three_month_pass":"three_month_pass",
+    "three_month_pass":"three_month_pass",
+    "four_month_pass":"four_month_pass",
+    "four_month_pass":"four_month_pass",
+    "year_pass":"year_pass",
+    "year_pass":"year_pass",
+}
+
+class PassType(models.Model):
+    """Available passes that the customers can buy."""
+    name = models.CharField(max_length=50,choices=pass_type_names,unique=True)
+    max_uses = models.PositiveSmallIntegerField(null=True)
+    price = models.PositiveIntegerField(db_comment="Stored in cts")     
+    is_multi_route = models.BooleanField(db_default=False)
+
+    def __str__(self):
+        return f"{self.name}"
