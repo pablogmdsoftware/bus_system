@@ -43,8 +43,8 @@ pass_type_names = {
 class PassType(models.Model):
     """Available passes that the customers can buy."""
     name = models.CharField(max_length=50,choices=pass_type_names,unique=True)
-    max_uses = models.PositiveSmallIntegerField(null=True)
-    price = models.PositiveIntegerField(db_comment="Stored in cts")     
+    max_uses = models.PositiveSmallIntegerField(null=True,blank=True)
+    price = models.PositiveIntegerField(db_comment="Stored in cts")
     is_multi_route = models.BooleanField(db_default=False)
 
     def __str__(self):
