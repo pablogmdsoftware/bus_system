@@ -24,8 +24,7 @@ class Bus(models.Model):
     seats_reduced_mobility = models.PositiveSmallIntegerField()
 
     def __str__(self):
-        total_seats = self.seats + self.seats_reduced_mobility
-        return f"ID: {self.bus_id}. Total Seats: {total_seats} ({self.seats_reduced_mobility}rm)."
+        return f"ID: {self.bus_id}. Total Seats: {self.seats} ({self.seats_reduced_mobility}rm)."
 
 pass_type_names = {
     "ten_ticket_pass":"ten_ticket_pass",
