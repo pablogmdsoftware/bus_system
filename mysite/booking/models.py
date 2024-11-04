@@ -85,3 +85,19 @@ class Travel(models.Model):
 
     def __str__(self):
         return f"{self.schedule} {self.origin}-{self.destination} {bus_id}"
+
+class Ticket(models.Model):
+    """Personal tickets of the customers."""
+    customer_id = models.ForeignKey(Customer,on_delete=models.CASCADE)
+    travel_id = models.ForeignKey(Travel,on_delete=models.PROTECT)
+    seat_number = models.PositiveSmallIntegerField()
+    price = models.PositiveIntegerField(null=True,db_comment="Stored in cts")
+    purchase_datetime = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        origin = self.travel_id.origin
+        destination = self.travel_id.destination
+        schedule = self.travel_id.schedule
+        customer = f"{self.customer_id.first_name} {self.customer_id.last_name}".title()
+        return f"""{origin}-{destination} ({schedule}). Seat number: {self.seat_number}. 
+        Purchased by {customer}."""
