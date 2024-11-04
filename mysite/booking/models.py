@@ -18,7 +18,7 @@ class Bus(models.Model):
     """Table to store bus entities owned by the business, the id in this country will 
     be XXYY where X are letters and Y are numbers. Seats number have into account 
     the reduced mobility seats."""
-    bus_id = models.CharField(max_length=4)
+    bus_id = models.CharField(max_length=4,primary_key=True)
     seats = models.PositiveSmallIntegerField()
     seats_first_row = models.PositiveSmallIntegerField()
     seats_reduced_mobility = models.PositiveSmallIntegerField()
