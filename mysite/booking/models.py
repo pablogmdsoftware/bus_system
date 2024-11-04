@@ -75,3 +75,13 @@ class Pass(models.Model):
         customer_name = f"{self.customer.first_name} {self.customer.last_name}".title()
         return f"""{self.pass_type.name} puchased by {customer_name}. Validity: {self.validity_date}. 
                 Direction: {self.first_city}-{self.second_city}."""
+
+class Travel(models.Model):
+    """Travel itinerary to schedule the rides that the company offers."""
+    bus_id = models.ForeignKey(Bus,on_delete=models.PROTECT)
+    origin = models.CharField(max_length=2,choices=cities)
+    destination = models.CharField(max_length=2,choices=cities)
+    schedule = models.DateTimeField()
+
+    def __str__(self):
+        return f"{self.schedule} {self.origin}-{self.destination} {bus_id}"
