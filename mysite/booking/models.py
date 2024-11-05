@@ -94,6 +94,11 @@ class Ticket(models.Model):
     price = models.PositiveIntegerField(null=True,db_comment="Stored in cts")
     purchase_datetime = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(name="unique_seat_per_travel",fields=["seat_number","travel_id"]),
+        ]
+
     def __str__(self):
         origin = self.travel_id.origin
         destination = self.travel_id.destination
