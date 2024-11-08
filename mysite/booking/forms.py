@@ -9,7 +9,7 @@ class TicketForm(ModelForm):
         exclude = []
     def clean(self):
         super().clean()
-        travel = self.cleaned_data.get("travel_id")
+        travel = self.cleaned_data.get("travel")
         seat = self.cleaned_data.get("seat_number")
         max_seats = travel.bus_id.seats
         if seat > max_seats or seat == 0:

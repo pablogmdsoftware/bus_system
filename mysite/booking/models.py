@@ -77,19 +77,19 @@ class Pass(models.Model):
 
 class Travel(models.Model):
     """Travel itinerary to schedule the rides that the company offers."""
-    bus_id = models.ForeignKey(Bus,on_delete=models.PROTECT)
+    bus = models.ForeignKey(Bus,on_delete=models.PROTECT)
     origin = models.CharField(max_length=2,choices=cities)
     destination = models.CharField(max_length=2,choices=cities)
     schedule = models.DateTimeField()
 
     def __str__(self):
         return f"""Schedule: {self.schedule}. Direction: {self.origin}-{self.destination}. 
-        Bus: {self.bus_id.bus_id}."""
+        Bus: {self.bus.bus_id}."""
 
 class Ticket(models.Model):
     """Personal tickets of the customers."""
-    customer_id = models.ForeignKey(Customer,on_delete=models.CASCADE)
-    travel_id = models.ForeignKey(Travel,on_delete=models.PROTECT)
+    customer = models.ForeignKey(Customer,on_delete=models.CASCADE)
+    travel = models.ForeignKey(Travel,on_delete=models.PROTECT)
     seat_number = models.PositiveSmallIntegerField()
     price = models.PositiveIntegerField(null=True,db_comment="Stored in cts")
     purchase_datetime = models.DateTimeField(auto_now_add=True)
@@ -100,9 +100,9 @@ class Ticket(models.Model):
         ]
 
     def __str__(self):
-        origin = self.travel_id.origin
-        destination = self.travel_id.destination
-        schedule = self.travel_id.schedule
-        customer = f"{self.customer_id.first_name} {self.customer_id.last_name}".title()
+        origin = self.travel.origin
+        destination = self.travel.destination
+        schedule = self.travel.schedule
+        customer = f"{self.customer.first_name} {self.customer.last_name}".title()
         return f"""{origin}-{destination} ({schedule}). Seat number: {self.seat_number}. 
         Purchased by {customer}."""
