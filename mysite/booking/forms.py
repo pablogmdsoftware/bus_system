@@ -4,6 +4,10 @@ from django.core.exceptions import ValidationError
 from .models import Ticket, Travel
 
 class TicketForm(ModelForm):
+    """
+    Ticket form created to add complex validators like prohibit take a seat that 
+    the bus does not have.
+    """
     class Meta:
         model = Ticket
         exclude = []
