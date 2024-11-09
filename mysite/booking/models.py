@@ -71,7 +71,7 @@ class Pass(models.Model):
     num_travels_done = models.PositiveSmallIntegerField(default=0)
     num_travels_uncompleted = models.PositiveSmallIntegerField(default=0)
     purchased_datetime = models.DateTimeField(auto_now_add=True)
-    validity_date = models.DateField()
+    validity_date = models.DateField(null=True,blank=True)
     first_city = models.CharField(max_length=2,choices=CITIES)
     second_city = models.CharField(max_length=2,choices=CITIES)
 
