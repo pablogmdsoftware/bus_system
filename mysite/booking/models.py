@@ -78,11 +78,15 @@ class Pass(models.Model):
                 Direction: {self.first_city}-{self.second_city}."""
 
 class Travel(models.Model):
-    """Travel itinerary to schedule the rides that the company offers."""
-    bus = models.ForeignKey(Bus,on_delete=models.PROTECT)
+    """
+    Travel itinerary to schedule the rides that the company offers. We assume that
+    every bus can always be where it is needed. However, they can not be used two
+    times in the same date.
+    """
+    schedule = models.DateTimeField()
     origin = models.CharField(max_length=2,choices=CITIES)
     destination = models.CharField(max_length=2,choices=CITIES)
-    schedule = models.DateTimeField()
+    bus = models.ForeignKey(Bus,on_delete=models.PROTECT,unique_for_date="schedule")
 
     def __str__(self):
         return f"""{self.schedule.strftime("%d-%m-%Y (%H:%M %Z)")}. 
