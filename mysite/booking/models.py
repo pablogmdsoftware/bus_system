@@ -85,8 +85,8 @@ class Travel(models.Model):
     schedule = models.DateTimeField()
 
     def __str__(self):
-        return f"""Schedule: {self.schedule}. Direction: {self.origin}-{self.destination}. 
-        Bus: {self.bus.bus_id}."""
+        return f"""{self.schedule.strftime("%d-%m-%Y (%H:%M %Z)")}. 
+        Direction: {self.origin}-{self.destination}. Bus: {self.bus.bus_id}."""
 
 class Ticket(models.Model):
     """Personal tickets of the customers."""
