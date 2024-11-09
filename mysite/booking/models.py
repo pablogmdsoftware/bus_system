@@ -1,5 +1,7 @@
 from django.db import models
 
+from .validators import validate_seats_first_row
+
 class Customer(models.Model):
     """Customers and their necessary information to buy tickets."""
     first_name = models.CharField(max_length=20)
@@ -22,7 +24,7 @@ class Bus(models.Model):
     """
     bus_id = models.CharField(max_length=4,primary_key=True)
     seats = models.PositiveSmallIntegerField()
-    seats_first_row = models.PositiveSmallIntegerField()
+    seats_first_row = models.PositiveSmallIntegerField(validators=[validate_seats_first_row])
     seats_reduced_mobility = models.PositiveSmallIntegerField()
 
     def __str__(self):
