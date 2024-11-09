@@ -15,16 +15,18 @@ class Customer(models.Model):
         return name
 
 class Bus(models.Model):
-    """Table to store bus entities owned by the business, the id in this country will 
-    be XXYY where X are letters and Y are numbers. Seats number has into account 
-    the reduced mobility seats."""
+    """
+    Table to store bus entities owned by the business, the id in this country will 
+    be XXYY where X are letters and Y are numbers. Seats number does not have into 
+    account the reduced mobility seats.
+    """
     bus_id = models.CharField(max_length=4,primary_key=True)
     seats = models.PositiveSmallIntegerField()
     seats_first_row = models.PositiveSmallIntegerField()
     seats_reduced_mobility = models.PositiveSmallIntegerField()
 
     def __str__(self):
-        return f"ID: {self.bus_id}. Total Seats: {self.seats} ({self.seats_reduced_mobility}rm)."
+        return f"ID: {self.bus_id}. Total Seats: {self.seats} (+{self.seats_reduced_mobility}rm)."
 
 pass_type_names = {
     "ten_ticket_pass":"ten_ticket_pass",
