@@ -82,8 +82,8 @@ class Pass(models.Model):
 class Travel(models.Model):
     """
     Travel itinerary to schedule the rides that the company offers. We assume that
-    every bus can always be where it is needed. However, they can not be used two
-    times in the same date.
+    the buses can always be where they are needed. However, they can not be used
+    two times in the same date.
     """
     schedule = models.DateTimeField()
     origin = models.CharField(max_length=2,choices=CITIES)
