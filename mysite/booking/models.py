@@ -112,5 +112,5 @@ class Ticket(models.Model):
         destination = self.travel.destination
         schedule = self.travel.schedule
         customer = f"{self.customer.first_name} {self.customer.last_name}".title()
-        return f"""{origin}-{destination} ({schedule}). Seat number: {self.seat_number}. 
-        Purchased by {customer}."""
+        return f"""{schedule.strftime("%d-%m-%Y (%H:%M %Z)")}. Direction: {origin}-{destination}.
+        Seat number: {self.seat_number}. Purchased by {customer}."""
