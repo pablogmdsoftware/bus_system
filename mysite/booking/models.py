@@ -28,7 +28,7 @@ class Bus(models.Model):
     def __str__(self):
         return f"ID: {self.bus_id}. Total Seats: {self.seats} (+{self.seats_reduced_mobility}rm)."
 
-pass_type_names = {
+PASS_TYPE_NAMES = {
     "ten_ticket_pass":"ten_ticket_pass",
     "ten_ticket_pass_multi_route":"ten_ticket_pass_multi_route",
     "monthly_pass":"monthly_pass",
@@ -43,7 +43,7 @@ pass_type_names = {
 
 class PassType(models.Model):
     """Available passes that the customers can buy."""
-    name = models.CharField(max_length=50,choices=pass_type_names,unique=True)
+    name = models.CharField(max_length=50,choices=PASS_TYPE_NAMES,unique=True)
     max_uses = models.PositiveSmallIntegerField(null=True,blank=True)
     price = models.PositiveIntegerField(db_comment="Stored in cts")
     is_multi_route = models.BooleanField(db_default=False)
@@ -51,7 +51,7 @@ class PassType(models.Model):
     def __str__(self):
         return f"{self.name}"
 
-cities = {
+CITIES = {
     "M":"Madrid",
     "B":"Barcelona",
     "TO":"Toledo",
@@ -69,8 +69,8 @@ class Pass(models.Model):
     num_travels_uncompleted = models.PositiveSmallIntegerField()
     purchased_datetime = models.DateTimeField(auto_now_add=True)
     validity_date = models.DateField()
-    first_city = models.CharField(max_length=2,choices=cities)
-    second_city = models.CharField(max_length=2,choices=cities)
+    first_city = models.CharField(max_length=2,choices=CITIES)
+    second_city = models.CharField(max_length=2,choices=CITIES)
 
     def __str__(self):
         customer_name = f"{self.customer.first_name} {self.customer.last_name}".title()
@@ -80,8 +80,8 @@ class Pass(models.Model):
 class Travel(models.Model):
     """Travel itinerary to schedule the rides that the company offers."""
     bus = models.ForeignKey(Bus,on_delete=models.PROTECT)
-    origin = models.CharField(max_length=2,choices=cities)
-    destination = models.CharField(max_length=2,choices=cities)
+    origin = models.CharField(max_length=2,choices=CITIES)
+    destination = models.CharField(max_length=2,choices=CITIES)
     schedule = models.DateTimeField()
 
     def __str__(self):
