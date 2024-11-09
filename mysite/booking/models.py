@@ -67,8 +67,8 @@ class Pass(models.Model):
     """Personal passes."""
     customer = models.ForeignKey(Customer,on_delete=models.CASCADE)
     pass_type = models.ForeignKey(PassType,on_delete=models.CASCADE)
-    num_travels_done = models.PositiveSmallIntegerField()
-    num_travels_uncompleted = models.PositiveSmallIntegerField()
+    num_travels_done = models.PositiveSmallIntegerField(default=0)
+    num_travels_uncompleted = models.PositiveSmallIntegerField(default=0)
     purchased_datetime = models.DateTimeField(auto_now_add=True)
     validity_date = models.DateField()
     first_city = models.CharField(max_length=2,choices=CITIES)
