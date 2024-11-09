@@ -5,8 +5,8 @@ from .models import Ticket, Travel
 
 class TicketForm(ModelForm):
     """
-    Ticket form created to add complex validators like prohibit take a seat that 
-    the bus does not have.
+    Ticket form created to add complex validators like prohibit to take a seat 
+    that the bus does not have.
     """
     class Meta:
         model = Ticket
