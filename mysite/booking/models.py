@@ -72,8 +72,8 @@ class Pass(models.Model):
     num_travels_uncompleted = models.PositiveSmallIntegerField(default=0)
     purchased_datetime = models.DateTimeField(auto_now_add=True)
     validity_date = models.DateField(null=True,blank=True)
-    first_city = models.CharField(max_length=2,choices=CITIES)
-    second_city = models.CharField(max_length=2,choices=CITIES)
+    first_city = models.CharField(max_length=2,choices=CITIES,null=True,blank=True)
+    second_city = models.CharField(max_length=2,choices=CITIES,null=True,blank=True)
 
     def __str__(self):
         customer_name = f"{self.customer.first_name} {self.customer.last_name}".title()
