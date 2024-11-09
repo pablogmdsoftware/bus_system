@@ -48,6 +48,7 @@ class PassType(models.Model):
     name = models.CharField(max_length=50,choices=PASS_TYPE_NAMES,unique=True)
     max_uses = models.PositiveSmallIntegerField(null=True,blank=True)
     price = models.PositiveIntegerField(db_comment="Stored in cts")
+    months_duration = models.PositiveSmallIntegerField(null=True,blank=True)
     is_multi_route = models.BooleanField(db_default=False)
 
     def __str__(self):
