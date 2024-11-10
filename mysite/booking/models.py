@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import RegexValidator
 
 from .validators import validate_seats_first_row, validate_seats, validate_rm_seats
 
@@ -22,7 +23,11 @@ class Bus(models.Model):
     be XXYY where X are letters and Y are numbers. Seats number does not have into
     account the reduced mobility seats.
     """
-    bus_id = models.CharField(max_length=4,primary_key=True)
+    bus_id = models.CharField(
+        max_length=4,
+        primary_key=True,
+        validators=[RegexValidator("[A-Z]{2}[0-9]{2}","XXYY where X are letters and Y are numbers")],
+        )
     seats = models.PositiveSmallIntegerField(validators=[validate_seats])
     seats_first_row = models.PositiveSmallIntegerField(validators=[validate_seats_first_row])
     seats_reduced_mobility = models.PositiveSmallIntegerField(validators=[validate_rm_seats])
