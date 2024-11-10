@@ -1,7 +1,10 @@
 from django.forms import ModelForm
 from django.core.exceptions import ValidationError
 
-from .models import Ticket, Travel
+from datetime import date
+from dateutil.relativedelta import relativedelta
+
+from .models import Ticket, Travel, Pass
 
 class TicketForm(ModelForm):
     """
@@ -19,4 +22,16 @@ class TicketForm(ModelForm):
         if seat > max_seats or seat == 0:
             raise ValidationError(f"Choose a valid seat ({max_seats} max)")
 
-
+class PassForm(ModelForm):
+    """
+    Pass form to prohibit selection of cities if the pass is multi route.
+    """
+    class Meta:
+        model = Pass
+        exclude = []
+    def clean(self):
+        super().clean()
+        if self.cleaned_data.get("pass_type").is_multi_route == True:
+            if self.cleaned_data.get("first_city") or self.cleaned_data.get("second_city"):
+                raise ValidationError("The pass is multi route, do not add cities")
+        
