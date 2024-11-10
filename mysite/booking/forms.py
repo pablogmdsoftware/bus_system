@@ -15,7 +15,7 @@ class TicketForm(ModelForm):
         super().clean()
         travel = self.cleaned_data.get("travel")
         seat = self.cleaned_data.get("seat_number")
-        max_seats = travel.bus_id.seats
+        max_seats = travel.bus.seats
         if seat > max_seats or seat == 0:
             raise ValidationError("Choose a valid seat.")
 
