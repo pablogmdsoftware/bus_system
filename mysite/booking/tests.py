@@ -41,11 +41,11 @@ class CustomerModelTests(TestCase):
         try:
             test_customer.full_clean()
         except ValidationError as err:
-            err_dict = dict(err)
-        self.assertIs(bool(err_dict.get("first_name")),True)
-        self.assertIs(bool(err_dict.get("last_name")),True)
-        self.assertIs(bool(err_dict.get("birth_date")),True)
-        self.assertIs(bool(err_dict.get("gmail")),True)
+            error_raised = dict(err)
+        self.assertIs(bool(error_raised.get("first_name")),True)
+        self.assertIs(bool(error_raised.get("last_name")),True)
+        self.assertIs(bool(error_raised.get("birth_date")),True)
+        self.assertIs(bool(error_raised.get("gmail")),True)
 
 class BusModelTests(TestCase):
     def test_not_null_fields(self):
@@ -53,11 +53,11 @@ class BusModelTests(TestCase):
         try:
             test_bus.full_clean()
         except ValidationError as err:
-            err_raised = dict(err)
-        self.assertIs(bool(err_raised.get("bus_id")),True)
-        self.assertIs(bool(err_raised.get("seats")),True)
-        self.assertIs(bool(err_raised.get("seats_first_row")),True)
-        self.assertIs(bool(err_raised.get("seats_reduced_mobility")),True)
+            error_raised = dict(err)
+        self.assertIs(bool(error_raised.get("bus_id")),True)
+        self.assertIs(bool(error_raised.get("seats")),True)
+        self.assertIs(bool(error_raised.get("seats_first_row")),True)
+        self.assertIs(bool(error_raised.get("seats_reduced_mobility")),True)
     
 class PassTypeModelTests(TestCase):
     def test_not_null_fields(self):
