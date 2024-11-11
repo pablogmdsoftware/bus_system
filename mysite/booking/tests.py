@@ -47,6 +47,8 @@ class CustomerModelTests(TestCase):
             test_customer.full_clean()
         except ValidationError as err:
             error_raised = dict(err)
+        else:
+            error_raised = {}      
         self.assertIs(bool(error_raised.get("first_name")),True)
         self.assertIs(bool(error_raised.get("last_name")),True)
         self.assertIs(bool(error_raised.get("birth_date")),True)
@@ -59,6 +61,8 @@ class BusModelTests(TestCase):
             test_bus.full_clean()
         except ValidationError as err:
             error_raised = dict(err)
+        else:
+            error_raised = {}
         self.assertIs(bool(error_raised.get("bus_id")),True)
         self.assertIs(bool(error_raised.get("seats")),True)
         self.assertIs(bool(error_raised.get("seats_first_row")),True)
@@ -70,6 +74,8 @@ class BusModelTests(TestCase):
             test_bus.clean_fields(exclude=["seats","seats_first_row","seats_reduced_mobility"])
         except ValidationError as err:
             error_raised = dict(err)
+        else:
+            error_raised = {}
         self.assertIs(bool(error_raised.get("bus_id")),True)
 
     def test_seats_validator(self):
@@ -78,6 +84,8 @@ class BusModelTests(TestCase):
             test_bus.clean_fields(exclude=["bus_id","seats_first_row","seats_reduced_mobility"])
         except ValidationError as err:
             error_raised = dict(err)
+        else:
+            error_raised = {}
         self.assertIs(bool(error_raised.get("seats")),True)
 
     def test_seats_first_row_validator(self):
@@ -86,6 +94,8 @@ class BusModelTests(TestCase):
             test_bus.clean_fields(exclude=["bus_id","seats","seats_reduced_mobility"])
         except ValidationError as err:
             error_raised = dict(err)
+        else:
+            error_raised = {}
         self.assertIs(bool(error_raised.get("seats_first_row")),True)
 
     def test_seats_reduced_mobility_validator(self):
@@ -94,6 +104,8 @@ class BusModelTests(TestCase):
             test_bus.clean_fields(exclude=["bus_id","seats","seats_first_row"])
         except ValidationError as err:
             error_raised = dict(err)
+        else:
+            error_raised = {}
         self.assertIs(bool(error_raised.get("seats_reduced_mobility")),True)
 
     
@@ -104,6 +116,8 @@ class PassTypeModelTests(TestCase):
             test_pass_type.full_clean()
         except ValidationError as err:
             error_raised = dict(err)
+        else:
+            error_raised = {}
         self.assertIs(bool(error_raised.get("name")),True)
         self.assertIs(bool(error_raised.get("price")),True)
 
@@ -116,6 +130,8 @@ class PassModelTests(TestCase):
             test_pass.full_clean()
         except ValidationError as err:
             error_raised = dict(err)
+        else:
+            error_raised = {}
         self.assertIs(bool(error_raised.get("customer")),True)
         self.assertIs(bool(error_raised.get("pass_type")),True)
         self.assertIs(bool(error_raised.get("num_travels_done")),True)
@@ -128,6 +144,8 @@ class TravelModelTests(TestCase):
             test_travel.full_clean()
         except ValidationError as err:
             error_raised = dict(err)
+        else:
+            error_raised = {}
         self.assertIs(bool(error_raised.get("schedule")),True)
         self.assertIs(bool(error_raised.get("origin")),True)
         self.assertIs(bool(error_raised.get("destination")),True)
@@ -140,6 +158,8 @@ class TicketModelTests(TestCase):
             test_ticket.full_clean()
         except ValidationError as err:
             error_raised = dict(err)
+        else:
+            error_raised = {}
         self.assertIs(bool(error_raised.get("customer")),True)
         self.assertIs(bool(error_raised.get("travel")),True)
         self.assertIs(bool(error_raised.get("seat_number")),True)
