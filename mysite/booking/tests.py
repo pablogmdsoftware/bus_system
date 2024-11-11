@@ -68,3 +68,17 @@ class PassTypeModelTests(TestCase):
             error_raised = dict(err)
         self.assertIs(bool(error_raised.get("name")),True)
         self.assertIs(bool(error_raised.get("price")),True)
+
+class PassModelTests(TestCase):
+    def test_not_null_fields(self):
+        test_pass = Pass()
+        test_pass.num_travels_done = None
+        test_pass.num_travels_uncompleted = None
+        try:
+            test_pass.full_clean()
+        except ValidationError as err:
+            error_raised = dict(err)
+        self.assertIs(bool(error_raised.get("customer")),True)
+        self.assertIs(bool(error_raised.get("pass_type")),True)
+        self.assertIs(bool(error_raised.get("num_travels_done")),True)
+        self.assertIs(bool(error_raised.get("num_travels_uncompleted")),True)
