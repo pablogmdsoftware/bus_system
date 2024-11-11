@@ -7,7 +7,7 @@ def validate_seats_first_row(value):
 def validate_seats(value):
     if value < 8:
         raise ValidationError("Too little for a bus, right?")
-    if value > 68:
+    if value > 72:
         raise ValidationError("I don't know buses that big!")
 
 def validate_rm_seats(value):
