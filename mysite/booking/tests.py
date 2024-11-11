@@ -6,7 +6,7 @@ from .forms import TicketForm
 from .models import Customer, Bus, Travel, Ticket, Pass, PassType
 
 class TicketFormTests(TestCase):
-    def test_seat_number_greater_than_bus_seats(self):
+    def test_seat_number_greater_than_bus_seats_or_zero(self):
         test_customer = Customer(
             first_name = "Name",
             last_name = "LastName",
@@ -21,12 +21,19 @@ class TicketFormTests(TestCase):
         test_travel = Travel(schedule=datetime.now(),origin="M",destination="B",bus=test_bus)
         test_travel.save()
         big_seat_ticket = TicketForm(data = {
-            "customer":test_customer,
-            "travel":test_travel,
-            "seat_number":100,
-            "price":0,
-        }) 
+            "customer": test_customer,
+            "travel": test_travel,
+            "seat_number": 100,
+            "price": 0,
+        })
+        zero_seat_ticket = TicketForm(data = {
+            "customer": test_customer,
+            "travel": test_travel,
+            "seat_number": 0,
+            "price": 0,
+        })  
         self.assertIs(big_seat_ticket.is_valid(),False)
+        self.assertIs(zero_seat_ticket.is_valid(),False)
 
 class CustomerModelTests(TestCase):
     def test_not_null_fields(self):
