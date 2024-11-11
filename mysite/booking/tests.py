@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.core.exceptions import ValidationError
-from datetime import datetime, date
+from datetime import datetime, date, timezone
 
 from .forms import TicketForm
 from .models import Customer, Bus, Travel, Ticket, Pass, PassType
@@ -18,11 +18,16 @@ class TicketFormTests(TestCase):
         test_customer.save()
         test_bus = Bus(bus_id="AA00",seats=64,seats_first_row=4,seats_reduced_mobility=0)
         test_bus.save()
-        test_travel = Travel(schedule=datetime.now(),origin="M",destination="B",bus=test_bus)
+        test_travel = Travel(
+            schedule=datetime.now(timezone.utc),
+            origin="M",
+            destination="B",
+            bus=test_bus,
+        )
         test_travel.save()
         big_seat_ticket = TicketForm(data = {
             "customer": test_customer,
-            "travel": test_travel,
+            "travel": test_travel,  
             "seat_number": 100,
             "price": 0,
         })
