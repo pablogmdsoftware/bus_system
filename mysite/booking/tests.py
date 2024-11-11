@@ -1,8 +1,9 @@
 from django.test import TestCase
+from django.core.exceptions import ValidationError
 from datetime import datetime, date
 
 from .forms import TicketForm
-from .models import Customer, Bus, Travel, Ticket
+from .models import Customer, Bus, Travel, Ticket, Pass, PassType
 
 class TicketFormTests(TestCase):
     def test_seat_number_greater_than_bus_seats(self):
@@ -26,3 +27,15 @@ class TicketFormTests(TestCase):
             "price":0,
         }) 
         self.assertIs(big_seat_ticket.is_valid(),False)
+
+class CustomerModelTests(TestCase):
+    def test_not_null_fields(self):
+        test_customer = Customer()
+        try:
+            test_customer.full_clean()
+        except ValidationError as err:
+            err_dict = dict(err)
+        self.assertIs(bool(err_dict.get("first_name")),True)
+        self.assertIs(bool(err_dict.get("last_name")),True)
+        self.assertIs(bool(err_dict.get("birth_date")),True)
+        self.assertIs(bool(err_dict.get("gmail")),True)
