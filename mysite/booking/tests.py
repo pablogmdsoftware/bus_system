@@ -58,3 +58,13 @@ class BusModelTests(TestCase):
         self.assertIs(bool(err_raised.get("seats")),True)
         self.assertIs(bool(err_raised.get("seats_first_row")),True)
         self.assertIs(bool(err_raised.get("seats_reduced_mobility")),True)
+    
+class PassTypeModelTests(TestCase):
+    def test_not_null_fields(self):
+        test_pass_type = PassType()
+        try:
+            test_pass_type.full_clean()
+        except ValidationError as err:
+            error_raised = dict(err)
+        self.assertIs(bool(error_raised.get("name")),True)
+        self.assertIs(bool(error_raised.get("price")),True)
