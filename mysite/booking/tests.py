@@ -94,3 +94,14 @@ class TravelModelTests(TestCase):
         self.assertIs(bool(error_raised.get("origin")),True)
         self.assertIs(bool(error_raised.get("destination")),True)
         self.assertIs(bool(error_raised.get("bus")),True)
+
+class TicketModelTests(TestCase):
+    def test_not_null_fields(self):
+        test_ticket = Ticket()
+        try:
+            test_ticket.full_clean()
+        except ValidationError as err:
+            error_raised = dict(err)
+        self.assertIs(bool(error_raised.get("customer")),True)
+        self.assertIs(bool(error_raised.get("travel")),True)
+        self.assertIs(bool(error_raised.get("seat_number")),True)
