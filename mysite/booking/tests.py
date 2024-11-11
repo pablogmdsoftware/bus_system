@@ -82,3 +82,15 @@ class PassModelTests(TestCase):
         self.assertIs(bool(error_raised.get("pass_type")),True)
         self.assertIs(bool(error_raised.get("num_travels_done")),True)
         self.assertIs(bool(error_raised.get("num_travels_uncompleted")),True)
+
+class TravelModelTests(TestCase):
+    def test_not_null_fields(self):
+        test_travel = Travel()
+        try:
+            test_travel.full_clean()
+        except ValidationError as err:
+            error_raised = dict(err)
+        self.assertIs(bool(error_raised.get("schedule")),True)
+        self.assertIs(bool(error_raised.get("origin")),True)
+        self.assertIs(bool(error_raised.get("destination")),True)
+        self.assertIs(bool(error_raised.get("bus")),True)
