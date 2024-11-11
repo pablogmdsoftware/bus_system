@@ -46,3 +46,15 @@ class CustomerModelTests(TestCase):
         self.assertIs(bool(err_dict.get("last_name")),True)
         self.assertIs(bool(err_dict.get("birth_date")),True)
         self.assertIs(bool(err_dict.get("gmail")),True)
+
+class BusModelTests(TestCase):
+    def test_not_null_fields(self):
+        test_bus = Bus()
+        try:
+            test_bus.full_clean()
+        except ValidationError as err:
+            err_raised = dict(err)
+        self.assertIs(bool(err_raised.get("bus_id")),True)
+        self.assertIs(bool(err_raised.get("seats")),True)
+        self.assertIs(bool(err_raised.get("seats_first_row")),True)
+        self.assertIs(bool(err_raised.get("seats_reduced_mobility")),True)
