@@ -105,7 +105,7 @@ class Ticket(models.Model):
     customer = models.ForeignKey(Customer,on_delete=models.CASCADE)
     travel = models.ForeignKey(Travel,on_delete=models.PROTECT)
     seat_number = models.PositiveSmallIntegerField()
-    price = models.PositiveIntegerField(null=True,db_comment="Stored in cts")
+    price = models.PositiveIntegerField(null=True,blank=True,db_comment="Stored in cts")
     purchase_datetime = models.DateTimeField(auto_now_add=True)
 
     class Meta:
