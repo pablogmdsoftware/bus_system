@@ -63,6 +63,39 @@ class BusModelTests(TestCase):
         self.assertIs(bool(error_raised.get("seats")),True)
         self.assertIs(bool(error_raised.get("seats_first_row")),True)
         self.assertIs(bool(error_raised.get("seats_reduced_mobility")),True)
+
+    def test_bus_id_regex_validator(self):
+        test_bus = Bus(bus_id="AAAA")
+        try:
+            test_bus.clean_fields(exclude=["seats","seats_first_row","seats_reduced_mobility"])
+        except ValidationError as err:
+            error_raised = dict(err)
+        self.assertIs(bool(error_raised.get("bus_id")),True)
+
+    def test_seats_validator(self):
+        test_bus = Bus(seats=100)
+        try:
+            test_bus.clean_fields(exclude=["bus_id","seats_first_row","seats_reduced_mobility"])
+        except ValidationError as err:
+            error_raised = dict(err)
+        self.assertIs(bool(error_raised.get("seats")),True)
+
+    def test_seats_first_row_validator(self):
+        test_bus = Bus(seats_first_row=5)
+        try:
+            test_bus.clean_fields(exclude=["bus_id","seats","seats_reduced_mobility"])
+        except ValidationError as err:
+            error_raised = dict(err)
+        self.assertIs(bool(error_raised.get("seats_first_row")),True)
+
+    def test_seats_reduced_mobility_validator(self):
+        test_bus = Bus(seats_reduced_mobility=5)
+        try:
+            test_bus.clean_fields(exclude=["bus_id","seats","seats_first_row"])
+        except ValidationError as err:
+            error_raised = dict(err)
+        self.assertIs(bool(error_raised.get("seats_reduced_mobility")),True)
+
     
 class PassTypeModelTests(TestCase):
     def test_not_null_fields(self):
