@@ -10,7 +10,29 @@
         {% include "./navbar.html" %}
     </header>
     <main>
-        {{form}}
+        <form action="{% url 'booking:travel' %}" method="post">
+            {% csrf_token %}
+            <fieldset>
+                <div>
+                    <label for="origin">Origin</label>
+                    <select name="origin" id="origin">
+                        {% for city in cities %}
+                        <option value="{{city}}">{{city}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <label for="destination">Destination</label>
+                    <select name="destination" id="destination">
+                        {% for city in cities %}
+                        <option value="{{city}}">{{city}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <input type="text">
+            </fieldset>
+            <input type="submit" value="Search">
+        </form>
     </main>
 </body>
 </html>

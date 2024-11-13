@@ -1,8 +1,12 @@
 from django.shortcuts import render
 from .forms import SearchTravel
+from .models import CITIES
 
 def travel(request):
-    context = {"form":SearchTravel}
+    context = {
+        "form": SearchTravel,
+        "cities": CITIES.values(),
+    }
     return render(request,"booking/travel.html",context)
 
 def mytickets(request):
