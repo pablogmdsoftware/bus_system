@@ -1,7 +1,8 @@
 from django.shortcuts import render
+from .forms import SearchTravel
 
 def travel(request):
-    context = {}
+    context = {"form":SearchTravel}
     return render(request,"booking/travel.html",context)
 
 def mytickets(request):
