@@ -16,16 +16,16 @@
                 <div>
                     <label for="origin">Origin</label>
                     <select name="origin" id="origin">
-                        {% for city in cities %}
-                        <option value="{{city}}">{{city}}</option>
+                        {% for city, city_name in cities.items %}
+                        <option value="{{city}}">{{city_name}}</option>
                         {% endfor %}
                     </select>
                 </div>
                 <div>
                     <label for="destination">Destination</label>
                     <select name="destination" id="destination">
-                        {% for city in cities %}
-                        <option value="{{city}}">{{city}}</option>
+                        {% for city, city_name in cities.items %}
+                        <option value="{{city}}">{{city_name}}</option>
                         {% endfor %}
                     </select>
                 </div>

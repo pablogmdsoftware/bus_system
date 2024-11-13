@@ -5,7 +5,7 @@ from .models import CITIES
 def travel(request):
     context = {
         "form": SearchTravel,
-        "cities": CITIES.values(),
+        "cities": CITIES,
     }
     return render(request,"booking/travel.html",context)
 
