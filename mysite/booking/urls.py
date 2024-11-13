@@ -10,4 +10,5 @@ urlpatterns = [
     path("mypasses/", views.mypasses, name="mypasses"),
     path("about/", views.about, name="about"),
     path("profile/", views.profile, name="profile"),
+    path("singin/", views.singin, name="singin"),
 ]

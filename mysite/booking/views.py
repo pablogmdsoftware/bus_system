@@ -19,3 +19,7 @@ def about(request):
 def profile(request):
     context = {}
     return render(request,"booking/profile.html",context)
+
+def singin(request):
+    context = {}
+    return render(request,"booking/singin.html",context)
