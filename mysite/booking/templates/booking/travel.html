@@ -10,7 +10,8 @@
         {% include "./navbar.html" %}
     </header>
     <main>
-        <form action="{% url 'booking:travel' %}" method="post">
+        <h2>{{dict}}</h2>
+        <form action="{% url 'booking:buy' %}" method="post">
             {% csrf_token %}
             <fieldset>
                 <div>
@@ -29,7 +30,7 @@
                         {% endfor %}
                     </select>
                 </div>
-                <input type="text">
+                <input type="text" name="date">
             </fieldset>
             <input type="submit" value="Search">
         </form>
