@@ -36,7 +36,7 @@ class PassForm(forms.ModelForm):
             if self.cleaned_data.get("first_city") or self.cleaned_data.get("second_city"):
                 raise ValidationError("The pass is multi route, do not add cities")
 
-class SearchTravel(forms.Form):
+class SearchTravelForm(forms.Form):
     """
     Main travel search engine in the system. It is displayed in the main page, travel.
     A customer can use this form in order to search available tickets for a route and 
