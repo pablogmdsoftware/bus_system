@@ -9,6 +9,14 @@ def travel(request):
     }
     return render(request,"booking/travel.html",context)
 
+def select_ticket(request):
+    context = {}
+    return render(request,"booking/select_ticket.html",context)
+
+def confirm_ticket(request):
+    context = {}
+    return render(request,"booking/confirm_ticket.html",context)
+
 def mytickets(request):
     context = {}
     return render(request,"booking/mytickets.html",context)
