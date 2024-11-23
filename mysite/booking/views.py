@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import SearchTravelForm, BuyTicketForm
+from .forms import SearchTravelForm, PurchaseTicketForm
 from .models import CITIES
 
 def travel(request):

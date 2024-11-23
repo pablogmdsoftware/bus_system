@@ -56,7 +56,7 @@ class SearchTravelForm(forms.Form):
             raise ValidationError("Cities must be different")
 
 
-class BuyTicketForm(SearchTravelForm):
+class PurchaseTicketForm(SearchTravelForm):
     """
     Inherits from SearchTravelForm. Apart from base field it has time and seat in order
     to allow a customer to search a specific travel and choose an unique seat.
