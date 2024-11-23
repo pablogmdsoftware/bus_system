@@ -47,9 +47,10 @@ class SearchTravelForm(forms.Form):
     date = forms.DateField()
 
     def clean_date(self):
-        travel_date = self.cleaned_data.get("date")
+        travel_date = self.cleaned_data["date"]
         if travel_date < date.today():
             raise ValidationError("Past dates are not allowed")
+        return travel_date
 
     def clean(self):
         if self.cleaned_data.get("origin") == self.cleaned_data.get("destination"):
