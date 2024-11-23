@@ -1,6 +1,8 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, reverse
 from django.db.utils import IntegrityError
+from datetime import timedelta
+
 from .forms import SearchTravelForm, PurchaseTicketForm
 from .models import Travel, Ticket, Customer, CITIES
 
@@ -21,7 +23,10 @@ def select_ticket(request):
             origin=origin,
             destination=destination,
         )
-        travel_times = [travel.schedule.strftime("%H:%M") for travel in travels]
+        # This solution works only for utc+1 timezone servers
+        travel_times = []
+        for travel in travels:
+            travel_times.append((travel.schedule+timedelta(hours=1)).strftime("%H:%M"))
         context.update({"travel_times":travel_times})
     else:
         context.update({"dict":form.errors.as_data()})
