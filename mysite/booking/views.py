@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, reverse
+from django.db.utils import IntegrityError
 from .forms import SearchTravelForm, PurchaseTicketForm
-from .models import Travel, CITIES
+from .models import Travel, Ticket, Customer, CITIES
 
 def travel(request):
     context = {
@@ -28,7 +30,28 @@ def select_ticket(request):
     elif request.POST["action"] == "Buy":
         form2 = PurchaseTicketForm(request.POST)
         if form2.is_valid():
-            pass
+            time = form2.cleaned_data["time"]
+            origin = form2.cleaned_data["origin"]
+            destination = form2.cleaned_data["destination"]
+            travel = Travel.objects.get(
+                schedule__time=time,
+                origin=origin,
+                destination=destination,
+            )
+            # Customer and price are test
+            ticket = Ticket(
+                customer = Customer.objects.get(pk=3),
+                travel = travel,
+                seat_number = form2.cleaned_data["seat"],
+                price = 1000,
+            )
+            try:
+                ticket.save()
+            except IntegrityError:
+                context.update({"dict":"The seat you chose is already sold, please select another"})
+            else:
+                return HttpResponseRedirect(reverse("booking:confirm"))
+
         else:
             form = SearchTravelForm(request.POST)
             if form.is_valid():
