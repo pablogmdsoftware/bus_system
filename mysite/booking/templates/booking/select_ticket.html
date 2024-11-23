@@ -12,6 +12,7 @@
     <main>
         <h2>{{request}}</h2>
         <h2>{{dict}}</h2>
+        <h2>{{dict2}}</h2>
         <form action="{% url 'booking:buy' %}" method="post">
             {% csrf_token %}
             <fieldset>
