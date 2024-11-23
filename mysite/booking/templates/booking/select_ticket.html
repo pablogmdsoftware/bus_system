@@ -10,7 +10,7 @@
         {% include "./navbar.html" %}
     </header>
     <main>
-        <form action="{% url 'booking:buy' %}">
+        <form action="{% url 'booking:buy' %}" method="post">
             {% csrf_token %}
             <fieldset>
                 <div>
