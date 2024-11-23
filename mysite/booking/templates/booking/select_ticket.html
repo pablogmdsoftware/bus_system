@@ -9,6 +9,50 @@
     <header>
         {% include "./navbar.html" %}
     </header>
-    <h1>This is the travel selection view</h1>
+    <main>
+        <form action="{% url 'booking:buy' %}">
+            {% csrf_token %}
+            <fieldset>
+                <div>
+                    <label for="origin">Origin</label>
+                    <select name="origin" id="origin">
+                        {% for city, city_name in cities.items %}
+                        <option value="{{city}}">{{city_name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <label for="destination">Destination</label>
+                    <select name="destination" id="destination">
+                        {% for city, city_name in cities.items %}
+                        <option value="{{city}}">{{city_name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <label for="date">Date</label>
+                    <input type="text" name="date">
+                </div>
+            </fieldset>
+            <input type="submit" value="Search">
+            <fieldset>
+                <div>
+                    <label for="time">Time</label>
+                    <select name="time" id="time">
+                        {% for time in times_list %}
+                        <option value="{{time}}">{{time}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <label for="seat">Seat</label>
+                    <input type="number" name="seat">
+                </div>
+            </fieldset>
+            {% if times_list %}
+            <input type="submit" value="Buy">
+            {% endif %}
+        </form>
+    </main>
 </body>
 </html>

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import SearchTravelForm
+from .forms import SearchTravelForm, BuyTicketForm
 from .models import CITIES
 
 def travel(request):
@@ -9,7 +9,7 @@ def travel(request):
     return render(request,"booking/travel.html",context)
 
 def select_ticket(request):
-    context = {}
+    context = {"cities": CITIES}
     return render(request,"booking/select_ticket.html",context)
 
 def confirm_ticket(request):
