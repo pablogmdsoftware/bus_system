@@ -34,7 +34,7 @@
                     <input type="text" name="date">
                 </div>
             </fieldset>
-            <input type="submit" value="Search">
+            <input type="submit" name="action" value="Search">
             <fieldset>
                 <div>
                     <label for="time">Time</label>
@@ -50,7 +50,7 @@
                 </div>
             </fieldset>
             {% if times_list %}
-            <input type="submit" value="Buy">
+            <input type="submit" name="action" value="Buy">
             {% endif %}
         </form>
     </main>

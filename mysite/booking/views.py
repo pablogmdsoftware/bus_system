@@ -9,7 +9,20 @@ def travel(request):
     return render(request,"booking/travel.html",context)
 
 def select_ticket(request):
-    context = {"cities": CITIES}
+    context = {"cities": CITIES,"times_list":[1,2,3]}
+    if request.POST["action"] == "Search":
+        form = SearchTravelForm(request.POST)
+        if form.is_valid():
+            pass
+        else:
+            context.update({"dict":form.errors.as_data()})
+    elif request.POST["action"] == "Buy":
+        form = PurchaseTicketForm(request.POST)
+        if form.is_valid():
+            pass
+        else:            
+            context.update({"dict":form.errors.as_data()})
+        
     return render(request,"booking/select_ticket.html",context)
 
 def confirm_ticket(request):
