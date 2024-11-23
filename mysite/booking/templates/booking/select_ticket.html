@@ -10,7 +10,8 @@
         {% include "./navbar.html" %}
     </header>
     <main>
-        {{dict}}
+        <h2>{{request}}</h2>
+        <h2>{{dict}}</h2>
         <form action="{% url 'booking:buy' %}" method="post">
             {% csrf_token %}
             <fieldset>
@@ -48,7 +49,7 @@
                 <div>
                     <label for="time">Time</label>
                     <select name="time" id="time">
-                        {% for time in times_list %}
+                        {% for time in travel_times %}
                         <option value="{{time}}">{{time}}</option>
                         {% endfor %}
                     </select>
@@ -58,7 +59,7 @@
                     <input type="number" name="seat">
                 </div>
             </fieldset>
-            {% if times_list %}
+            {% if travel_times %}
             <input type="submit" name="action" value="Buy">
             {% endif %}
         </form>
