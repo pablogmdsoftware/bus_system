@@ -10,6 +10,7 @@
         {% include "./navbar.html" %}
     </header>
     <main>
+        {{dict}}
         <form action="{% url 'booking:buy' %}" method="post">
             {% csrf_token %}
             <fieldset>
@@ -17,7 +18,11 @@
                     <label for="origin">Origin</label>
                     <select name="origin" id="origin">
                         {% for city, city_name in cities.items %}
+                        {% if city == request.origin %}
+                        <option value="{{city}}" selected>{{city_name}}</option>
+                        {% else %}
                         <option value="{{city}}">{{city_name}}</option>
+                        {% endif %}
                         {% endfor %}
                     </select>
                 </div>
@@ -25,13 +30,17 @@
                     <label for="destination">Destination</label>
                     <select name="destination" id="destination">
                         {% for city, city_name in cities.items %}
+                        {% if city == request.destination %}
+                        <option value="{{city}}" selected>{{city_name}}</option>
+                        {% else %}
                         <option value="{{city}}">{{city_name}}</option>
+                        {% endif %}
                         {% endfor %}
                     </select>
                 </div>
                 <div>
                     <label for="date">Date</label>
-                    <input type="text" name="date">
+                    <input type="text" name="date" value="{{request.date}}">
                 </div>
             </fieldset>
             <input type="submit" name="action" value="Search">

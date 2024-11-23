@@ -9,7 +9,7 @@ def travel(request):
     return render(request,"booking/travel.html",context)
 
 def select_ticket(request):
-    context = {"cities": CITIES,"times_list":[1,2,3]}
+    context = {"cities": CITIES,"request":request.POST}
     if request.POST["action"] == "Search":
         form = SearchTravelForm(request.POST)
         if form.is_valid():
