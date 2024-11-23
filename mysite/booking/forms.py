@@ -45,3 +45,11 @@ class SearchTravelForm(forms.Form):
     origin = forms.ChoiceField(choices=CITIES)
     destination = forms.ChoiceField(choices=CITIES)  
     date = forms.DateField()
+
+class BuyTicketForm(SearchTravelForm):
+    """
+    Inherits from SearchTravelForm. Apart from base field it has time and seat in order
+    to allow a customer to search a specific travel and choose a unique seat.
+    """
+    time = forms.TimeField()
+    seat = forms.IntegerField()
