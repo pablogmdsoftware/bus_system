@@ -46,6 +46,16 @@ class SearchTravelForm(forms.Form):
     destination = forms.ChoiceField(choices=CITIES)  
     date = forms.DateField()
 
+    def clean_date(self):
+        travel_date = self.cleaned_data.get("date")
+        if travel_date < date.today():
+            raise ValidationError("Past dates are not allowed")
+
+    def clean(self):
+        if self.cleaned_data.get("origin") == self.cleaned_data.get("destination"):
+            raise ValidationError("Cities must be different")
+
+
 class BuyTicketForm(SearchTravelForm):
     """
     Inherits from SearchTravelForm. Apart from base field it has time and seat in order
