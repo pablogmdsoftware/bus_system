@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.core.exceptions import ValidationError
 from datetime import datetime, date, timezone
 
-from .forms import TicketForm
+from .forms import TicketForm, SearchTravelForm
 from .models import Customer, Bus, Travel, Ticket, Pass, PassType
 
 class TicketFormTests(TestCase):
@@ -163,3 +163,13 @@ class TicketModelTests(TestCase):
         self.assertIs(bool(error_raised.get("customer")),True)
         self.assertIs(bool(error_raised.get("travel")),True)
         self.assertIs(bool(error_raised.get("seat_number")),True)
+
+class SearchTravelFormTests(TestCase):
+    def test_clean_date_with_past_date(self):
+        form = SearchTravelForm({"date":datetime(2000,1,1)})
+        form.is_valid()
+        self.assertIs(form.cleaned_data.get("date"),None)
+    def test_clean_with_same_origin_than_destination(self):
+        form = SearchTravelForm({"origin":"M","destination":"M"})
+        form.is_valid()
+        self.assertEqual(form.errors.get("__all__"),["Cities must be different"])
