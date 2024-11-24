@@ -61,7 +61,11 @@
                     <label for="time">Time</label>
                     <select name="time" id="time">
                         {% for time in travel_times %}
+                        {% if time == request.time %}
+                        <option value="{{time}}" selected>{{time}}</option>
+                        {% else %}
                         <option value="{{time}}">{{time}}</option>
+                        {% endif %}
                         {% endfor %}
                     </select>
                 </div>
