@@ -53,18 +53,16 @@ def select_ticket(request):
             })
             if ticket_form.is_valid():
                 ticket = Ticket(
-                    customer = ticket_form.cleaned_data.get("customer"),
-                    travel = ticket_form.cleaned_data.get("travel"),
-                    seat_number = ticket_form.cleaned_data.get("seat_number"),
-                    price = ticket_form.cleaned_data.get("price"),
+                    customer = ticket_form.cleaned_data["customer"],
+                    travel = ticket_form.cleaned_data["travel"],
+                    seat_number = ticket_form.cleaned_data["seat_number"],
+                    price = ticket_form.cleaned_data["price"],
                 )
                 ticket.save()
                 return HttpResponseRedirect(reverse("booking:confirm"))
             else:
                 integrity_error = ticket_form.errors.get("__all__")[0]
-                context.update({
-                    "integrity_error":integrity_error,
-                })                
+                context.update({"integrity_error":integrity_error})                
         else:
             errors2 = {key:value[0] for (key,value) in form2.errors.items()}
             form_clean_error = errors2.get("__all__")
