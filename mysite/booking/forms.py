@@ -9,7 +9,7 @@ from .models import CITIES
 
 class TicketForm(forms.ModelForm):
     """
-    Ticket form created to add complex validators like prohibit to take a seat 
+    Ticket form created to add complex validators like prohibit to take a seat
     that the bus does not have.
     """
     class Meta:
@@ -39,11 +39,11 @@ class PassForm(forms.ModelForm):
 class SearchTravelForm(forms.Form):
     """
     Main travel search engine in the system. It is displayed in the main page, travel.
-    A customer can use this form in order to search available tickets for a route and 
+    A customer can use this form in order to search available tickets for a route and
     a particular date.
     """
     origin = forms.ChoiceField(choices=CITIES)
-    destination = forms.ChoiceField(choices=CITIES)  
+    destination = forms.ChoiceField(choices=CITIES)
     date = forms.DateField()
 
     def clean_date(self):
