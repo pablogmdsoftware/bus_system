@@ -3,7 +3,7 @@ from django.shortcuts import render, reverse
 from django.db.utils import IntegrityError
 from datetime import timedelta
 
-from .forms import SearchTravelForm, PurchaseTicketForm
+from .forms import SearchTravelForm, PurchaseTicketForm, TicketForm
 from .models import Travel, Ticket, Customer, CITIES
 
 def travel(request):
@@ -45,20 +45,26 @@ def select_ticket(request):
                 destination=destination,
             )
             # Customer and price are test
-            ticket = Ticket(
-                customer = Customer.objects.get(pk=3),
-                travel = travel,
-                seat_number = form2.cleaned_data["seat"],
-                price = 1000,
-            )
-            try:
+            ticket_form = TicketForm({
+                "customer": Customer.objects.get(pk=3),
+                "travel": travel,
+                "seat_number": form2.cleaned_data["seat"],
+                "price": 1000,
+            })
+            if ticket_form.is_valid():
+                ticket = Ticket(
+                    customer = ticket_form.cleaned_data.get("customer"),
+                    travel = ticket_form.cleaned_data.get("travel"),
+                    seat_number = ticket_form.cleaned_data.get("seat_number"),
+                    price = ticket_form.cleaned_data.get("price"),
+                )
                 ticket.save()
-            except IntegrityError:
-                context.update({
-                    "integrity_error":"The seat you chose is already sold, please select another"
-                })
-            else:
                 return HttpResponseRedirect(reverse("booking:confirm"))
+            else:
+                integrity_error = ticket_form.errors.get("__all__")[0]
+                context.update({
+                    "integrity_error":integrity_error,
+                })                
         else:
             errors2 = {key:value[0] for (key,value) in form2.errors.items()}
             form_clean_error = errors2.get("__all__")

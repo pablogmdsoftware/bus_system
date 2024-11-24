@@ -10,6 +10,7 @@
         {% include "./navbar.html" %}
     </header>
     <main>
+        {{dict}}
         <form action="{% url 'booking:buy' %}" method="post">
             {% csrf_token %}
             {% if form_clean_error %}
