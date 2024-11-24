@@ -10,11 +10,14 @@
         {% include "./navbar.html" %}
     </header>
     <main>
-        <h2>{{request}}</h2>
-        <h2>{{dict}}</h2>
-        <h2>{{dict2}}</h2>
         <form action="{% url 'booking:buy' %}" method="post">
             {% csrf_token %}
+            {% if form_clean_error %}
+            <p>{{form_clean_error}}</p>
+            {% endif %}
+            {% if integrity_error %}
+            <p>{{integrity_error}}</p>
+            {% endif %}
             <fieldset>
                 <div>
                     <label for="origin">Origin</label>
@@ -41,6 +44,9 @@
                     </select>
                 </div>
                 <div>
+                    {% if errors.date %}
+                    <p>{{errors.date}}</p>
+                    {% endif %}
                     <label for="date">Date</label>
                     <input type="text" name="date" value="{{request.date}}">
                 </div>
@@ -48,6 +54,9 @@
             <input type="submit" name="action" value="Search">
             <fieldset>
                 <div>
+                    {% if errors2.time %}
+                    <p>{{errors2.time}}</p>
+                    {% endif %}
                     <label for="time">Time</label>
                     <select name="time" id="time">
                         {% for time in travel_times %}
@@ -56,6 +65,9 @@
                     </select>
                 </div>
                 <div>
+                    {% if errors2.seat %}
+                    <p>{{errors2.seat}}</p>
+                    {% endif %}
                     <label for="seat">Seat</label>
                     <input type="number" name="seat">
                 </div>

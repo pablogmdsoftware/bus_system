@@ -29,7 +29,9 @@ def select_ticket(request):
             travel_times.append((travel.schedule+timedelta(hours=1)).strftime("%H:%M"))
         context.update({"travel_times":travel_times})
     else:
-        context.update({"dict":form.errors.as_data()})
+        errors = {key:value[0] for (key,value) in form.errors.items()}
+        form_clean_error = errors.get("__all__")
+        context.update({"errors":errors,"form_clean_error":form_clean_error})
             
     if request.POST["action"] == "Buy":
         form2 = PurchaseTicketForm(request.POST)
@@ -52,11 +54,15 @@ def select_ticket(request):
             try:
                 ticket.save()
             except IntegrityError:
-                context.update({"dict":"The seat you chose is already sold, please select another"})
+                context.update({
+                    "integrity_error":"The seat you chose is already sold, please select another"
+                })
             else:
                 return HttpResponseRedirect(reverse("booking:confirm"))
         else:
-            context.update({"dict2":form2.errors.as_data()})
+            errors2 = {key:value[0] for (key,value) in form2.errors.items()}
+            form_clean_error = errors2.get("__all__")
+            context.update({"errors2":errors2,"form_clean_error":form_clean_error})
 
     return render(request,"booking/select_ticket.html",context)
 
