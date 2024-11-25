@@ -13,7 +13,10 @@ def travel(request):
     return render(request,"booking/travel.html",context)
 
 def select_ticket(request):
-    context = {"cities": CITIES,"request":request.POST}
+    context = {
+        "cities": CITIES,
+        "request": request.POST,
+    }
     form = SearchTravelForm(request.POST)
     if form.is_valid():
         date = form.cleaned_data["date"]
@@ -93,3 +96,7 @@ def profile(request):
 def singin(request):
     context = {}
     return render(request,"booking/singin.html",context)
+
+def login(request):
+    context = {}
+    return render(request,"booking/login.html",context)
