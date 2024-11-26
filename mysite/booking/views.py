@@ -2,6 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, reverse
 from django.db.utils import IntegrityError
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 from datetime import timedelta
 
 from .forms import SearchTravelForm, PurchaseTicketForm, TicketForm
@@ -53,14 +54,14 @@ def select_ticket(request):
             )
             # Customer and price are test
             ticket_form = TicketForm({
-                "customer": Customer.objects.get(pk=3),
+                "user": User.objects.get(pk=5),
                 "travel": travel,
                 "seat_number": form2.cleaned_data["seat"],
                 "price": 1000,
             })
             if ticket_form.is_valid():
                 ticket = Ticket(
-                    customer = ticket_form.cleaned_data["customer"],
+                    user = ticket_form.cleaned_data["user"],
                     travel = ticket_form.cleaned_data["travel"],
                     seat_number = ticket_form.cleaned_data["seat_number"],
                     price = ticket_form.cleaned_data["price"],

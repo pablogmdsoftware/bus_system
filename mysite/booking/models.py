@@ -69,7 +69,7 @@ CITIES = {
 
 class Pass(models.Model):
     """Personal passes."""
-    customer = models.ForeignKey(Customer,on_delete=models.CASCADE)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
     pass_type = models.ForeignKey(PassType,on_delete=models.PROTECT)
     num_travels_done = models.PositiveSmallIntegerField(default=0)
     num_travels_uncompleted = models.PositiveSmallIntegerField(default=0)
@@ -79,8 +79,8 @@ class Pass(models.Model):
     second_city = models.CharField(max_length=2,choices=CITIES,null=True,blank=True)
 
     def __str__(self):
-        customer_name = f"{self.customer.first_name} {self.customer.last_name}".title()
-        return f"""{self.pass_type.name} puchased by {customer_name}. Validity: {self.validity_date}. 
+        user_name = f"{self.user.first_name} {self.user.last_name}".title()
+        return f"""{self.pass_type.name} puchased by {user_name}. Validity: {self.validity_date}. 
                 Direction: {self.first_city}-{self.second_city}."""
 
 class Travel(models.Model):
@@ -100,7 +100,7 @@ class Travel(models.Model):
 
 class Ticket(models.Model):
     """Personal customer tickets."""
-    customer = models.ForeignKey(Customer,on_delete=models.CASCADE)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
     travel = models.ForeignKey(Travel,on_delete=models.PROTECT)
     seat_number = models.PositiveSmallIntegerField()
     price = models.PositiveIntegerField(null=True,blank=True,db_comment="Stored in cts")
@@ -115,6 +115,6 @@ class Ticket(models.Model):
         origin = self.travel.origin
         destination = self.travel.destination
         schedule = self.travel.schedule
-        customer = f"{self.customer.first_name} {self.customer.last_name}".title()
+        user = f"{self.user.first_name} {self.user.last_name}".title()
         return f"""{schedule.strftime("%d-%m-%Y (%H:%M %Z)")}. Direction: {origin}-{destination}.
-        Seat number: {self.seat_number}. Purchased by {customer}."""
+        Seat number: {self.seat_number}. Purchased by {user}."""

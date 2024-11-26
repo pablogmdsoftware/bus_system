@@ -14,7 +14,7 @@ class TicketForm(forms.ModelForm):
     """
     class Meta:
         model = Ticket
-        fields = ["customer","travel","seat_number","price"]
+        fields = ["user","travel","seat_number","price"]
     def clean(self):
         super().clean()
         travel = self.cleaned_data.get("travel")
