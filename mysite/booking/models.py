@@ -1,20 +1,18 @@
 from django.db import models
 from django.core.validators import RegexValidator
+from django.contrib.auth.models import User
 
 from .validators import validate_seats_first_row, validate_seats, validate_rm_seats
 
 class Customer(models.Model):
-    """Customers and their necessary information to buy tickets."""
-    first_name = models.CharField(max_length=20)
-    last_name = models.CharField(max_length=50)
-    birth_date = models.DateField()
-    gmail = models.EmailField()
-    registration_datetime = models.DateTimeField(auto_now_add=True)
+    """Users information to buy tickets."""
+    user = models.OneToOneField(User,on_delete=models.CASCADE,parent_link=True)
+    birth_date = models.DateField(null=True,blank=True)
     has_large_family = models.BooleanField(default=False)
     has_reduced_mobility = models.BooleanField(default=False)
 
     def __str__(self):
-        name = f"{self.first_name} {self.last_name}".title()
+        name = f"{self.user.first_name} {self.user.last_name}".title()
         return name
 
 class Bus(models.Model):
