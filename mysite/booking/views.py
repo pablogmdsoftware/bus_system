@@ -3,6 +3,7 @@ from django.shortcuts import render, reverse
 from django.db.utils import IntegrityError
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from datetime import timedelta
 
 from .forms import SearchTravelForm, PurchaseTicketForm, TicketForm
@@ -15,6 +16,7 @@ def travel(request):
     }
     return render(request,"booking/travel.html",context)
 
+@login_required
 def select_ticket(request):
     context = {
         "cities": CITIES,
@@ -78,14 +80,17 @@ def select_ticket(request):
 
     return render(request,"booking/select_ticket.html",context)
 
+@login_required
 def confirm_ticket(request):
     context = {"user": request.user,}
     return render(request,"booking/confirm_ticket.html",context)
 
+@login_required
 def mytickets(request):
     context = {"user": request.user,}
     return render(request,"booking/mytickets.html",context)
 
+@login_required
 def mypasses(request):
     context = {"user": request.user,}
     return render(request,"booking/mypasses.html",context)
@@ -94,6 +99,7 @@ def about(request):
     context = {"user": request.user,}
     return render(request,"booking/about.html",context)
 
+@login_required
 def profile(request):
     context = {"user": request.user,}
     return render(request,"booking/profile.html",context)
@@ -117,6 +123,7 @@ def login_view(request):
     else:
         return render(request,"booking/login.html",context)
 
+@login_required
 def logout_view(request):
     context = {}
     if request.POST.get("action") == "Logout":
