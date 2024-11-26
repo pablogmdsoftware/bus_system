@@ -10,6 +10,7 @@ from .models import Travel, Ticket, Customer, CITIES
 def travel(request):
     context = {
         "cities": CITIES,
+        "user": request.user,
     }
     return render(request,"booking/travel.html",context)
 
@@ -17,6 +18,7 @@ def select_ticket(request):
     context = {
         "cities": CITIES,
         "request": request.POST,
+        "user": request.user,
         "dict": request.user,
     }
     form = SearchTravelForm(request.POST)
@@ -76,23 +78,23 @@ def select_ticket(request):
     return render(request,"booking/select_ticket.html",context)
 
 def confirm_ticket(request):
-    context = {}
+    context = {"user": request.user,}
     return render(request,"booking/confirm_ticket.html",context)
 
 def mytickets(request):
-    context = {}
+    context = {"user": request.user,}
     return render(request,"booking/mytickets.html",context)
 
 def mypasses(request):
-    context = {}
+    context = {"user": request.user,}
     return render(request,"booking/mypasses.html",context)
 
 def about(request):
-    context = {}
+    context = {"user": request.user,}
     return render(request,"booking/about.html",context)
 
 def profile(request):
-    context = {}
+    context = {"user": request.user,}
     return render(request,"booking/profile.html",context)
 
 def singin(request):

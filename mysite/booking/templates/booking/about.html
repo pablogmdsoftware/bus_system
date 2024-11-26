@@ -7,7 +7,11 @@
 </head>
 <body>
     <header>
+        {% if user.is_authenticated %}
         {% include "./navbar.html" %}
+        {% else %}
+        {% include "./customer_not_loged_navbar.html" %}
+        {% endif %}
     </header>
     <main>
         <section class="introduction">
