@@ -114,3 +114,7 @@ def login(request):
             return render(request,"booking/login.html",context)
     else:
         return render(request,"booking/login.html",context)
+
+def logout(request):
+    context = {}
+    return render(request,"booking/logout.html",context)
