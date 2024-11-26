@@ -6,7 +6,7 @@ from .validators import validate_seats_first_row, validate_seats, validate_rm_se
 
 class Customer(models.Model):
     """Users information to buy tickets."""
-    user = models.OneToOneField(User,on_delete=models.CASCADE,parent_link=True)
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
     birth_date = models.DateField(null=True,blank=True)
     has_large_family = models.BooleanField(default=False)
     has_reduced_mobility = models.BooleanField(default=False)
