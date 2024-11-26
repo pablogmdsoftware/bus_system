@@ -1,9 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, reverse
 from django.db.utils import IntegrityError
-from django.contrib.auth import authenticate
-from django.contrib.auth import login as lg
-from django.contrib.auth import logout as lt
+from django.contrib.auth import authenticate, login, logout
 from datetime import timedelta
 
 from .forms import SearchTravelForm, PurchaseTicketForm, TicketForm
@@ -101,14 +99,14 @@ def singin(request):
     context = {}
     return render(request,"booking/singin.html",context)
 
-def login(request):
+def login_view(request):
     context = {}
     if request.POST.get("action") == "Submit":
         username = request.POST.get("username")
         password = request.POST.get("password")
         user = authenticate(request,username=username,password=password)
         if user is not None:
-            lg(request,user)
+            login(request,user)
             return HttpResponseRedirect(reverse("booking:travel"))
         else:
             context.update({"dict":"Error message"})
@@ -116,10 +114,10 @@ def login(request):
     else:
         return render(request,"booking/login.html",context)
 
-def logout(request):
+def logout_view(request):
     context = {}
     if request.POST.get("action") == "Logout":
-        lt(request)
+        logout(request)
         return HttpResponseRedirect(reverse("booking:travel"))
     else:
         return render(request,"booking/logout.html",context)
