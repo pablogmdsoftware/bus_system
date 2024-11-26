@@ -99,7 +99,7 @@ class Travel(models.Model):
         Direction: {self.origin}-{self.destination}. Bus: {self.bus.bus_id}."""
 
 class Ticket(models.Model):
-    """Personal tickets of the customers."""
+    """Personal customer tickets."""
     customer = models.ForeignKey(Customer,on_delete=models.CASCADE)
     travel = models.ForeignKey(Travel,on_delete=models.PROTECT)
     seat_number = models.PositiveSmallIntegerField()
