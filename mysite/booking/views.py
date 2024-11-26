@@ -3,6 +3,7 @@ from django.shortcuts import render, reverse
 from django.db.utils import IntegrityError
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as lg
+from django.contrib.auth import logout as lt
 from datetime import timedelta
 
 from .forms import SearchTravelForm, PurchaseTicketForm, TicketForm
@@ -117,4 +118,8 @@ def login(request):
 
 def logout(request):
     context = {}
-    return render(request,"booking/logout.html",context)
+    if request.POST.get("action") == "Logout":
+        lt(request)
+        return HttpResponseRedirect(reverse("booking:travel"))
+    else:
+        return render(request,"booking/logout.html",context)
