@@ -1,6 +1,8 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, reverse
 from django.db.utils import IntegrityError
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as lg
 from datetime import timedelta
 
 from .forms import SearchTravelForm, PurchaseTicketForm, TicketForm
@@ -16,6 +18,7 @@ def select_ticket(request):
     context = {
         "cities": CITIES,
         "request": request.POST,
+        "dict": request.user,
     }
     form = SearchTravelForm(request.POST)
     if form.is_valid():
@@ -99,4 +102,15 @@ def singin(request):
 
 def login(request):
     context = {}
-    return render(request,"booking/login.html",context)
+    if request.POST.get("action") == "Submit":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        user = authenticate(request,username=username,password=password)
+        if user is not None:
+            lg(request,user)
+            return HttpResponseRedirect(reverse("booking:travel"))
+        else:
+            context.update({"dict":"Error message"})
+            return render(request,"booking/login.html",context)
+    else:
+        return render(request,"booking/login.html",context)

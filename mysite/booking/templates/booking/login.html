@@ -6,8 +6,11 @@
     <title>Login</title>
 </head>
 <body>
-    <form action="" method="post">
+    <form action="{% url 'booking:login' %}" method="post">
         {% csrf_token %}
+        {% if dict %}
+        <p>{{dict}}</p>
+        {% endif %}
         <div>
             <label for="username">Username</label>
             <input type="text" name="username">
@@ -16,7 +19,7 @@
             <label for="password">Password</label>
             <input type="password" name="password">
         </div>
-        <input type="submit">
+        <input type="submit" value="Submit" name="action">
     </form>
 </body>
 </html>
