@@ -20,8 +20,10 @@
         <section class="description">
             <h2>What is the webpage about</h2>
             <p>It is a ticket purchase system for an imaginary bus business in Spain. You can create a profile and order tickets for some travels along the country. The travels are scheduled automatically. There are passes that allow imaginary customers to expend less money if they need to do a lot of travels. A few of this passes where created, such as 10 ticket passes or monthly ones. Some areas are enabled to make these transactions, as well as areas where you can manage your tickets, passes or personal information.</p>
+            {% if not user.is_authenticated %}
             <p>If you want to test the functionality of the system, click on the login button. Do not worry about personal information, a random user will be created in order to let you log in without any data.</p>
-            <button><a href=""></a></button>
+            <button><a href="{% url 'booking:login' %}">Login</a></button>
+            {% endif %}
             <p>Because this is a backend project, I highly recommend you to take a look to the source code.</p>
             <button><a href="https://github.com/pablogmdsoftware/bus_system/" target="_blank">GitHub</a></button>
         </section>
