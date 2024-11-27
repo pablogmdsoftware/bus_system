@@ -1,0 +1,53 @@
+<style>
+    .check {
+        width: 10px;
+        height: 10px;
+        background-color: white;
+        border: 1px solid grey;
+        margin: 1rem;
+    }
+    .check--selected {
+        background-color: grey
+    }
+    .flex {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+    }
+</style>
+
+<article>
+    <table>
+        <tr>
+            <th>Username</th>
+            <td>{{user.username}}</td>
+        </tr>
+        <tr>
+            <th>First Name</th>
+            <td>{{user.first_name}}</td>
+        </tr>
+        <tr>
+            <th>Last Name</th>
+            <td>{{user.last_name}}</td>
+        </tr>
+        <tr>
+            <th>Birthdate</th>
+            <td>{{user.customer.birth_date}}</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>{{user.email}}</td>
+        </tr>
+    </table>
+    {% if user.customer.has_large_family %}
+    <div class="flex"><p>Large Family</p><div class="check check--selected"></div></div>
+    {% else %}
+    <div class="flex"><p>Large Family</p><div class="check"></div></div>
+    {% endif %}
+    {% if user.customer.has_reduced_mobility %}
+    <div class="flex"><p>Reduced mobility</p><div class="check check--selected"></div></div>
+    {% else %}
+    <div class="flex"><p>Reduced mobility</p><div class="check"></div></div>
+    {% endif %}
+    <input type="submit" value="Edit information" name="action">
+</article>
