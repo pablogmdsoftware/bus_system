@@ -105,7 +105,7 @@ def profile(request):
     if request.POST.get("action") == "Submit":
         profile_form = ProfileForm(request.POST)
         if profile_form.is_valid():
-            user = request.user
+            user = User.objects.get(pk=request.user.id)
             customer = Customer.objects.get(user=user)
             new_data = profile_form.cleaned_data
 
@@ -119,17 +119,18 @@ def profile(request):
 
             try:
                 user.save()
-                customer.save()
             except IntegrityError:
                 pass
             else:
-                pass
-            
+                customer.save()
+                return HttpResponseRedirect(reverse("booking:profile"))
+         
         else:
             request.POST["action"] == "Edit information"
             errors = {key:value[0] for (key,value) in profile_form.errors.items()}
             form_clean_error = errors.get("__all__")
             context.update({"errors":errors,"form_clean_error":form_clean_error})
+            
     return render(request,"booking/profile.html",context)
 
 def singin(request):
