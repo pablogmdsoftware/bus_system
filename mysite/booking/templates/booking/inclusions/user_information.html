@@ -49,5 +49,8 @@
     {% else %}
     <div class="flex"><p>Reduced mobility</p><div class="check"></div></div>
     {% endif %}
-    <input type="submit" value="Edit information" name="action">
+    <form action="{% url 'booking:profile' %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Edit information" name="action">
+    </form>
 </article>
