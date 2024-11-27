@@ -10,6 +10,7 @@
         {% include "./inclusions/navbar.html" %}
     </header>
     <main>
+        <h2>{{errors}}</h2>
         {% if request.action == "Edit information" %}
         {% include "./inclusions/user_information_edit.html" %}
         {% else %}

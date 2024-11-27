@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from datetime import timedelta
 
-from .forms import SearchTravelForm, PurchaseTicketForm, TicketForm
+from .forms import SearchTravelForm, PurchaseTicketForm, TicketForm, ProfileForm
 from .models import Travel, Ticket, Customer, CITIES
 
 def travel(request):
@@ -102,6 +102,15 @@ def about(request):
 @login_required
 def profile(request):
     context = {"user": request.user,"request": request.POST}
+    if request.POST.get("action") == "Submit":
+        profile_form = ProfileForm(request.POST)
+        if profile_form.is_valid():
+            pass
+        else:
+            request.POST["action"] == "Edit information"
+            errors = {key:value[0] for (key,value) in profile_form.errors.items()}
+            form_clean_error = errors.get("__all__")
+            context.update({"errors":errors,"form_clean_error":form_clean_error})
     return render(request,"booking/profile.html",context)
 
 def singin(request):
