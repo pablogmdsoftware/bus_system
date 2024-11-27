@@ -105,7 +105,26 @@ def profile(request):
     if request.POST.get("action") == "Submit":
         profile_form = ProfileForm(request.POST)
         if profile_form.is_valid():
-            pass
+            user = request.user
+            customer = Customer.objects.get(user=user)
+            new_data = profile_form.cleaned_data
+
+            user.username = new_data["username"]
+            user.first_name = new_data["first_name"]
+            user.last_name = new_data["last_name"]
+            user.email = new_data["email"]
+            customer.birth_date = new_data["birth_date"]
+            customer.has_large_family = new_data["has_large_family"]
+            customer.has_reduced_mobility = new_data["has_reduced_mobility"]
+
+            try:
+                user.save()
+                customer.save()
+            except IntegrityError:
+                pass
+            else:
+                pass
+            
         else:
             request.POST["action"] == "Edit information"
             errors = {key:value[0] for (key,value) in profile_form.errors.items()}
