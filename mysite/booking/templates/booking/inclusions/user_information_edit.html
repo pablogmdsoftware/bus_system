@@ -34,7 +34,7 @@
             </tr>
             <tr>
                 <th>Birthdate</th>
-                <td><input type="date" value="{{user.birth_date}}" name="birth_date"></td>
+                <td><input type="date" value="{{user.customer.birth_date|date:'Y-m-d'}}" name="birth_date"></td>
             </tr>
             <tr>
                 <th>Email</th>
