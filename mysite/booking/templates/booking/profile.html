@@ -18,7 +18,7 @@
         {% endif %}
         <form action="{% url 'booking:logout' %}" method="post">
             {% csrf_token %}
-            <p>What to test another user? Please log out.</p>
+            <p>Want to test another user? Please log out.</p>
             <input type="submit" name="action" value="Logout">
         </form>
     </main>
