@@ -125,9 +125,9 @@ def login_view(request):
 
 @login_required
 def logout_view(request):
-    context = {}
+    context = {"user":request.user}
     if request.POST.get("action") == "Logout":
         logout(request)
         return HttpResponseRedirect(reverse("booking:travel"))
     else:
-        return render(request,"booking/logout.html",context)
+        return render(request,"booking/profile.html",context)
