@@ -10,7 +10,11 @@
         {% include "./inclusions/navbar.html" %}
     </header>
     <main>
+        {% if request.action == "Edit information" %}
+        {% include "./inclusions/user_information_edit.html" %}
+        {% else %}
         {% include "./inclusions/user_information.html" %}
+        {% endif %}
         <form action="{% url 'booking:logout' %}" method="post">
             {% csrf_token %}
             <p>What to test another user? Please log out.</p>

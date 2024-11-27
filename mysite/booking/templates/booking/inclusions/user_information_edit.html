@@ -1,0 +1,56 @@
+<style>
+    .check {
+        width: 10px;
+        height: 10px;
+        background-color: white;
+        border: 1px solid grey;
+        margin: 1rem;
+    }
+    .check--selected {
+        background-color: grey
+    }
+    .flex {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+    }
+</style>
+
+<article>
+    <form action="">
+        <table>
+            <tr>
+                <th>Username</th>
+                <td><input type="text" value="{{user.username}}"></td>
+            </tr>
+            <tr>
+                <th>First Name</th>
+                <td><input type="text" value="{{user.first_name}}"></td>
+            </tr>
+            <tr>
+                <th>Last Name</th>
+                <td><input type="text" value="{{user.last_name}}"></td>
+            </tr>
+            <tr>
+                <th>Birthdate</th>
+                <td><input type="date" value="{{user.birth_date}}"></td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td><input type="text" value="{{user.email}}"></td>
+            </tr>
+        </table>
+        {% if user.customer.has_large_family %}
+        <div class="flex"><p>Large Family</p><input type="checkbox" checked></div>
+        {% else %}
+        <div class="flex"><p>Large Family</p><input type="checkbox"></div>
+        {% endif %}
+        {% if user.customer.has_reduced_mobility %}
+        <div class="flex"><p>Reduced mobility</p><input type="checkbox" checked></div>
+        {% else %}
+        <div class="flex"><p>Reduced mobility</p><input type="checkbox"></div>
+        {% endif %}
+        <input type="submit" value="Stop editing" name="action">
+        <input type="submit" value="Submit" name="action">
+    </form>
+</article>

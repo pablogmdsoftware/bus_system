@@ -101,7 +101,7 @@ def about(request):
 
 @login_required
 def profile(request):
-    context = {"user": request.user,}
+    context = {"user": request.user,"request": request.POST}
     return render(request,"booking/profile.html",context)
 
 def singin(request):
