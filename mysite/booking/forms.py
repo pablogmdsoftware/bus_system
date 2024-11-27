@@ -74,5 +74,5 @@ class ProfileForm(forms.Form):
     last_name = forms.CharField()
     birth_date = forms.DateField()
     email = forms.EmailField()
-    has_large_family = forms.BooleanField(default=False)
-    has_reduced_mobility = forms.BooleanField(default=False)
+    has_large_family = forms.BooleanField()
+    has_reduced_mobility = forms.BooleanField()
