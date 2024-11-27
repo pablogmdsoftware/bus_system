@@ -87,21 +87,21 @@ def confirm_ticket(request):
 
 @login_required
 def mytickets(request):
-    context = {"user": request.user,}
+    context = {"user":request.user,}
     return render(request,"booking/mytickets.html",context)
 
 @login_required
 def mypasses(request):
-    context = {"user": request.user,}
+    context = {"user":request.user,}
     return render(request,"booking/mypasses.html",context)
 
 def about(request):
-    context = {"user": request.user,}
+    context = {"user":request.user,}
     return render(request,"booking/about.html",context)
 
 @login_required
 def profile(request):
-    context = {"user": request.user,"request": request.POST}
+    context = {"user": request.user,"request":request.POST}
     if request.POST.get("action") == "Submit":
         profile_form = ProfileForm(request.POST)
         if profile_form.is_valid():
