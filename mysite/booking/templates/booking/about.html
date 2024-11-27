@@ -8,9 +8,9 @@
 <body>
     <header>
         {% if user.is_authenticated %}
-        {% include "./includes/navbar.html" %}
+        {% include "./inclusions/navbar.html" %}
         {% else %}
-        {% include "./includes/customer_not_loged_navbar.html" %}
+        {% include "./inclusions/customer_not_loged_navbar.html" %}
         {% endif %}
     </header>
     <main>
