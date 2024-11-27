@@ -64,3 +64,15 @@ class PurchaseTicketForm(SearchTravelForm):
     """
     time = forms.TimeField()
     seat = forms.IntegerField()
+
+class ProfileForm(forms.Form):
+    """
+    Profile form to validate personal information of an user.
+    """
+    username = forms.CharField()
+    first_name = forms.CharField()
+    last_name = forms.CharField()
+    birth_date = forms.DateField()
+    email = forms.EmailField()
+    has_large_family = forms.BooleanField(default=False)
+    has_reduced_mobility = forms.BooleanField(default=False)
