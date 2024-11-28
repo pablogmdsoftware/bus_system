@@ -76,3 +76,16 @@ class ProfileForm(forms.Form):
     email = forms.EmailField()
     has_large_family = forms.BooleanField(required=False)
     has_reduced_mobility = forms.BooleanField(required=False)
+
+class PasswordForm(forms.Form):
+    """
+    Password validation to register new users or change passwords
+    """
+    old_password = forms.CharField()
+    new_password = forms.CharField()
+    repeat_password = forms.CharField()
+
+    def clean(self):
+        passwords = self.cleaned_data
+        if passwords["new_password"] != passwords["repeat_password"]:
+            raise ValidationError("The passwords do not match")
