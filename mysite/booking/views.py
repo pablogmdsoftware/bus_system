@@ -160,3 +160,7 @@ def logout_view(request):
         return HttpResponseRedirect(reverse("booking:travel"))
     else:
         return render(request,"booking/profile.html",context)
+
+@login_required
+def change_password(request):
+    return render(request,"booking/change_password.html")
