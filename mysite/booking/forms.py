@@ -87,5 +87,5 @@ class PasswordForm(forms.Form):
 
     def clean(self):
         passwords = self.cleaned_data
-        if passwords["new_password"] != passwords["repeat_password"]:
+        if passwords.get("new_password") != passwords.get("repeat_password"):
             raise ValidationError("The passwords do not match")
