@@ -15,12 +15,12 @@
         {% include "./inclusions/user_information_edit.html" %}
         {% else %}
         {% include "./inclusions/user_information.html" %}
-        {% endif %}
         <form action="{% url 'booking:logout' %}" method="post">
             {% csrf_token %}
             <p>Want to test another user? Please log out.</p>
             <input type="submit" name="action" value="Logout">
         </form>
+        {% endif %}
     </main>
 </body>
 </html>
