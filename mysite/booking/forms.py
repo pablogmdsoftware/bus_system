@@ -99,6 +99,12 @@ class SingupForm(forms.Form):
     password = forms.CharField()
     repeat_password = forms.CharField()
 
+    def clean_username(self):
+        usernames = User.objects.all().username
+        for username in usernames:
+            if username == self.cleaned_data["username"]:
+                raise ValidationError("That username is already been used, please choose another")
+
     def clean(self):
         passwords = self.cleaned_data
         if passwords.get("password") != passwords.get("repeat_password"):
