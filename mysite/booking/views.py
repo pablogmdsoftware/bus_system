@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from datetime import timedelta
 
 from .forms import SearchTravelForm, PurchaseTicketForm, TicketForm, ProfileForm
-from .forms import PasswordForm
+from .forms import PasswordForm, SingupForm
 from .models import Travel, Ticket, Customer, CITIES
 
 def travel(request):
@@ -135,7 +135,7 @@ def profile(request):
     return render(request,"booking/profile.html",context)
 
 def singup(request):
-    context = {}
+    context = {"form":SingupForm,"dict":request.POST}
     return render(request,"booking/singup.html",context)
 
 def login_view(request,password_changed=None):

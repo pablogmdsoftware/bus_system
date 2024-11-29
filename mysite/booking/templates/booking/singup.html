@@ -10,8 +10,26 @@
         {% include "./inclusions/customer_not_loged_navbar.html" %}
     </header>
     <main>
-        {{form1}}
-        {{form2}}
+        <form action="{% url 'booking:singup' %}" method="post">
+            {% csrf_token %}
+            <div>
+                <label for="username">Username</label>
+                <input type="text" name="username">
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input type="text" name="email">
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input type="text" name="password">
+            </div>
+            <div>
+                <label for="repeat_password">Repeat password</label>
+                <input type="text" name="repeat_password">
+            </div>
+            <input type="submit" name="action" value="Create account">
+        </form>
         <p><a href="{% url 'booking:login' %}">Already have an account?: Login</a></p>
     </main>
 </body>
