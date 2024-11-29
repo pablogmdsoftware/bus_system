@@ -138,7 +138,7 @@ def singin(request):
     context = {}
     return render(request,"booking/singin.html",context)
 
-def login_view(request):
+def login_view(request,password_changed=None):
     context = {}
     if request.POST.get("action") == "Submit":
         username = request.POST.get("username")
@@ -150,6 +150,12 @@ def login_view(request):
         else:
             context.update({"dict":"Error message"})
             return render(request,"booking/login.html",context)
+    elif password_changed == "password":
+        success_message = """
+        Your password has been changed successfully. Please log in again with your new password.
+        """
+        context.update({"password_changed":success_message})
+        return render(request,"booking/login.html",context)
     else:
         return render(request,"booking/login.html",context)
 
@@ -172,7 +178,10 @@ def change_password(request):
             if user.check_password(form.cleaned_data["old_password"]):
                 user.set_password(form.cleaned_data["new_password"])
                 user.save()
-                return HttpResponseRedirect(reverse("booking:profile"))
+                return HttpResponseRedirect(reverse(
+                    "booking:login_new_password",
+                    args=("password",)
+                ))
             else:
                 context.update({"incorrect_password":"Incorrect password"})
                 return render(request,"booking/change_password.html",context)

@@ -16,5 +16,6 @@ urlpatterns = [
     path("accounts/profile/password/", views.change_password, name="password"),
     path("accounts/singin/", views.singin, name="singin"),
     path("accounts/login/", views.login_view, name="login"),
+    path("accounts/login/<str:password_changed>/", views.login_view, name="login_new_password"),
     path("accounts/logout/", views.logout_view, name="logout"),
 ]

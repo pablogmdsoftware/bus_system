@@ -10,6 +10,9 @@
         {% include "./inclusions/customer_not_loged_navbar.html" %}
     </header>
     <main>
+        {% if password_changed %}
+        <h2>{{password_changed}}</h2>
+        {% endif %}
         <form action="{% url 'booking:login' %}" method="post">
             {% csrf_token %}
             {% if dict %}
