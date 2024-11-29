@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Singup</title>
+</head>
+<body>
+    <header>
+        {% include "./inclusions/customer_not_loged_navbar.html" %}
+    </header>
+    <main>
+        {{form1}}
+        {{form2}}
+        <p><a href="{% url 'booking:login' %}">Already have an account?: Login</a></p>
+    </main>
+</body>
+</html>

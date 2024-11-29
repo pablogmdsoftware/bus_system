@@ -70,16 +70,16 @@ class ProfileForm(forms.Form):
     Profile form to validate personal information of an user.
     """
     username = forms.CharField()
-    first_name = forms.CharField()
-    last_name = forms.CharField()
-    birth_date = forms.DateField()
+    first_name = forms.CharField(required=False)
+    last_name = forms.CharField(required=False)
+    birth_date = forms.DateField(required=False)
     email = forms.EmailField()
     has_large_family = forms.BooleanField(required=False)
     has_reduced_mobility = forms.BooleanField(required=False)
 
 class PasswordForm(forms.Form):
     """
-    Password validation to register new users or change passwords
+    Form to change passwords
     """
     old_password = forms.CharField()
     new_password = forms.CharField()
@@ -88,4 +88,18 @@ class PasswordForm(forms.Form):
     def clean(self):
         passwords = self.cleaned_data
         if passwords.get("new_password") != passwords.get("repeat_password"):
+            raise ValidationError("The passwords do not match")
+
+class SingupForm(forms.Form):
+    """
+    Form to create new user accounts
+    """
+    username = forms.CharField()
+    email = forms.EmailField()
+    password = forms.CharField()
+    repeat_password = forms.CharField()
+
+    def clean(self):
+        passwords = self.cleaned_data
+        if passwords.get("password") != passwords.get("repeat_password"):
             raise ValidationError("The passwords do not match")
