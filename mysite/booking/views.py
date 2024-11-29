@@ -136,7 +136,25 @@ def profile(request):
 
 def singup(request):
     context = {"form":SingupForm,"dict":request.POST}
-    return render(request,"booking/singup.html",context)
+    if request.POST.get("action") == "Create account":
+        form = SingupForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            user = User.objects.create_user(
+                username = data["username"],
+                email = data["email"],
+                password = data["password"],
+            )
+            customer = Customer(user=user)
+            customer.save()
+            return HttpResponseRedirect(reverse("booking:login"))
+        else:
+            errors = {key:value[0] for (key,value) in form.errors.items()}
+            form_clean_error = errors.get("__all__")
+            context.update({"errors":errors,"form_clean_error":form_clean_error})
+            return render(request,"booking/singup.html",context)
+    else:
+        return render(request,"booking/singup.html",context)
 
 def login_view(request,password_changed=None):
     context = {}
