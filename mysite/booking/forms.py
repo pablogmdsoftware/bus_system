@@ -1,5 +1,6 @@
 from django import forms
 from django.core.exceptions import ValidationError
+from django.contrib.auth.models import User
 
 from datetime import date
 from dateutil.relativedelta import relativedelta
@@ -100,10 +101,11 @@ class SingupForm(forms.Form):
     repeat_password = forms.CharField()
 
     def clean_username(self):
-        usernames = User.objects.all().username
-        for username in usernames:
-            if username == self.cleaned_data["username"]:
+        users = User.objects.all()
+        for user in users:
+            if user.username == self.cleaned_data["username"]:
                 raise ValidationError("That username is already been used, please choose another")
+        return self.cleaned_data["username"]
 
     def clean(self):
         passwords = self.cleaned_data
