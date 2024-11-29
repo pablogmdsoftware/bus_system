@@ -134,9 +134,9 @@ def profile(request):
             
     return render(request,"booking/profile.html",context)
 
-def singin(request):
+def singup(request):
     context = {}
-    return render(request,"booking/singin.html",context)
+    return render(request,"booking/singup.html",context)
 
 def login_view(request,password_changed=None):
     context = {}
