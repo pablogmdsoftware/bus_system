@@ -3,7 +3,7 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from datetime import datetime, date, timezone
 
-from .forms import TicketForm, SearchTravelForm
+from .forms import TicketForm, SearchTravelForm, PasswordForm
 from .models import Customer, Bus, Travel, Ticket, Pass, PassType
 
 # class TicketFormTests(TestCase):
@@ -174,3 +174,33 @@ class SearchTravelFormTests(TestCase):
         form = SearchTravelForm({"origin":"M","destination":"M"})
         form.is_valid()
         self.assertEqual(form.errors.get("__all__"),["Cities must be different"])
+
+class PasswordFormTests(TestCase):
+    def test_clean_with_mismatched_passwords(self):
+        form = PasswordForm({
+            "new_password": "test1234",
+            "repeat_password": "test5687",
+        })
+        form.is_valid()
+        self.assertEqual(form.errors.get("__all__"),["The passwords do not match"])
+    def test_clean_new_password_with_short_password(self):
+        form = PasswordForm({
+            "new_password": "test",
+            "repeat_password": "test",
+        })
+        form.is_valid()
+        self.assertIs(bool(form.errors.get("new_password")),True)
+    def test_clean_new_password_with_letters_only_password(self):
+        form = PasswordForm({
+            "new_password": "password",
+            "repeat_password": "password",
+        })
+        form.is_valid()
+        self.assertIs(bool(form.errors.get("new_password")),True)
+    def test_clean_new_password_with_digits_only_password(self):
+        form = PasswordForm({
+            "new_password": "0123456879",
+            "repeat_password": "0123456879",
+        })
+        form.is_valid()
+        self.assertIs(bool(form.errors.get("new_password")),True)
