@@ -116,14 +116,13 @@ class PasswordForm(forms.Form):
         if passwords.get("new_password") != passwords.get("repeat_password"):
             raise ValidationError("The passwords do not match")
 
-class SingupForm(forms.Form):
+class SingupForm(PasswordForm):
     """
     Form to create new user accounts
     """
     username = forms.CharField()
     email = forms.EmailField()
-    password = forms.CharField()
-    repeat_password = forms.CharField()
+    old_password = None
 
     def clean_username(self):
         users = User.objects.all()
@@ -133,6 +132,4 @@ class SingupForm(forms.Form):
         return self.cleaned_data["username"]
 
     def clean(self):
-        passwords = self.cleaned_data
-        if passwords.get("password") != passwords.get("repeat_password"):
-            raise ValidationError("The passwords do not match")
+        super().clean()
