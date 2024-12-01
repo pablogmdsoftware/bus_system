@@ -86,6 +86,31 @@ class PasswordForm(forms.Form):
     new_password = forms.CharField()
     repeat_password = forms.CharField()
 
+    def clean_new_password(self):
+        password = self.cleaned_data["new_password"]
+        weak_password_message = """
+        Weak passwords are not allowed. It must contain at least 8 characters
+        using letters and numbers. 
+        """
+        if len(password) < 8:
+            raise ValidationError(weak_password_message)
+        weak = {
+            "has_letter": False,
+            "has_digit": False,
+        }
+        for character in password:
+            if character.islower() or character.isupper():
+                weak["has_letter"] = True
+                break
+        for character in password:
+            if character.isdigit():
+                weak["has_digit"] = True
+                break
+        if weak["has_letter"] and weak["has_digit"]:
+            return password
+        else:
+            raise ValidationError(weak_password_message)
+
     def clean(self):
         passwords = self.cleaned_data
         if passwords.get("new_password") != passwords.get("repeat_password"):
