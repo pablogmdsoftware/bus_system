@@ -15,11 +15,11 @@
             {% csrf_token %}
             <div>
                 <label for="username">Username</label>
-                <input type="text" name="username">
+                <input type="text" name="username" value="{{request.username}}">
             </div>
             <div>
                 <label for="email">Email</label>
-                <input type="text" name="email">
+                <input type="text" name="email" value="{{request.email}}">
             </div>
             <div>
                 <label for="password">Password</label>

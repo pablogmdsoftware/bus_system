@@ -135,7 +135,7 @@ def profile(request):
     return render(request,"booking/profile.html",context)
 
 def singup(request):
-    context = {"form":SingupForm,"dict":request.POST}
+    context = {"request":request.POST}
     if request.POST.get("action") == "Create account":
         form = SingupForm(request.POST)
         if form.is_valid():
