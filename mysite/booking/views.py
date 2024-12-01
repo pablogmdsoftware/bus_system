@@ -208,5 +208,8 @@ def change_password(request):
             context.update({"errors":errors})
             context.update({"not_same_password":errors.get("__all__")})
             return render(request,"booking/change_password.html",context)
-            
-    return render(request,"booking/change_password.html")
+
+    elif request.POST.get("action") == "Cancel":
+        return HttpResponseRedirect(reverse("booking:profile"))
+
+    return render(request,"booking/change_password.html",context)
