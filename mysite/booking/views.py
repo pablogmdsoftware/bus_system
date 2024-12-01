@@ -204,8 +204,9 @@ def change_password(request):
                 context.update({"incorrect_password":"Incorrect password"})
                 return render(request,"booking/change_password.html",context)
         else:
-            context.update({"errors":form.errors})
-            context.update({"not_same_password":form.errors.get("__all__")})
+            errors = {key:value[0] for (key,value) in form.errors.items()}
+            context.update({"errors":errors})
+            context.update({"not_same_password":errors.get("__all__")})
             return render(request,"booking/change_password.html",context)
             
     return render(request,"booking/change_password.html")
