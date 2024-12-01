@@ -3,7 +3,7 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from datetime import datetime, date, timezone
 
-from .forms import TicketForm, SearchTravelForm, PasswordForm
+from .forms import TicketForm, SearchTravelForm, PasswordForm, SingupForm
 from .models import Customer, Bus, Travel, Ticket, Pass, PassType
 
 # class TicketFormTests(TestCase):
@@ -204,3 +204,16 @@ class PasswordFormTests(TestCase):
         })
         form.is_valid()
         self.assertIs(bool(form.errors.get("new_password")),True)
+
+class SingupFormTests(TestCase):
+    def test_clean_username_with_stored_username(self):
+        User.objects.create_user(username="test_username",password="testpassword1234")
+        form = SingupForm({"username":"test_username"})
+        form.is_valid()
+        self.assertIs(bool(form.errors.get("username")),True)
+    def test_email_field_validation(self):
+        form = SingupForm({"email":"not_an_email_string"})
+        form.is_valid()
+        self.assertIs(bool(form.errors.get("email")),True)
+    def test_singup_form_inherits_from_password_form(self):
+        self.assertIs(issubclass(SingupForm,PasswordForm),True)
