@@ -167,15 +167,12 @@ def login_view(request,password_changed=None):
             return HttpResponseRedirect(reverse("booking:travel"))
         else:
             context.update({"dict":"Error message"})
-            return render(request,"booking/login.html",context)
     elif password_changed == "password":
         success_message = """
         Your password has been changed successfully. Please log in again with your new password.
         """
         context.update({"password_changed":success_message})
-        return render(request,"booking/login.html",context)
-    else:
-        return render(request,"booking/login.html",context)
+    return render(request,"booking/login.html",context)
 
 @login_required
 def logout_view(request):
