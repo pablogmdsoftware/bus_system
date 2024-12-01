@@ -157,7 +157,7 @@ def singup(request):
         return render(request,"booking/singup.html",context)
 
 def login_view(request,password_changed=None):
-    context = {}
+    context = {"request":request.POST}
     if request.POST.get("action") == "Submit":
         username = request.POST.get("username")
         password = request.POST.get("password")
@@ -166,7 +166,7 @@ def login_view(request,password_changed=None):
             login(request,user)
             return HttpResponseRedirect(reverse("booking:travel"))
         else:
-            context.update({"dict":"Error message"})
+            context.update({"auth_failed":"An error ocurred, please revise username and password."})
     elif password_changed == "password":
         success_message = """
         Your password has been changed successfully. Please log in again with your new password.

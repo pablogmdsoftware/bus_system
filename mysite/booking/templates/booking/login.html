@@ -15,12 +15,12 @@
         {% endif %}
         <form action="{% url 'booking:login' %}" method="post">
             {% csrf_token %}
-            {% if dict %}
-            <p>{{dict}}</p>
+            {% if auth_failed %}
+            <p>{{auth_failed}}</p>
             {% endif %}
             <div>
                 <label for="username">Username</label>
-                <input type="text" name="username">
+                <input type="text" name="username" value="{{request.username}}">
             </div>
             <div>
                 <label for="password">Password</label>
