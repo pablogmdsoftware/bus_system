@@ -80,7 +80,7 @@ class ProfileForm(forms.Form):
 
 class PasswordForm(forms.Form):
     """
-    Form to change passwords
+    Form to change passwords.
     """
     old_password = forms.CharField()
     new_password = forms.CharField()
@@ -118,7 +118,8 @@ class PasswordForm(forms.Form):
 
 class SingupForm(PasswordForm):
     """
-    Form to create new user accounts
+    Form to create new user accounts. It inherits the fields *new_password* and
+    *repeat_password* from PasswordForm, along with the password validation.
     """
     username = forms.CharField()
     email = forms.EmailField()
