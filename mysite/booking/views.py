@@ -83,7 +83,9 @@ def select_ticket(request):
 
 @login_required
 def confirm_ticket(request):
-    context = {"user": request.user,}
+    context = {"user":request.user,}
+    last_ticket = Ticket.objects.filter(user=request.user).order_by("-purchase_datetime")[0]
+    context.update({"ticket":last_ticket})
     return render(request,"booking/confirm_ticket.html",context)
 
 @login_required
