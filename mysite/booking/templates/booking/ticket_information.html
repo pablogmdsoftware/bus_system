@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket</title>
+    <style>
+    .flex {
+        display: flex;
+        flex-flow: row wrap;
+    }
+    .ticket {
+        width: 200px;
+        height: 275px;
+        background-color: rebeccapurple;
+        display: grid;
+        place-content: center;
+        margin: 1rem;
+        color: black;
+    }
+    </style>
+</head>
+<body>
+    <header>
+        {% include "./inclusions/navbar.html" %}
+    </header>
+    <main>
+        <div class="flex">
+            <table>
+                <tr>
+                    <th>Date</th>
+                    <td>{{ticket.travel.schedule|date:"d-m-Y"}}</td>
+                </tr>
+                <tr>
+                    <th>Time</th>
+                    <td>{{ticket.travel.schedule|date:"h:i"}}</td>
+                </tr>
+                <tr>
+                    <th>Origin</th>
+                    <td>{{ticket.travel.origin}}</td>
+                </tr>
+                <tr>
+                    <th>Destination</th>
+                    <td>{{ticket.travel.destination}}</td>
+                </tr>
+                <tr>
+                    <th>Seat</th>
+                    <td>{{ticket.seat_number}}</td>
+                </tr>
+            </table>
+        </div>
+    </main>
+</body>
+</html>

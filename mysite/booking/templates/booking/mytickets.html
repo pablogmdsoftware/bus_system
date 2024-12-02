@@ -27,7 +27,7 @@
     <main>
         <div class="flex">
             {% for ticket in active_tickets %}
-            <a href="{% url 'booking:profile' %}" class="ticket">
+            <a href="{% url 'booking:ticket_information' ticket.id %}" class="ticket">
                 <table>
                     <tr>
                         <th>Date</th>

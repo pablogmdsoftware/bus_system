@@ -208,3 +208,13 @@ def change_password(request):
             return render(request,"booking/change_password.html",context)
             
     return render(request,"booking/change_password.html")
+
+@login_required
+def ticket_information(request,ticket_id):
+    context = {"user":request.user,}
+    ticket = get_object_or_404(Ticket,pk=ticket_id)
+    if ticket.user == request.user:
+        context.update({"ticket":ticket})
+        return render(request,"booking/ticket_information.html",context)
+    else:
+        return HttpResponseRedirect(reverse("booking:mytickets"))
