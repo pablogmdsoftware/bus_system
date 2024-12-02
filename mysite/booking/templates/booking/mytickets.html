@@ -16,6 +16,7 @@
         display: grid;
         place-content: center;
         margin: 1rem;
+        color: black;
     }
     </style>
 </head>
@@ -26,7 +27,30 @@
     <main>
         <div class="flex">
             {% for ticket in active_tickets %}
-            <div class="ticket">{{ticket.travel.schedule}}</div>
+            <a href="{% url 'booking:profile' %}" class="ticket">
+                <table>
+                    <tr>
+                        <th>Date</th>
+                        <td>{{ticket.travel.schedule|date:"d-m-Y"}}</td>
+                    </tr>
+                    <tr>
+                        <th>Time</th>
+                        <td>{{ticket.travel.schedule|date:"h:i"}}</td>
+                    </tr>
+                    <tr>
+                        <th>Origin</th>
+                        <td>{{ticket.travel.origin}}</td>
+                    </tr>
+                    <tr>
+                        <th>Destination</th>
+                        <td>{{ticket.travel.destination}}</td>
+                    </tr>
+                    <tr>
+                        <th>Seat</th>
+                        <td>{{ticket.seat_number}}</td>
+                    </tr>
+                </table>
+            </a>
             {% endfor %}
         </div>
     </main>
