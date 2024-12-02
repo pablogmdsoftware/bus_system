@@ -55,9 +55,9 @@ def select_ticket(request):
                 origin=origin,
                 destination=destination,
             )
-            # Customer and price are test
+            # Price is test
             ticket_form = TicketForm({
-                "user": User.objects.get(pk=5),
+                "user": request.user,
                 "travel": travel,
                 "seat_number": form2.cleaned_data["seat"],
                 "price": 1000,
