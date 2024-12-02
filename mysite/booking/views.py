@@ -1,10 +1,10 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, reverse
+from django.shortcuts import render, reverse, get_object_or_404
 from django.db.utils import IntegrityError
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from datetime import timedelta
+from datetime import datetime, timedelta
 
 from .forms import SearchTravelForm, PurchaseTicketForm, TicketForm, ProfileForm
 from .forms import PasswordForm
@@ -84,16 +84,20 @@ def select_ticket(request):
 @login_required
 def confirm_ticket(request):
     context = {"user":request.user,}
-    if request.POST.get("action") == "Confirm":
-        return HttpResponseRedirect(reverse("booking:mytickets"))
-    elif request.POST.get("action") == "Cancel":
+    if request.POST.get("action") == "Cancel":
         last_ticket = Ticket.objects.filter(user=request.user).order_by("-purchase_datetime")[0]
         last_ticket.delete()
-        return HttpResponseRedirect(reverse("booking:mytickets"))
+        return HttpResponseRedirect(reverse("booking:mytickets")) 
+    elif request.POST.get("action") == "Confirm":
+        return HttpResponseRedirect(reverse("booking:mytickets")) 
     else:
         last_ticket = Ticket.objects.filter(user=request.user).order_by("-purchase_datetime")[0]
-        context.update({"ticket":last_ticket})
-        return render(request,"booking/confirm_ticket.html",context)
+        ten_seconds_ago = datetime.now() - timedelta(seconds=10)
+        if get_object_or_404(Ticket,user=request.user,purchase_datetime__gt=ten_seconds_ago) == last_ticket:
+            context.update({"ticket":last_ticket})
+            return render(request,"booking/confirm_ticket.html",context)
+        else:
+            return HttpResponseRedirect(reverse("booking:mytickets")) 
 
 @login_required
 def mytickets(request):
