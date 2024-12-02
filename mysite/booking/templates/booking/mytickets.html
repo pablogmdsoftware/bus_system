@@ -4,11 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyTickets</title>
+    <style>
+    .flex {
+        display: flex;
+        flex-flow: row wrap;
+    }
+    .ticket {
+        width: 200px;
+        height: 275px;
+        background-color: rebeccapurple;
+        display: grid;
+        place-content: center;
+        margin: 1rem;
+    }
+    </style>
 </head>
 <body>
     <header>
         {% include "./inclusions/navbar.html" %}
     </header>
-    <h1>This is the tickets view</h1>
+    <main>
+        <div class="flex">
+            {% for ticket in active_tickets %}
+            <div class="ticket">{{ticket.travel.schedule}}</div>
+            {% endfor %}
+        </div>
+    </main>
 </body>
 </html>

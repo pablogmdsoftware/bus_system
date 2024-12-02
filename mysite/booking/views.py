@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from datetime import datetime, timedelta
+from datetime import date as date_python
 
 from .forms import SearchTravelForm, PurchaseTicketForm, TicketForm, ProfileForm
 from .forms import PasswordForm
@@ -102,6 +103,9 @@ def confirm_ticket(request):
 @login_required
 def mytickets(request):
     context = {"user":request.user,}
+    user_tickets = Ticket.objects.filter(user=request.user)
+    active_tickets = user_tickets.filter(travel__schedule__gte=datetime.now())
+    context.update({"active_tickets":active_tickets})
     return render(request,"booking/mytickets.html",context)
 
 @login_required
