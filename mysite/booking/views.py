@@ -84,9 +84,16 @@ def select_ticket(request):
 @login_required
 def confirm_ticket(request):
     context = {"user":request.user,}
-    last_ticket = Ticket.objects.filter(user=request.user).order_by("-purchase_datetime")[0]
-    context.update({"ticket":last_ticket})
-    return render(request,"booking/confirm_ticket.html",context)
+    if request.POST.get("action") == "Confirm":
+        return HttpResponseRedirect(reverse("booking:mytickets"))
+    elif request.POST.get("action") == "Cancel":
+        last_ticket = Ticket.objects.filter(user=request.user).order_by("-purchase_datetime")[0]
+        last_ticket.delete()
+        return HttpResponseRedirect(reverse("booking:mytickets"))
+    else:
+        last_ticket = Ticket.objects.filter(user=request.user).order_by("-purchase_datetime")[0]
+        context.update({"ticket":last_ticket})
+        return render(request,"booking/confirm_ticket.html",context)
 
 @login_required
 def mytickets(request):
