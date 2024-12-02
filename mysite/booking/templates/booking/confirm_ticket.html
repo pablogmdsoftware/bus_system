@@ -9,6 +9,34 @@
     <header>
         {% include "./inclusions/navbar.html" %}
     </header>
-    <h1>This is the travel confirmation view</h1>
+    <main>
+        <form action="{% url 'booking:confirm' %}" method="post">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <th>Origin</th>
+                    <td>{{ticket.travel.origin}}</td>
+                </tr>
+                <tr>
+                    <th>Destination</th>
+                    <td>{{ticket.travel.destination}}</td>
+                </tr>
+                <tr>
+                    <th>Date</th>
+                    <td>{{ticket.travel.schedule|date:"d-m-Y"}}</td>
+                </tr>
+                <tr>
+                    <th>Time</th>
+                    <td>{{ticket.travel.schedule|date:"H:i"}}</td>
+                </tr>
+                <tr>
+                    <th>Seat</th>
+                    <td>{{ticket.seat_number}}</td>
+                </tr>
+            </table>
+            <input type="submit" name="action" value="Cancel">
+            <input type="submit" name="action" value="Confirm">
+        </form>
+    </main>
 </body>
 </html>
