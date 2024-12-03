@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Singup</title>
+</head>
+<body>
+    <header>
+        {% include "./inclusions/customer_not_loged_navbar.html" %}
+    </header>
+    <main>
+        <form action="{% url 'booking:singup' %}" method="post">
+            {% csrf_token %}
+            {% if form_clean_error and not errors.new_password and not errors.repeat_password %}
+            <p>{{form_clean_error}}</p>
+            {% endif %}
+            <div>
+                {% if errors.username %}
+                <p>{{errors.username}}</p>
+                {% endif %}
+                <label for="username">Username</label>
+                <input type="text" name="username" value="{{request.username}}">
+            </div>
+            <div>
+                {% if errors.email %}
+                <p>{{errors.email}}</p>
+                {% endif %}
+                <label for="email">Email</label>
+                <input type="text" name="email" value="{{request.email}}">
+            </div>
+            {% if errors.new_password %}
+            <p>{{errors.new_password}}</p>
+            {% endif %}
+            <div>
+                <label for="new_password">Password</label>
+                <input type="password" name="new_password">
+            </div>
+            <div>
+                <label for="repeat_password">Repeat password</label>
+                <input type="password" name="repeat_password">
+            </div>
+            <input type="submit" name="action" value="Create account">
+        </form>
+        <p><a href="{% url 'booking:login' %}">Already have an account?: Login</a></p>
+    </main>
+</body>
+</html>

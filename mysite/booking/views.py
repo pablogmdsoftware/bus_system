@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from datetime import timedelta
 
 from .forms import SearchTravelForm, PurchaseTicketForm, TicketForm, ProfileForm
-from .forms import PasswordForm
+from .forms import PasswordForm, SingupForm
 from .models import Travel, Ticket, Customer, CITIES
 
 def travel(request):
@@ -134,12 +134,30 @@ def profile(request):
             
     return render(request,"booking/profile.html",context)
 
-def singin(request):
-    context = {}
-    return render(request,"booking/singin.html",context)
+def singup(request):
+    context = {"request":request.POST}
+    if request.POST.get("action") == "Create account":
+        form = SingupForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            user = User.objects.create_user(
+                username = data["username"],
+                email = data["email"],
+                password = data["password"],
+            )
+            customer = Customer(user=user)
+            customer.save()
+            return HttpResponseRedirect(reverse("booking:login"))
+        else:
+            errors = {key:value[0] for (key,value) in form.errors.items()}
+            form_clean_error = errors.get("__all__")
+            context.update({"errors":errors,"form_clean_error":form_clean_error})
+            return render(request,"booking/singup.html",context)
+    else:
+        return render(request,"booking/singup.html",context)
 
 def login_view(request,password_changed=None):
-    context = {}
+    context = {"request":request.POST}
     if request.POST.get("action") == "Submit":
         username = request.POST.get("username")
         password = request.POST.get("password")
@@ -148,16 +166,13 @@ def login_view(request,password_changed=None):
             login(request,user)
             return HttpResponseRedirect(reverse("booking:travel"))
         else:
-            context.update({"dict":"Error message"})
-            return render(request,"booking/login.html",context)
+            context.update({"auth_failed":"An error ocurred, please revise username and password."})
     elif password_changed == "password":
         success_message = """
         Your password has been changed successfully. Please log in again with your new password.
         """
         context.update({"password_changed":success_message})
-        return render(request,"booking/login.html",context)
-    else:
-        return render(request,"booking/login.html",context)
+    return render(request,"booking/login.html",context)
 
 @login_required
 def logout_view(request):
@@ -186,8 +201,12 @@ def change_password(request):
                 context.update({"incorrect_password":"Incorrect password"})
                 return render(request,"booking/change_password.html",context)
         else:
-            context.update({"errors":form.errors})
-            context.update({"not_same_password":form.errors.get("__all__")})
+            errors = {key:value[0] for (key,value) in form.errors.items()}
+            context.update({"errors":errors})
+            context.update({"not_same_password":errors.get("__all__")})
             return render(request,"booking/change_password.html",context)
-            
-    return render(request,"booking/change_password.html")
+
+    elif request.POST.get("action") == "Cancel":
+        return HttpResponseRedirect(reverse("booking:profile"))
+
+    return render(request,"booking/change_password.html",context)

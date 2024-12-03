@@ -1,5 +1,6 @@
 from django import forms
 from django.core.exceptions import ValidationError
+from django.contrib.auth.models import User
 
 from datetime import date
 from dateutil.relativedelta import relativedelta
@@ -70,22 +71,66 @@ class ProfileForm(forms.Form):
     Profile form to validate personal information of an user.
     """
     username = forms.CharField()
-    first_name = forms.CharField()
-    last_name = forms.CharField()
-    birth_date = forms.DateField()
+    first_name = forms.CharField(required=False)
+    last_name = forms.CharField(required=False)
+    birth_date = forms.DateField(required=False)
     email = forms.EmailField()
     has_large_family = forms.BooleanField(required=False)
     has_reduced_mobility = forms.BooleanField(required=False)
 
 class PasswordForm(forms.Form):
     """
-    Password validation to register new users or change passwords
+    Form to change passwords.
     """
     old_password = forms.CharField()
     new_password = forms.CharField()
     repeat_password = forms.CharField()
 
+    def clean_new_password(self):
+        password = self.cleaned_data["new_password"]
+        weak_password_message = """
+        Weak passwords are not allowed. It must contain at least 8 characters
+        using letters and numbers. 
+        """
+        if len(password) < 8:
+            raise ValidationError(weak_password_message)
+        weak = {
+            "has_letter": False,
+            "has_digit": False,
+        }
+        for character in password:
+            if character.islower() or character.isupper():
+                weak["has_letter"] = True
+                break
+        for character in password:
+            if character.isdigit():
+                weak["has_digit"] = True
+                break
+        if weak["has_letter"] and weak["has_digit"]:
+            return password
+        else:
+            raise ValidationError(weak_password_message)
+
     def clean(self):
         passwords = self.cleaned_data
         if passwords.get("new_password") != passwords.get("repeat_password"):
             raise ValidationError("The passwords do not match")
+
+class SingupForm(PasswordForm):
+    """
+    Form to create new user accounts. It inherits the fields *new_password* and
+    *repeat_password* from PasswordForm, along with the password validation.
+    """
+    username = forms.CharField()
+    email = forms.EmailField()
+    old_password = None
+
+    def clean_username(self):
+        users = User.objects.all()
+        for user in users:
+            if user.username == self.cleaned_data["username"]:
+                raise ValidationError("That username is already been used, please choose another")
+        return self.cleaned_data["username"]
+
+    def clean(self):
+        super().clean()
