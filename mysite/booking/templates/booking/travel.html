@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel</title>
     {% load static %}
+    <link rel="stylesheet" href="{% static 'booking/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'booking/navbar.css' %}">
     <link rel="stylesheet" href="{% static 'booking/travel.css' %}">
 </head>
 <body>
@@ -16,10 +18,10 @@
         {% endif %}
     </header>
     <main>
-        <form action="{% url 'booking:buy' %}" method="post">
+        <form action="{% url 'booking:buy' %}" method="post" class="searchTravel">
             {% csrf_token %}
-            <fieldset>
-                <div>
+            <fieldset class="searchTravel__configuration">
+                <div class="searchTravel__originContainer">
                     <label for="origin">Origin</label>
                     <select name="origin" id="origin">
                         {% for city, city_name in cities.items %}
@@ -27,7 +29,7 @@
                         {% endfor %}
                     </select>
                 </div>
-                <div>
+                <div class="searchTravel__destinationContainer">
                     <label for="destination">Destination</label>
                     <select name="destination" id="destination">
                         {% for city, city_name in cities.items %}
@@ -35,12 +37,12 @@
                         {% endfor %}
                     </select>
                 </div>
-                <div>
+                <div class="searchTravel__dateContainer">
                     <label for="date">Date</label>
                     <input type="text" name="date">
                 </div>
             </fieldset>
-            <input type="submit" name="action" value="Search">
+            <input type="submit" name="action" value="Search" class="searchTravel__button">
         </form>
     </main>
 </body>
