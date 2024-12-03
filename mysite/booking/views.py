@@ -1,10 +1,11 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, reverse
+from django.shortcuts import render, reverse, get_object_or_404
 from django.db.utils import IntegrityError
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from datetime import timedelta
+from datetime import datetime, timedelta
+from datetime import date as date_python
 
 from .forms import SearchTravelForm, PurchaseTicketForm, TicketForm, ProfileForm
 from .forms import PasswordForm, SingupForm
@@ -55,9 +56,9 @@ def select_ticket(request):
                 origin=origin,
                 destination=destination,
             )
-            # Customer and price are test
+            # Price is test
             ticket_form = TicketForm({
-                "user": User.objects.get(pk=5),
+                "user": request.user,
                 "travel": travel,
                 "seat_number": form2.cleaned_data["seat"],
                 "price": 1000,
@@ -83,12 +84,28 @@ def select_ticket(request):
 
 @login_required
 def confirm_ticket(request):
-    context = {"user": request.user,}
-    return render(request,"booking/confirm_ticket.html",context)
+    context = {"user":request.user,}
+    if request.POST.get("action") == "Cancel":
+        last_ticket = Ticket.objects.filter(user=request.user).order_by("-purchase_datetime")[0]
+        last_ticket.delete()
+        return HttpResponseRedirect(reverse("booking:mytickets")) 
+    elif request.POST.get("action") == "Confirm":
+        return HttpResponseRedirect(reverse("booking:mytickets")) 
+    else:
+        last_ticket = Ticket.objects.filter(user=request.user).order_by("-purchase_datetime")[0]
+        ten_seconds_ago = datetime.now() - timedelta(seconds=10)
+        if get_object_or_404(Ticket,user=request.user,purchase_datetime__gt=ten_seconds_ago) == last_ticket:
+            context.update({"ticket":last_ticket})
+            return render(request,"booking/confirm_ticket.html",context)
+        else:
+            return HttpResponseRedirect(reverse("booking:mytickets")) 
 
 @login_required
 def mytickets(request):
     context = {"user":request.user,}
+    user_tickets = Ticket.objects.filter(user=request.user)
+    active_tickets = user_tickets.filter(travel__schedule__gte=datetime.now())
+    context.update({"active_tickets":active_tickets})
     return render(request,"booking/mytickets.html",context)
 
 @login_required
@@ -210,3 +227,14 @@ def change_password(request):
         return HttpResponseRedirect(reverse("booking:profile"))
 
     return render(request,"booking/change_password.html",context)
+
+
+@login_required
+def ticket_information(request,ticket_id):
+    context = {"user":request.user,}
+    ticket = get_object_or_404(Ticket,pk=ticket_id)
+    if ticket.user == request.user:
+        context.update({"ticket":ticket})
+        return render(request,"booking/ticket_information.html",context)
+    else:
+        return HttpResponseRedirect(reverse("booking:mytickets"))

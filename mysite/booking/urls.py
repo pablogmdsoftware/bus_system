@@ -10,6 +10,7 @@ urlpatterns = [
     path("travel/buy/", views.select_ticket, name="buy"),
     path("travel/buy/confirm/", views.confirm_ticket, name="confirm"),
     path("mytickets/", views.mytickets, name="mytickets"),
+    path("mytickets/<int:ticket_id>/", views.ticket_information, name="ticket_information"),
     path("mypasses/", views.mypasses, name="mypasses"),
     path("about/", views.about, name="about"),
     path("accounts/profile/", views.profile, name="profile"),
