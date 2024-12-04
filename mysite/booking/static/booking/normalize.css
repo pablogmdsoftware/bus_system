@@ -3,3 +3,9 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+header {
+    position: sticky;
+    top: 0;
+    box-shadow: 0 6px 15px rgba(221, 221, 221, 0.384);
+}
