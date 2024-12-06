@@ -7,55 +7,29 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'booking/normalize.css' %}">
     <link rel="stylesheet" href="{% static 'booking/navbar.css' %}">
-    <style>
-    .flex {
-        display: flex;
-        flex-flow: row wrap;
-    }
-    .ticket {
-        width: 200px;
-        height: 275px;
-        background-color: rebeccapurple;
-        display: grid;
-        place-content: center;
-        margin: 1rem;
-        color: black;
-    }
-    </style>
+    <link rel="stylesheet" href="{% static 'booking/mytickets.css' %}">
 </head>
 <body>
     <header>
         {% include "./inclusions/navbar.html" %}
     </header>
     <main>
-        <div class="flex">
+        <section id="nextTravel">
+        </section>
+        <section id="allTickets">
             {% for ticket in active_tickets %}
-            <a href="{% url 'booking:ticket_information' ticket.id %}" class="ticket">
-                <table>
-                    <tr>
-                        <th>Date</th>
-                        <td>{{ticket.travel.schedule|date:"d-m-Y"}}</td>
-                    </tr>
-                    <tr>
-                        <th>Time</th>
-                        <td>{{ticket.travel.schedule|date:"h:i"}}</td>
-                    </tr>
-                    <tr>
-                        <th>Origin</th>
-                        <td>{{ticket.travel.origin}}</td>
-                    </tr>
-                    <tr>
-                        <th>Destination</th>
-                        <td>{{ticket.travel.destination}}</td>
-                    </tr>
-                    <tr>
-                        <th>Seat</th>
-                        <td>{{ticket.seat_number}}</td>
-                    </tr>
-                </table>
-            </a>
+            <div class="ticket">
+                <div class="ticket__information">
+                    <p>{{ticket.travel.origin}} -> {{ticket.travel.destination}}</p>
+                    <p>Hour: {{ticket.travel.schedule|date:"h:i"}}</p>
+                    <p>Seat: {{ticket.seat_number}}</p>
+                </div>
+                <div class="ticket__date">
+                    <p>{{ticket.travel.schedule|date:"d-m-Y"}}</p>
+                </div>
+            </div>
             {% endfor %}
-        </div>
+        </section>
     </main>
 </body>
 </html>
