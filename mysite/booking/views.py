@@ -104,7 +104,7 @@ def confirm_ticket(request):
 def mytickets(request):
     context = {"user":request.user,}
     user_tickets = Ticket.objects.filter(user=request.user)
-    active_tickets = user_tickets.filter(travel__schedule__gte=datetime.now())
+    active_tickets = user_tickets.filter(travel__schedule__gte=datetime.now()).order_by("travel__schedule")
     context.update({"active_tickets":active_tickets})
     return render(request,"booking/mytickets.html",context)
 
