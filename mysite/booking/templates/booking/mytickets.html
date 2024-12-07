@@ -15,9 +15,8 @@
     </header>
     <main>
         <section id="nextTravel">
-        </section>
-        <section id="allTickets">
-            {% for ticket in active_tickets %}
+            <h2>Next travel</h2>
+            {% with ticket=active_tickets|first %}
             <div class="ticket">
                 <div class="ticket__information">
                     <p>{{ticket.travel.origin}} -> {{ticket.travel.destination}}</p>
@@ -28,7 +27,24 @@
                     <p>{{ticket.travel.schedule|date:"d-m-Y"}}</p>
                 </div>
             </div>
-            {% endfor %}
+            {% endwith %}
+        </section>
+        <section id="allTickets">
+            <h2>All tickets</h2>
+            <div class="ticketGroup">
+                {% for ticket in active_tickets %}
+                <div class="ticket">
+                    <div class="ticket__information">
+                        <p>{{ticket.travel.origin}} -> {{ticket.travel.destination}}</p>
+                        <p>Hour: {{ticket.travel.schedule|date:"h:i"}}</p>
+                        <p>Seat: {{ticket.seat_number}}</p>
+                    </div>
+                    <div class="ticket__date">
+                        <p>{{ticket.travel.schedule|date:"d-m-Y"}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
         </section>
     </main>
 </body>

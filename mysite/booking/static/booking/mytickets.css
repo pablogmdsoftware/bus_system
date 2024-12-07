@@ -4,6 +4,11 @@
 
 #allTickets {
     /* background-color:  mediumslateblue; */
+    /* display: flex;
+    flex-flow: row wrap; */
+}
+
+.ticketGroup {
     display: flex;
     flex-flow: row wrap;
 }
@@ -31,4 +36,7 @@
     background-color: lightseagreen;
     display: grid;
     place-content: center;
+}
+
+.ticket:nth-child(2) {
 }
