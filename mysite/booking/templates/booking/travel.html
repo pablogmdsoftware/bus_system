@@ -21,7 +21,7 @@
         <form action="{% url 'booking:buy' %}" method="post" class="searchTravel">
             {% csrf_token %}
             <fieldset class="searchTravel__configuration">
-                <div class="searchTravel__originContainer">
+                <div class="searchTravel__inputContainer">
                     <label for="origin">Origin</label>
                     <select name="origin" id="origin">
                         {% for city, city_name in cities.items %}
@@ -29,7 +29,7 @@
                         {% endfor %}
                     </select>
                 </div>
-                <div class="searchTravel__destinationContainer">
+                <div class="searchTravel__inputContainer">
                     <label for="destination">Destination</label>
                     <select name="destination" id="destination">
                         {% for city, city_name in cities.items %}
@@ -37,7 +37,7 @@
                         {% endfor %}
                     </select>
                 </div>
-                <div class="searchTravel__dateContainer">
+                <div class="searchTravel__inputContainer">
                     <label for="date">Date</label>
                     <input type="text" name="date">
                 </div>

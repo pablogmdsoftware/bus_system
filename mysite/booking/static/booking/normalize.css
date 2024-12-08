@@ -13,3 +13,7 @@ header {
     top: 0;
     box-shadow: 0 6px 15px rgba(221, 221, 221, 0.384);
 }
+
+fieldset {
+    border: none;
+}
