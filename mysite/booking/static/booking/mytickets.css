@@ -21,6 +21,7 @@
     margin: 1rem;
     display: grid;
     grid-template-rows: 3fr 1fr;
+    text-decoration: none;
 }
 
 .ticket__information {
