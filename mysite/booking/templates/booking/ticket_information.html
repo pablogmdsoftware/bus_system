@@ -28,6 +28,9 @@
         {% include "./inclusions/navbar.html" %}
     </header>
     <main>
+        {% if cancel_error %}
+        <h2>{{cancel_error}}</h2>
+        {% endif %}
         <div class="flex">
             <table>
                 <tr>
@@ -59,7 +62,7 @@
                     <td><img src="{% static 'booking/images/linkedin_qr.svg' %}" alt="QR" width="150" height="150"></td>
                 </tr>
             </table>
-            <form action="">
+            <form action="{% url 'booking:ticket_cancel' ticket.id %}">
                 <input type="submit" name="action" value="Cancel ticket">
             </form>
         </div>

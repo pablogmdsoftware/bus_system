@@ -4,7 +4,7 @@ from django.db.utils import IntegrityError
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from datetime import date as date_python
 
 from .forms import SearchTravelForm, PurchaseTicketForm, TicketForm, ProfileForm
@@ -98,7 +98,7 @@ def confirm_ticket(request):
             context.update({"ticket":last_ticket})
             return render(request,"booking/confirm_ticket.html",context)
         else:
-            return HttpResponseRedirect(reverse("booking:mytickets")) 
+            return HttpResponseRedirect(reverse("booking:mytickets"))
 
 @login_required
 def mytickets(request):
@@ -236,5 +236,21 @@ def ticket_information(request,ticket_id):
     if ticket.user == request.user:
         context.update({"ticket":ticket})
         return render(request,"booking/ticket_information.html",context)
+    else:
+        return HttpResponseRedirect(reverse("booking:mytickets"))
+
+@login_required
+def ticket_cancel(request,ticket_id):
+    context = {"user":request.user,}
+    ticket = get_object_or_404(Ticket,pk=ticket_id)
+    if ticket.user == request.user:
+        now_utc = datetime.now(timezone(timedelta(0)))
+        if ticket.travel.schedule < (now_utc + timedelta(days=1)):
+            cancel_error = "You can not cancel tickets with less than one day remaining"
+            context.update({"ticket":ticket,"cancel_error":cancel_error})
+            return render(request,"booking/ticket_information.html",context)
+        else:
+            ticket.delete()
+            return HttpResponseRedirect(reverse("booking:mytickets"))
     else:
         return HttpResponseRedirect(reverse("booking:mytickets"))
