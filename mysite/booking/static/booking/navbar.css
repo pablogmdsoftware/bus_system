@@ -8,8 +8,9 @@
 }
 
 #navbar__logo {
-    color: black;
-    font-size: 1.15rem;
+    color: rgb(34, 32, 32);
+    font-size: 1.1rem;
+    font-family: "Roboto", serif;
     display: grid;
     place-content: center;
 }
@@ -23,8 +24,10 @@
 
 #navbar__list a {
     text-decoration: none;
-    font-size: 1.15rem;
-    color: black;
+    font-size: 1.1rem;
+    font-family: "Roboto", serif;
+    font-weight: 400;
+    color: rgb(34, 32, 32);
 }
 
 .extraPadding {
