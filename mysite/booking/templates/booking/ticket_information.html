@@ -31,14 +31,6 @@
         <div class="flex">
             <table>
                 <tr>
-                    <th>Date</th>
-                    <td>{{ticket.travel.schedule|date:"d-m-Y"}}</td>
-                </tr>
-                <tr>
-                    <th>Time</th>
-                    <td>{{ticket.travel.schedule|date:"h:i"}}</td>
-                </tr>
-                <tr>
                     <th>Origin</th>
                     <td>{{ticket.travel.origin}}</td>
                 </tr>
@@ -47,10 +39,29 @@
                     <td>{{ticket.travel.destination}}</td>
                 </tr>
                 <tr>
+                    <th>Date</th>
+                    <td>{{ticket.travel.schedule|date:"d-m-Y"}}</td>
+                </tr>
+                <tr>
+                    <th>Time</th>
+                    <td>{{ticket.travel.schedule|date:"h:i"}}</td>
+                </tr>
+                <tr>
                     <th>Seat</th>
                     <td>{{ticket.seat_number}}</td>
                 </tr>
+                <tr>
+                    <th>Cost</th>
+                    <td>{{ticket.price}}</td>
+                </tr>
+                <tr>
+                    <th>QR</th>
+                    <td><img src="{% static 'booking/images/linkedin_qr.svg' %}" alt="QR" width="150" height="150"></td>
+                </tr>
             </table>
+            <form action="">
+                <input type="submit" name="action" value="Cancel ticket">
+            </form>
         </div>
     </main>
 </body>
