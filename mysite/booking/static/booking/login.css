@@ -14,7 +14,8 @@ main {
     border-radius: 12px;
     display: grid;
     grid-template-rows: 20% 1fr 15%;
-    border: 1px solid gray;
+    /* border: 1px solid gray; */
+    box-shadow: 0 0 0.4rem 0.1rem rgba(128, 128, 128, 0.562);
 }
 
 .login p {
@@ -26,7 +27,7 @@ main {
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
-    border-top: 1px solid grey;
+    /* border-top: 1px solid grey; */
 }
 
 .login__inputContainer {

@@ -1,10 +1,16 @@
+header {
+    position: sticky;
+    top: 0;
+    box-shadow: 0 0 0.4rem 0.1rem rgba(0, 0, 0, 0.15);
+}
+
 #navbar {
     height: 65px;
     padding: 0 3rem;
     display: grid;
     place-content: center;
     grid-template-columns: 2fr 5fr;
-    background-color: white;
+    background-color: var(--base);
 }
 
 #navbar__logo {
@@ -27,7 +33,7 @@
     font-size: 1.1rem;
     font-family: "Roboto", serif;
     font-weight: 400;
-    color: rgb(34, 32, 32);
+    color: var(--contrast);
 }
 
 .extraPadding {

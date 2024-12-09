@@ -10,12 +10,8 @@ body {
     min-height: 100vh;
     font-family: "Roboto", serif;
     font-size: 1rem;
-}
-
-header {
-    position: sticky;
-    top: 0;
-    box-shadow: 0 6px 15px rgba(221, 221, 221, 0.384);
+    color: #1E1E1E;
+    background-color: #D9D9D9;
 }
 
 fieldset {
@@ -25,4 +21,11 @@ fieldset {
 input {
     font-family: "Roboto", serif;
     font-size: 1rem;
+}
+
+:root {
+    --primary: #712EE1;
+    --secondary: #656565;
+    --base: #D9D9D9;
+    --contrast: #1E1E1E;
 }
