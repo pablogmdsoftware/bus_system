@@ -7,6 +7,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'booking/normalize.css' %}">
     <link rel="stylesheet" href="{% static 'booking/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'booking/about.css' %}">
 </head>
 <body>
     <header>
@@ -21,19 +22,25 @@
             <p>Hello everyone, I am Pablo and I am a software developer mainly focus on backend. The aim of this project is to show my skills. I also have basic skills on frontend that allow me to program the whole page on my own.</p>
         </section>
         <section class="description">
-            <h2>What is the webpage about</h2>
+            <h3>What is the webpage about</h3>
             <p>It is a ticket purchase system for an imaginary bus business in Spain. You can create a profile and order tickets for some travels along the country. The travels are scheduled automatically. There are passes that allow imaginary customers to expend less money if they need to do a lot of travels. A few of this passes where created, such as 10 ticket passes or monthly ones. Some areas are enabled to make these transactions, as well as areas where you can manage your tickets, passes or personal information.</p>
             {% if not user.is_authenticated %}
             <p>If you want to test the functionality of the system, click on the login button. Do not worry about personal information, a random user will be created in order to let you log in without any data.</p>
-            <button><a href="{% url 'booking:login' %}">Login</a></button>
+            <a href="{% url 'booking:login' %}" class="button">Login</a>
             {% endif %}
             <p>Due to this is a backend project, I highly recommend you to take a look to the source code.</p>
-            <button><a href="https://github.com/pablogmdsoftware/bus_system/" target="_blank">GitHub</a></button>
+            <a href="https://github.com/pablogmdsoftware/bus_system/" target="_blank" class="button">Project</a>
         </section>
         <section class="contact">
-            <h2>More about me</h2>
-            <p><a href="https://www.linkedin.com/in/pablogmd/" target="_blank">LinkedIn</a></p>
-            <p><a href="https://github.com/pablogmdsoftware/" target="_blank">Github</a></p>
+            <h3>More about me</h3>
+            <div class="flex">
+                <img src="{% static 'booking/images/linkedin.svg' %}" alt="">
+                <a href="https://www.linkedin.com/in/pablogmd/" target="_blank" class="aboutLink">LinkedIn</a>
+            </div>
+            <div class="flex">
+                <img src="{% static 'booking/images/github.svg' %}" alt="">
+                <a href="https://github.com/pablogmdsoftware/" target="_blank" class="aboutLink">Github</a>
+            </div>
         </section>
     </main>
 </body>

@@ -1,0 +1,68 @@
+main {
+    padding: 2rem;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    font-size: 1.1rem;
+    word-spacing: 1px;
+    line-height: 1.6em;
+}
+
+section {
+    width: 700px;
+    margin: 0 0 0.8rem 0;
+}
+
+section * {
+    margin: 0 0 0.8rem 0;
+}
+
+h3 {
+    font-size: 1.4rem;
+    color: var(primary);
+}
+
+.button {
+    display: block;
+    width: 140px;
+    height: 45px;
+    background-color: var(--primary);
+    border-radius: 5px;
+    color: whitesmoke;
+    text-decoration: none;
+    font-size: 1rem;
+    display: grid;
+    place-content: center;
+}
+
+.button:hover {
+    background-color: hsl(262, 75%, 43%);
+}
+
+.aboutLink {
+    text-align: center;
+}
+
+.contact img {
+    width: 25px;
+    height: 25px;
+    display: inline;
+    margin: 0 0.5rem 0 0;
+}
+
+.contact a {
+    margin: 0;
+}
+
+/* .aboutLink * {
+    margin: 0 0 0 0;
+} */
+
+.flex {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.contact h3 {
+    margin-bottom: 1.2rem;
+}
