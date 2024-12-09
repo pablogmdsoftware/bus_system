@@ -7,6 +7,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'booking/normalize.css' %}">
     <link rel="stylesheet" href="{% static 'booking/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'booking/login.css' %}">
 </head>
 <body>
     <header>
@@ -16,22 +17,25 @@
         {% if password_changed %}
         <h2>{{password_changed}}</h2>
         {% endif %}
-        <form action="{% url 'booking:login' %}" method="post">
-            {% csrf_token %}
-            {% if auth_failed %}
-            <p>{{auth_failed}}</p>
-            {% endif %}
-            <div>
-                <label for="username">Username</label>
-                <input type="text" name="username" value="{{request.username}}">
-            </div>
-            <div>
-                <label for="password">Password</label>
-                <input type="password" name="password">
-            </div>
-            <input type="submit" value="Submit" name="action">
-        </form>
-        <p><a href="{% url 'booking:singup' %}">You don't have an account?: I'll give you one</a></p>
+        <article class="login">
+            <h2 class="login__header">Login</h2>
+            <form action="{% url 'booking:login' %}" method="post" class="login__form">
+                {% csrf_token %}
+                {% if auth_failed %}
+                <p>{{auth_failed}}</p>
+                {% endif %}
+                <div class="login__inputContainer">
+                    <label for="username" class="nodisplay">Username</label>
+                    <input type="text" name="username" placeholder="Username" value="{{request.username}}">
+                </div>
+                <div class="login__inputContainer">
+                    <label for="password" class="nodisplay">Password</label>
+                    <input type="password" name="password" placeholder="Password">
+                </div>
+                <input type="submit" value="Submit" name="action" class="login__button">
+            </form>
+            <p class="login__footer">You don't have an account?: <a href="{% url 'booking:singup' %}">I'll give you one</a></p>
+        </article>
     </main>
 </body>
 </html>

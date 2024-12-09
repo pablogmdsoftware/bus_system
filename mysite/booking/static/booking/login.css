@@ -1,0 +1,58 @@
+main {
+    height: 75vh;
+    display: grid;
+    place-content: center;
+}
+
+.nodisplay {
+    display: none;
+}
+
+.login {
+    width: 450px;
+    height: 350px;
+    border-radius: 12px;
+    display: grid;
+    grid-template-rows: 20% 1fr 15%;
+    border: 1px solid gray;
+}
+
+.login p {
+    font-size: 0.9rem;
+}
+
+.login__form {
+    padding: 1.5rem;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    border-top: 1px solid grey;
+}
+
+.login__inputContainer {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.login__header {
+    place-self: center;
+}
+
+.login__footer {
+    place-self: top;
+    text-align: center;
+}
+
+.login__button {
+    width: 30%;
+    height: 2.5rem;
+    padding: 0.6rem 0;
+    place-self: center;
+    border-radius: 2px;
+    border: 1px rgb(83, 83, 83) solid;
+    cursor:pointer;
+}
+
+input {
+    padding: 0.4rem;
+}

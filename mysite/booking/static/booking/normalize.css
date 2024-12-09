@@ -9,7 +9,7 @@
 body {
     min-height: 100vh;
     font-family: "Roboto", serif;
-    font-family: 1.1rem;
+    font-size: 1rem;
 }
 
 header {
@@ -20,4 +20,9 @@ header {
 
 fieldset {
     border: none;
+}
+
+input {
+    font-family: "Roboto", serif;
+    font-size: 1rem;
 }
