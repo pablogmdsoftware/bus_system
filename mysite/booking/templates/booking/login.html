@@ -22,7 +22,7 @@
             <form action="{% url 'booking:login' %}" method="post" class="login__form">
                 {% csrf_token %}
                 {% if auth_failed %}
-                <p>{{auth_failed}}</p>
+                <p class="errorMessage">{{auth_failed}}</p>
                 {% endif %}
                 <div class="login__inputContainer">
                     <label for="username" class="nodisplay">Username</label>

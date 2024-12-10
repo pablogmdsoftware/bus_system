@@ -10,16 +10,19 @@ main {
 
 .login {
     width: 450px;
-    height: 350px;
     border-radius: 12px;
     display: grid;
-    grid-template-rows: 20% 1fr 15%;
+    grid-template-rows: 75px 1fr 50px;
     box-shadow: 0 0 0.4rem 0.1rem rgba(128, 128, 128, 0.562);
     background-color: whitesmoke;
 }
 
 .login p {
     font-size: 0.9rem;
+}
+
+.errorMessage {
+    margin-bottom: 0.8rem;
 }
 
 .login__header {
@@ -43,6 +46,7 @@ main {
 .login__inputContainer {
     display: flex;
     flex-flow: column nowrap;
+    margin-bottom: 1.8rem;
 }
 
 .login__inputContainer input {
