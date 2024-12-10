@@ -1,8 +1,10 @@
 <nav id="navbar">
-    <a href="https://www.linkedin.com/in/pablogmd/" target="_blank" id="navbar__logo">pablogmd</a>
+    <div id="navbar__logo">
+        <a href="https://www.linkedin.com/in/pablogmd/" target="_blank" class="link">pablogmd</a>
+    </div>
     <ul id="navbar__list" class="extraPadding">
-        <li><a href="{% url 'booking:travel' %}">Travel</a></li>
-        <li><a href="{% url 'booking:about' %}">About</a></li>
-        <li><a href="{% url 'booking:login' %}">Login</a></li>
+        <li><a href="{% url 'booking:travel' %}" class="link">Travel</a></li>
+        <li><a href="{% url 'booking:about' %}" class="link">About</a></li>
+        <li><a href="{% url 'booking:login' %}" class="link">Login</a></li>
     </ul>
 </nav>

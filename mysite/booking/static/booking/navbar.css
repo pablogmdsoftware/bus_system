@@ -14,9 +14,6 @@ header {
 }
 
 #navbar__logo {
-    color: rgb(34, 32, 32);
-    font-size: 1.1rem;
-    font-family: "Roboto", serif;
     display: grid;
     place-content: center;
 }
@@ -28,12 +25,20 @@ header {
     justify-content: space-evenly;
 }
 
-#navbar__list a {
+.link {
     text-decoration: none;
     font-size: 1.1rem;
     font-family: "Roboto", serif;
     font-weight: 400;
     color: var(--contrast);
+}
+
+.link:hover, .link:active {
+    color: var(--primary);
+}
+
+.link:active {
+    color: hsl(262, 75%, 39%);
 }
 
 .extraPadding {
