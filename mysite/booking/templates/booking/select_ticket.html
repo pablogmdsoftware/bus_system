@@ -7,13 +7,13 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'booking/normalize.css' %}">
     <link rel="stylesheet" href="{% static 'booking/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'booking/select_ticket.css' %}">
 </head>
 <body>
     <header>
         {% include "./inclusions/navbar.html" %}
     </header>
     <main>
-        {{dict}}
         <form action="{% url 'booking:buy' %}" method="post">
             {% csrf_token %}
             {% if form_clean_error %}
@@ -72,10 +72,7 @@
                         {% endfor %}
                     </select>
                 </div>
-                <div>
-                    {% if errors2.seat %}
-                    <p>{{errors2.seat}}</p>
-                    {% endif %}
+                <div class="nodisplay">
                     <label for="seat">Seat</label>
                     <input type="number" name="seat">
                 </div>
@@ -84,6 +81,12 @@
             <input type="submit" name="action" value="Buy">
             {% endif %}
         </form>
+        <div class="selectSeat">
+            {% if errors2.seat %}
+            <p>{{errors2.seat}}</p>
+            {% endif %}
+            <div class="selectSeat__bus"></div>
+        </div>
     </main>
 </body>
 </html>

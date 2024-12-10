@@ -1,0 +1,11 @@
+.selectSeat {
+    width: 300px;
+    height: 350px;
+    background-color: #333;
+    padding: 1rem;
+}
+
+.selectSeat__bus {
+    display: flex;
+    flex-flow: row nowrap;
+}
