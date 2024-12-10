@@ -85,7 +85,22 @@
             {% if errors2.seat %}
             <p>{{errors2.seat}}</p>
             {% endif %}
-            <div class="selectSeat__bus"></div>
+            {% for bus in buses %}
+            <div class="selectSeat__bus">
+                <table>
+                    <tr>
+                        <th>Total seats</th>
+                        <td>{{bus|first}}</td>
+                    </tr>
+                    <tr>
+                        <th>Seats first row</th>
+                        <td>{{bus|last}}</td>
+                    </tr>
+                </table>
+                <div class="selectSeat__firstRowSeats"></div>
+                <div class="selectSeat__remainingSeats"></div>
+            </div>
+            {% endfor %}
         </div>
     </main>
 </body>

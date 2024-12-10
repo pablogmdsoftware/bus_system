@@ -6,6 +6,5 @@
 }
 
 .selectSeat__bus {
-    display: flex;
-    flex-flow: row nowrap;
+    display: none;
 }

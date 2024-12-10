@@ -37,9 +37,11 @@ def select_ticket(request):
         )
         # This solution works only for utc+1 timezone servers
         travel_times = []
+        buses = []
         for travel in travels:
             travel_times.append((travel.schedule+timedelta(hours=1)).strftime("%H:%M"))
-        context.update({"travel_times":travel_times})
+            buses.append((travel.bus.seats,travel.bus.seats_first_row))
+        context.update({"travel_times":travel_times,"buses":buses})
     else:
         errors = {key:value[0] for (key,value) in form.errors.items()}
         form_clean_error = errors.get("__all__")
