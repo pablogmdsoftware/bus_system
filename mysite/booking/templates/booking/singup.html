@@ -3,49 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Singup</title>
+    <title>Signup</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'booking/normalize.css' %}">
     <link rel="stylesheet" href="{% static 'booking/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'booking/signup.css' %}">
 </head>
 <body>
     <header>
         {% include "./inclusions/customer_not_loged_navbar.html" %}
     </header>
     <main>
-        <form action="{% url 'booking:singup' %}" method="post">
-            {% csrf_token %}
-            {% if form_clean_error and not errors.new_password and not errors.repeat_password %}
-            <p>{{form_clean_error}}</p>
-            {% endif %}
-            <div>
-                {% if errors.username %}
-                <p>{{errors.username}}</p>
+        <article class="signup">
+            <h2 class="signup__header">Sign up</h2>
+            <form action="{% url 'booking:singup' %}" method="post" class="signup__form">
+                {% csrf_token %}
+                {% if form_clean_error and not errors.new_password and not errors.repeat_password %}
+                <p class="errorMessage">{{form_clean_error}}</p>
                 {% endif %}
-                <label for="username">Username</label>
-                <input type="text" name="username" value="{{request.username}}">
-            </div>
-            <div>
-                {% if errors.email %}
-                <p>{{errors.email}}</p>
+                <div class="signup__inputContainer">
+                    {% if errors.username %}
+                    <p class="errorMessage">{{errors.username}}</p>
+                    {% endif %}
+                    <label for="username" class="nodisplay">Username</label>
+                    <input type="text" name="username" value="{{request.username}}" placeholder="Username">
+                </div>
+                <div class="signup__inputContainer">
+                    {% if errors.email %}
+                    <p class="errorMessage">{{errors.email}}</p>
+                    {% endif %}
+                    <label for="email" class="nodisplay">Email</label>
+                    <input type="text" name="email" value="{{request.email}}" placeholder="Email">
+                </div>
+                {% if errors.new_password %}
+                <p class="errorMessage">{{errors.new_password}}</p>
                 {% endif %}
-                <label for="email">Email</label>
-                <input type="text" name="email" value="{{request.email}}">
-            </div>
-            {% if errors.new_password %}
-            <p>{{errors.new_password}}</p>
-            {% endif %}
-            <div>
-                <label for="new_password">Password</label>
-                <input type="password" name="new_password">
-            </div>
-            <div>
-                <label for="repeat_password">Repeat password</label>
-                <input type="password" name="repeat_password">
-            </div>
-            <input type="submit" name="action" value="Create account">
-        </form>
-        <p><a href="{% url 'booking:login' %}">Already have an account?: Login</a></p>
+                <div class="signup__inputContainer">
+                    <label for="new_password" class="nodisplay">Password</label>
+                    <input type="password" name="new_password" placeholder="Password">
+                </div>
+                <div class="signup__inputContainer">
+                    <label for="repeat_password" class="nodisplay">Repeat password</label>
+                    <input type="password" name="repeat_password" placeholder="Repeat password">
+                </div>
+                <input type="submit" name="action" value="Create account" class="signup__button">
+            </form>
+            <p class="signup__footer">Already have an account?: <a href="{% url 'booking:login' %}">Login</a></p>
+        </article>
     </main>
 </body>
 </html>
