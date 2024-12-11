@@ -1,0 +1,26 @@
+.check {
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border: 1px solid grey;
+    margin: 1rem;
+}
+.check--selected {
+    background-color: grey
+}
+.flex {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+body {
+    height: 100vh;
+}
+
+main {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 25% 75%;
+    grid-auto-rows: 100%;
+}

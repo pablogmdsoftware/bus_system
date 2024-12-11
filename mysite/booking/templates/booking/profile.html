@@ -7,14 +7,18 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'booking/normalize.css' %}">
     <link rel="stylesheet" href="{% static 'booking/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'booking/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'booking/side_navbar.css' %}">
 </head>
 <body>
     <header>
         {% include "./inclusions/navbar.html" %}
     </header>
     <main>
-        {% include "./inclusions/profile_side_navbar.html" %}
+        {% if errors %}
         <h2>{{errors}}</h2>
+        {% endif %}
+        {% include "./inclusions/profile_side_navbar.html" %}
         {% if request.action == "Edit information" %}
         {% include "./inclusions/user_information_edit.html" %}
         {% else %}
