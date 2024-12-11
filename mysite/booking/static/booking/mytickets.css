@@ -16,7 +16,7 @@
 .ticket {
     width: 150px;
     height: 150px;
-    border: 2px solid lightseagreen;
+    border: 2px solid var(--secondary);
     border-radius: 15%;
     margin: 1rem;
     display: grid;
@@ -26,18 +26,36 @@
 
 .ticket__information {
     padding: 1rem;
-    background-color: rgba(95, 210, 212, 0.699);
+    background-color: whitesmoke;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    color: var(--contrast);
 }
 
 .ticket__date {
     border-bottom-left-radius: 18px;
     border-bottom-right-radius: 18px;
-    background-color: lightseagreen;
+    background-color: var(--secondary);
     display: grid;
     place-content: center;
+    color: var(--contrast);
 }
 
-.ticket:nth-child(2) {
+.ticket:first-child .ticket__date{
+    background-color: var(--complementary);
+}
+
+.ticket:first-child {
+    border: 2px solid var(--complementary);
+}
+
+#nextTravel .ticket .ticket__date {
+    background-color: var(--complementary);
+}
+
+#nextTravel .ticket {
+    border: 2px solid var(--complementary);
 }

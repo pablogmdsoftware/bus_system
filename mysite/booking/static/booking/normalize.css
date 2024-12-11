@@ -26,6 +26,8 @@ input {
 :root {
     --primary: #712EE1;
     --primary-hover: hsl(262, 75%, 43%);
+    --complementary: #F6AE2D;
+    --complementary: hsl(39, 92%, 47%);
     --secondary: #656565;
     --secondary-hover: hsl(0, 0%, 32%);
     --base: #D9D9D9;
