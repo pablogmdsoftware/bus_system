@@ -193,12 +193,8 @@ def login_view(request,password_changed=None):
 
 @login_required
 def logout_view(request):
-    context = {"user":request.user}
-    if request.POST.get("action") == "Logout":
-        logout(request)
-        return HttpResponseRedirect(reverse("booking:travel"))
-    else:
-        return render(request,"booking/profile.html",context)
+    logout(request)
+    return HttpResponseRedirect(reverse("booking:travel"))
 
 @login_required
 def change_password(request):

@@ -13,21 +13,12 @@
         {% include "./inclusions/navbar.html" %}
     </header>
     <main>
+        {% include "./inclusions/profile_side_navbar.html" %}
         <h2>{{errors}}</h2>
         {% if request.action == "Edit information" %}
         {% include "./inclusions/user_information_edit.html" %}
         {% else %}
         {% include "./inclusions/user_information.html" %}
-        <form action="{% url 'booking:password' %}" method="post">
-            {% csrf_token %}
-            <p>Want to modify your password?</p>
-            <input type="submit" name="action" value="Change password">
-        </form>
-        <form action="{% url 'booking:logout' %}" method="post">
-            {% csrf_token %}
-            <p>Want to test another user? Please log out.</p>
-            <input type="submit" name="action" value="Logout">
-        </form>
         {% endif %}
     </main>
 </body>
