@@ -33,3 +33,7 @@ input {
     --base: #D9D9D9;
     --contrast: #1E1E1E;
 }
+
+.nodisplay {
+    display: none;
+}
