@@ -14,12 +14,8 @@
     align-items: center;
 }
 
-body {
-    height: 100vh;
-}
-
 main {
-    height: 100%;
+    height: calc(100vh - 65px);
     display: grid;
     grid-template-columns: 25% 75%;
     grid-auto-rows: 100%;

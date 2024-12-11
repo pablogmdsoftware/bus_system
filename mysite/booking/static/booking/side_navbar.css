@@ -1,3 +1,39 @@
 .sidebar {
-    background-color: var(--secondary);
+    padding: 2rem;
+    box-shadow: 0 0.1rem 0.4rem 0.1rem rgba(0, 0, 0, 0.15);
+}
+
+.sidebar ul {
+    list-style: none;
+    border: 2px solid var(--contrast);
+    border-radius: 8px;
+    padding: 1.5rem;
+    position: relative;
+}
+
+.sidebar__tag {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 0.9rem;
+    background-color: var(--base);
+    transform: translate(0.5rem,-50%);
+    padding: 0 0.4rem;
+}
+
+.sidebar ul li {
+    margin-bottom: 1rem;
+}
+
+.sidebar ul li:last-child {
+    margin-bottom: 0.5rem;
+}
+
+.sidebar__link {
+    text-decoration: none;
+    color: var(--contrast);
+}
+
+.sidebar__link:hover {
+    color: var(--secondary);
 }
