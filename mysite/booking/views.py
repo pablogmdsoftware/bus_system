@@ -160,7 +160,7 @@ def singup(request):
             user = User.objects.create_user(
                 username = data["username"],
                 email = data["email"],
-                password = data["password"],
+                password = data["new_password"],
             )
             customer = Customer(user=user)
             customer.save()
