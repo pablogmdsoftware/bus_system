@@ -38,7 +38,7 @@
         </div>
         <form action="{% url 'booking:profile' %}" method="post" class="profile__submit">
             {% csrf_token %}
-            <input type="submit" value="Edit information" name="action">
+            <input type="submit" value="Edit information" name="action" class="profile__button">
         </form>
     </div>
 </article>
