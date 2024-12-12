@@ -1,22 +1,108 @@
-.check {
-    width: 10px;
-    height: 10px;
-    background-color: white;
-    border: 1px solid grey;
-    margin: 1rem;
+main {
+    height: calc(100vh - 65px);
+    display: grid;
+    grid-template-columns: 25% 75%;
+    grid-auto-rows: 100%;
 }
+
+article {
+    padding: 2.5rem;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    cursor: pointer;
+}
+
+.profile {
+    height: 100%;
+    padding: 1.8rem;
+    background-color: whitesmoke;   
+}
+
+.profile__table tbody {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 0 2rem;
+}
+
+.profile__inputContainer {
+    width: 300px;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.profile__inputContainer th {
+    margin-bottom: 0.6rem;
+    color: var(--contrast);
+}
+
+.profile__inputContainer td {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1.2rem;
+    /* border: 1px solid black; */
+    border-radius: 4px;
+    color: var(--contrast);
+    box-shadow: 0 0 0.1rem 0.1rem rgba(128, 128, 128, 0.5);
+}
+
+input[type="text"] {
+    outline: none;
+    border: none;
+    padding: 0.8rem;
+    width: 100%;
+    border-radius: 4px;
+}
+
+.removePadding td{
+    padding: 0;
+}
+
+.profile__checks {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 0 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.check {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    box-shadow: 0 0 3px 0 inset rgba(0, 0, 0, 0.5);
+    background-color: var(--base);
+    margin-right: 1rem;
+    display: grid;
+    place-content: center;
+}
+
+.innerCheck {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background-color: var(--secondary);
+}
+
+input[type="checkbox"]:checked {
+    background-color: var(--secondary);
+    box-shadow: 0 0 0 0.25rem inset var(--base), 0 0 2px 1px rgba(0, 0, 0, 0.5);
+}
+
+input[type="checkbox"] {
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.5);
+}
+
 .check--selected {
     background-color: grey
 }
+
 .flex {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
 }
 
-main {
-    height: calc(100vh - 65px);
-    display: grid;
-    grid-template-columns: 25% 75%;
-    grid-auto-rows: 100%;
+.removePadding td{
+    padding: 0;
 }

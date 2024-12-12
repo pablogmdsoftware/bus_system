@@ -1,38 +1,44 @@
 <article>
-    <table>
-        <tr>
-            <th>Username</th>
-            <td>{{user.username}}</td>
-        </tr>
-        <tr>
-            <th>First Name</th>
-            <td>{{user.first_name}}</td>
-        </tr>
-        <tr>
-            <th>Last Name</th>
-            <td>{{user.last_name}}</td>
-        </tr>
-        <tr>
-            <th>Birthdate</th>
-            <td>{{user.customer.birth_date}}</td>
-        </tr>
-        <tr>
-            <th>Email</th>
-            <td>{{user.email}}</td>
-        </tr>
-    </table>
-    {% if user.customer.has_large_family %}
-    <div class="flex"><p>Large Family</p><div class="check check--selected"></div></div>
-    {% else %}
-    <div class="flex"><p>Large Family</p><div class="check"></div></div>
-    {% endif %}
-    {% if user.customer.has_reduced_mobility %}
-    <div class="flex"><p>Reduced mobility</p><div class="check check--selected"></div></div>
-    {% else %}
-    <div class="flex"><p>Reduced mobility</p><div class="check"></div></div>
-    {% endif %}
-    <form action="{% url 'booking:profile' %}" method="post">
-        {% csrf_token %}
-        <input type="submit" value="Edit information" name="action">
-    </form>
+    <div class="profile ">
+        <table class="profile__table">
+            <tbody>
+                <tr class="profile__inputContainer">
+                    <th>Username</th>
+                    <td>{{user.username}}</td>
+                </tr>
+                <tr class="profile__inputContainer">
+                    <th>First Name</th>
+                    <td>{{user.first_name}}</td>
+                </tr>
+                <tr class="profile__inputContainer">
+                    <th>Last Name</th>
+                    <td>{{user.last_name}}</td>
+                </tr>
+                <tr class="profile__inputContainer">
+                    <th>Birthdate</th>
+                    <td>{{user.customer.birth_date}}</td>
+                </tr>
+                <tr class="profile__inputContainer">
+                    <th>Email</th>
+                    <td>{{user.email}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="profile__checks">
+            {% if user.customer.has_large_family %}
+            <div class="flex"><div class="check"><div class="innerCheck"></div></div><p>Large Family</p></div>
+            {% else %}
+            <div class="flex"><div class="check"></div><p>Large Family</p></div>
+            {% endif %}
+            {% if user.customer.has_reduced_mobility %}
+            <div class="flex"><div class="check"><div class="innerCheck"></div></div><p>Reduced mobility</p></div>
+            {% else %}
+            <div class="flex"><div class="check"></div><p>Reduced mobility</p></div>
+            {% endif %}
+        </div>
+        <form action="{% url 'booking:profile' %}" method="post" class="profile__submit">
+            {% csrf_token %}
+            <input type="submit" value="Edit information" name="action">
+        </form>
+    </div>
 </article>
