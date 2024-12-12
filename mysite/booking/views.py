@@ -161,6 +161,8 @@ def singup(request):
                 username = data["username"],
                 email = data["email"],
                 password = data["new_password"],
+                first_name = "None",
+                last_name = "None",
             )
             customer = Customer(user=user)
             customer.save()
