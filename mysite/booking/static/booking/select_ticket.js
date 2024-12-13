@@ -2,6 +2,8 @@ const time_input = document.getElementById("time");
 
 const buses = document.querySelectorAll(".bus");
 
+const radio_buttons = document.querySelectorAll(".radioButton")
+
 if (time_input.value) {
     buses.forEach(bus => {
         if (bus.id == "hour" + time_input.value.replace(":","")) {
@@ -11,7 +13,6 @@ if (time_input.value) {
 };
 
 time_input.addEventListener("change", (event) =>  {
-    console.log(event.target.value);
     buses.forEach(bus => {
         bus.classList.add("nodisplay");
         if (bus.id == "hour" + event.target.value.replace(":","")) {
@@ -20,6 +21,8 @@ time_input.addEventListener("change", (event) =>  {
     });
 });
 
-buses.forEach(bus => {
-    console.log(bus.id)
+time_input.addEventListener("change", () => {
+    radio_buttons.forEach(radio_button => {
+        radio_button.checked = false;
+    });
 });
