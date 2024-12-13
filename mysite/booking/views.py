@@ -37,10 +37,20 @@ def select_ticket(request):
         )
         # This solution works only for utc+1 timezone servers
         travel_times = []
-        buses = []
+        buses = {}
         for travel in travels:
-            travel_times.append((travel.schedule+timedelta(hours=1)).strftime("%H:%M"))
-            buses.append((travel.bus.seats,travel.bus.seats_first_row))
+            travel_time = (travel.schedule+timedelta(hours=1)).strftime("%H:%M")
+            travel_time_html_id_format = "hour" + travel_time.replace(":","")
+            travel_times.append(travel_time)
+            tickets_sold = Ticket.objects.filter(travel=travel)
+            seats_sold = [ticket_sold.seat_number for ticket_sold in tickets_sold]
+            buses.update({
+                travel_time_html_id_format: (
+                    travel.bus.seats,
+                    (4-travel.bus.seats_first_row),
+                    seats_sold,
+                ),
+            })
         context.update({"travel_times":travel_times,"buses":buses})
     else:
         errors = {key:value[0] for (key,value) in form.errors.items()}

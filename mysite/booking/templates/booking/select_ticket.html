@@ -75,29 +75,28 @@
                             {% endfor %}
                         </select>
                     </div>
-                    <div class="nodisplay">
-                        <label for="seat">Seat</label>
-                        <input type="number" name="seat">
-                    </div>
                 </fieldset>
                 <div class="selectTicket__configuration">
                     {% if errors2.seat %}
                     <p>{{errors2.seat}}</p>
                     {% endif %}
-                    {% for bus in buses %}
-                    <div class="nodisplay">
-                        <table>
-                            <tr>
-                                <th>Total seats</th>
-                                <td>{{bus|first}}</td>
-                            </tr>
-                            <tr>
-                                <th>Seats first row</th>
-                                <td>{{bus|last}}</td>
-                            </tr>
-                        </table>
-                        <div class="selectSeat__firstRowSeats"></div>
-                        <div class="selectSeat__remainingSeats"></div>
+                    {% for hour, bus in buses.items %}
+                    <div class="bus" id="{{hour}}">
+                        {% with ''|center:bus.1 as range %}
+                        {% for _ in range %}
+                        <div class="busSeat busSeat--empty"></div>
+                        {% endfor %}
+                        {% endwith %}
+                        {% with ''|center:bus.0 as range %}
+                        {% for seat_num in range %}
+                        {% if forloop.counter in bus.2 %}
+                        <div class="busSeat busSeat--sold">{{forloop.counter}}</div>
+                        {% else %}
+                        <label for="seat">{{forloop.counter}}</label>
+                        <input type="radio" class="busSeat" name="seat" value="{{forloop.counter}}">
+                        {% endif %}
+                        {% endfor %}
+                        {% endwith %}
                     </div>
                     {% endfor %}
                 </div>

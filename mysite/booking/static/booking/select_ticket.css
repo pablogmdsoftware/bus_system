@@ -88,3 +88,17 @@
 .nodisplay {
     display: none;
 }
+
+.bus {
+    width: 65px;
+    background-color: cornflowerblue;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.busSeat {
+    width: 15px;
+    height: 15px;
+    background-color: #333;
+    color: whitesmoke;
+}
