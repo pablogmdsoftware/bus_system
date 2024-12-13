@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{% static 'booking/normalize.css' %}">
     <link rel="stylesheet" href="{% static 'booking/navbar.css' %}">
     <link rel="stylesheet" href="{% static 'booking/select_ticket.css' %}">
+    <script defer src="{% static 'booking/select_ticket.js' %}"></script>
 </head>
 <body>
     <header>
@@ -66,6 +67,7 @@
                         {% endif %}
                         <label for="time">Time</label>
                         <select name="time" id="time">
+                            <option value="">-----</option>
                             {% for time in travel_times %}
                             {% if time == request.time %}
                             <option value="{{time}}" selected>{{time}}</option>
@@ -81,7 +83,7 @@
                     <p>{{errors2.seat}}</p>
                     {% endif %}
                     {% for hour, bus in buses.items %}
-                    <div class="bus" id="{{hour}}">
+                    <div class="bus nodisplay" id="{{hour}}">
                         {% with ''|center:bus.1 as range %}
                         {% for _ in range %}
                         <div class="busSeat busSeat--empty"></div>

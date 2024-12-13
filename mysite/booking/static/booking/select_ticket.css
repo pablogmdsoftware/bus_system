@@ -85,15 +85,16 @@
     padding: 1rem;
 }
 
-.nodisplay {
-    display: none;
-}
-
 .bus {
     width: 65px;
     background-color: cornflowerblue;
+    display: none;
     display: flex;
     flex-flow: row wrap;
+}
+
+.nodisplay {
+    display: none;
 }
 
 .busSeat {
