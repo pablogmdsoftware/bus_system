@@ -15,139 +15,142 @@
         {% include "./inclusions/navbar.html" %}
     </header>
     <main>
-        <form action="{% url 'booking:buy' %}" method="post" class="searchTravel">
-            {% csrf_token %}
-                <fieldset class="searchTravel__configuration">
-                    {% if form_clean_error %}
-                    <p class="errorMessage">{{form_clean_error}}</p>
-                    {% endif %}
-                    <div class="searchTravel__inputContainer">
-                        <label for="origin">Origin</label>
-                        <select name="origin" id="origin">
-                            {% for city, city_name in cities.items %}
-                            {% if city == request.origin %}
-                            <option value="{{city}}" selected>{{city_name}}</option>
-                            {% else %}
-                            <option value="{{city}}">{{city_name}}</option>
-                            {% endif %}
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div class="searchTravel__inputContainer">
-                        <label for="destination">Destination</label>
-                        <select name="destination" id="destination">
-                            {% for city, city_name in cities.items %}
-                            {% if city == request.destination %}
-                            <option value="{{city}}" selected>{{city_name}}</option>
-                            {% else %}
-                            <option value="{{city}}">{{city_name}}</option>
-                            {% endif %}
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div class="searchTravel__inputContainer">
-                        {% if errors.date %}
-                        <p class="errorMessage">{{errors.date}}</p>
+        <article class="asideArticle">
+            <form action="{% url 'booking:buy' %}" method="post" class="searchTravel">
+                {% csrf_token %}
+                    <fieldset class="searchTravel__configuration">
+                        {% if form_clean_error %}
+                        <p class="errorMessage">{{form_clean_error}}</p>
                         {% endif %}
-                        <label for="date">Date</label>
-                        <input type="text" name="date" value="{{request.date}}">
-                    </div>
-                    <input type="submit" name="action" value="Search" class="searchTravel__button">
-                </fieldset>
-        </form>
-        <form action="{% url 'booking:buy' %}" method="post" class="selectTravel">
-            {% csrf_token %}
-            <div class="searchTravel nodisplay">
-                <fieldset class="searchTravel__configuration">
-                    <div class="searchTravel__inputContainer">
-                        <label for="origin">Origin</label>
-                        <select name="origin" id="origin">
-                            {% for city, city_name in cities.items %}
-                            {% if city == request.origin %}
-                            <option value="{{city}}" selected>{{city_name}}</option>
-                            {% else %}
-                            <option value="{{city}}">{{city_name}}</option>
-                            {% endif %}
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div class="searchTravel__inputContainer">
-                        <label for="destination">Destination</label>
-                        <select name="destination" id="destination">
-                            {% for city, city_name in cities.items %}
-                            {% if city == request.destination %}
-                            <option value="{{city}}" selected>{{city_name}}</option>
-                            {% else %}
-                            <option value="{{city}}">{{city_name}}</option>
-                            {% endif %}
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div class="searchTravel__inputContainer">
-                        {% if errors.date %}
-                        <p class="errorMessage">{{errors.date}}</p>
-                        {% endif %}
-                        <label for="date">Date</label>
-                        <input type="text" name="date" value="{{request.date}}">
-                    </div>
-                </fieldset>
-            </div>
-            <div class="selectTicket">
-                <fieldset class="selectTicket__configuration">
-                    <div>
-                        {% if integrity_error %}
-                        <p class="errorMessage">{{integrity_error}}</p>
-                        {% endif %}
-                        {% if errors2.time %}
-                        <p class="errorMessage">{{errors2.time}}</p>
-                        {% endif %}
-                        <label for="time">Time</label>
-                        <select name="time" id="time">
-                            <option value="" disabled selected hidden></option>
-                            {% for time in travel_times %}
-                            {% if time == request.time %}
-                            <option value="{{time}}" selected>{{time}}</option>
-                            {% else %}
-                            <!-- One second -->
-                            <option value="{{time}}" selected>{{time}}</option>
-                            {% endif %}
-                            {% endfor %}
-                        </select>
-                    </div>
-                </fieldset>
-                <div class="selectTicket__configuration">
-                    {% if errors2.seat %}
-                    <p class="errorMessage">{{errors2.seat}}</p>
-                    {% endif %}
-                    <p>Select seat</p>
-                    {% for hour, bus in buses.items %}
-                    <div class="bus nodisplay" id="{{hour}}">
-                        {% with ''|center:bus.1 as range %}
-                        {% for _ in range %}
-                        <div class="busSeat busSeat--empty"></div>
-                        {% endfor %}
-                        {% endwith %}
-                        {% with ''|center:bus.0 as range %}
-                        {% for seat_num in range %}
-                        {% if forloop.counter in bus.2 %}
-                        <div class="busSeat busSeat--sold">{{forloop.counter}}</div>
-                        {% else %}
-                        <div class="busSeat">
-                            <input type="radio" class="radioButton" name="seat" value="{{forloop.counter}}">
-                            <p>{{forloop.counter}}</p>
+                        <div class="searchTravel__inputContainer">
+                            <label for="origin">Origin</label>
+                            <select name="origin" id="origin">
+                                {% for city, city_name in cities.items %}
+                                {% if city == request.origin %}
+                                <option value="{{city}}" selected>{{city_name}}</option>
+                                {% else %}
+                                <option value="{{city}}">{{city_name}}</option>
+                                {% endif %}
+                                {% endfor %}
+                            </select>
                         </div>
-                        {% endif %}
-                        {% endfor %}
-                        {% endwith %}
-                        <div class="middleColumn"></div>
-                    </div>
-                    {% endfor %}
+                        <div class="searchTravel__inputContainer">
+                            <label for="destination">Destination</label>
+                            <select name="destination" id="destination">
+                                {% for city, city_name in cities.items %}
+                                {% if city == request.destination %}
+                                <option value="{{city}}" selected>{{city_name}}</option>
+                                {% else %}
+                                <option value="{{city}}">{{city_name}}</option>
+                                {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="searchTravel__inputContainer">
+                            {% if errors.date %}
+                            <p class="errorMessage">{{errors.date}}</p>
+                            {% endif %}
+                            <label for="date">Date</label>
+                            <input type="text" name="date" value="{{request.date}}">
+                        </div>
+                        <input type="submit" name="action" value="Search" class="searchTravel__button">
+                    </fieldset>
+            </form>
+        </article>
+        <article class="mainArticle">
+            <form action="{% url 'booking:buy' %}" method="post" class="selectTravel">
+                {% csrf_token %}
+                <div class="searchTravel nodisplay">
+                    <fieldset class="searchTravel__configuration">
+                        <div class="searchTravel__inputContainer">
+                            <label for="origin">Origin</label>
+                            <select name="origin" id="origin">
+                                {% for city, city_name in cities.items %}
+                                {% if city == request.origin %}
+                                <option value="{{city}}" selected>{{city_name}}</option>
+                                {% else %}
+                                <option value="{{city}}">{{city_name}}</option>
+                                {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="searchTravel__inputContainer">
+                            <label for="destination">Destination</label>
+                            <select name="destination" id="destination">
+                                {% for city, city_name in cities.items %}
+                                {% if city == request.destination %}
+                                <option value="{{city}}" selected>{{city_name}}</option>
+                                {% else %}
+                                <option value="{{city}}">{{city_name}}</option>
+                                {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="searchTravel__inputContainer">
+                            {% if errors.date %}
+                            <p class="errorMessage">{{errors.date}}</p>
+                            {% endif %}
+                            <label for="date">Date</label>
+                            <input type="text" name="date" value="{{request.date}}">
+                        </div>
+                    </fieldset>
                 </div>
-                {% if travel_times %}
-                <input type="submit" name="action" value="Buy" class="selectTicket__button">
-                {% endif %}
-            </div>
-        </form>
+                <div class="selectTicket">
+                    <fieldset class="selectTicket__configuration">
+                        <div>
+                            {% if integrity_error %}
+                            <p class="errorMessage">{{integrity_error}}</p>
+                            {% endif %}
+                            {% if errors2.time %}
+                            <p class="errorMessage">{{errors2.time}}</p>
+                            {% endif %}
+                            <label for="time">Time</label>
+                            <select name="time" id="time">
+                                <option value="" disabled selected hidden></option>
+                                {% for time in travel_times %}
+                                {% if time == request.time %}
+                                <option value="{{time}}" selected>{{time}}</option>
+                                {% else %}
+                                <option value="{{time}}">{{time}}</option>
+                                {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </fieldset>
+                    <div class="selectTicket__configuration">
+                        {% if errors2.seat %}
+                        <p class="errorMessage">{{errors2.seat}}</p>
+                        {% endif %}
+                        <p>Select seat</p>
+                        {% for hour, bus in buses.items %}
+                        <div class="bus nodisplay" id="{{hour}}">
+                            {% with ''|center:bus.1 as range %}
+                            {% for _ in range %}
+                            <div class="busSeat busSeat--empty"></div>
+                            {% endfor %}
+                            {% endwith %}
+                            {% with ''|center:bus.0 as range %}
+                            {% for seat_num in range %}
+                            {% if forloop.counter in bus.2 %}
+                            <div class="busSeat busSeat--sold">{{forloop.counter}}</div>
+                            {% else %}
+                            <div class="busSeat">
+                                <input type="radio" class="radioButton" name="seat" value="{{forloop.counter}}">
+                                <p>{{forloop.counter}}</p>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                            {% endwith %}
+                            <div class="middleColumn"></div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% if travel_times %}
+                    <input type="submit" name="action" value="Buy" class="selectTicket__button">
+                    {% endif %}
+                </div>
+            </form>
+        </article>
     </main>
 </body>
 </html>

@@ -2,12 +2,32 @@ p {
     margin-bottom: 0.9rem;
 }
 
-.selectTravel {
+main {
+    display: grid;
+    grid-template-columns: 420px 1fr;
+}
+
+.asideArticle {
+    height: calc(100vh - 65px);
+    align-self: start;
+    position: sticky;
+    top: 65px;
+    padding: 1.8rem;
+    box-shadow: 0 0 0.4rem 0.1rem rgba(0, 0, 0, 0.15);
+}
+
+.mainArticle {
+    display: flex;
+    justify-content: center;
+    padding: 1.8rem;
+}
+
+/* .selectTravel {
     padding: 1rem;
     display: flex;
     flex-flow: row nowrap;
     gap: 1.5rem;
-}
+} */
 
 .searchTravel {
     width: 350px;
@@ -18,7 +38,7 @@ p {
     padding: 1.8rem 5.5rem 1.8rem 1.8rem;
     background-image: url("images/travel.jpg");
     background-size: cover;
-    position: static;
+    place-self: center;
 }
 
 .searchTravel__configuration {
@@ -53,7 +73,7 @@ p {
 
 .selectTicket {
     width: 580px;
-    height: 400px;
+    /* height: 400px; */
     box-shadow: 0 0 0.2rem 0.1rem grey;
     border-radius: 1rem;
     padding: 1.8rem 1.8rem 1.8rem 1.8rem;
