@@ -37,3 +37,8 @@
     box-shadow: 0 0 0.4rem 0.1rem grey;
     cursor: pointer;
 }
+
+input[type="date"] {
+    font-size: 0.9rem;
+    color: var(--contrast);
+}
