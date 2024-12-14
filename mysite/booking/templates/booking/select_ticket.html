@@ -15,7 +15,7 @@
         {% include "./inclusions/navbar.html" %}
     </header>
     <main>
-        <form action="{% url 'booking:buy' %}" method="post" class="selectTravel" id="form">
+        <form action="{% url 'booking:buy' %}" method="post" class="selectTravel">
             {% csrf_token %}
             {% if form_clean_error %}
             <p>{{form_clean_error}}</p>
@@ -51,7 +51,7 @@
                     </div>
                     <div class="searchTravel__inputContainer">
                         {% if errors.date %}
-                        <p>{{errors.date}}</p>
+                        <p class="errorMessage">{{errors.date}}</p>
                         {% endif %}
                         <label for="date">Date</label>
                         <input type="text" name="date" value="{{request.date}}">
@@ -72,7 +72,8 @@
                             {% if time == request.time %}
                             <option value="{{time}}" selected>{{time}}</option>
                             {% else %}
-                            <option value="{{time}}">{{time}}</option>
+                            <!-- One second -->
+                            <option value="{{time}}" selected>{{time}}</option>
                             {% endif %}
                             {% endfor %}
                         </select>
@@ -80,8 +81,9 @@
                 </fieldset>
                 <div class="selectTicket__configuration">
                     {% if errors2.seat %}
-                    <p>{{errors2.seat}}</p>
+                    <p class="errorMessage">{{errors2.seat}}</p>
                     {% endif %}
+                    <p>Select seat</p>
                     {% for hour, bus in buses.items %}
                     <div class="bus nodisplay" id="{{hour}}">
                         {% with ''|center:bus.1 as range %}
@@ -94,11 +96,14 @@
                         {% if forloop.counter in bus.2 %}
                         <div class="busSeat busSeat--sold">{{forloop.counter}}</div>
                         {% else %}
-                        <label for="seat">{{forloop.counter}}</label>
-                        <input type="radio" class="busSeat radioButton" name="seat" value="{{forloop.counter}}">
+                        <div class="busSeat">
+                            <input type="radio" class="radioButton" name="seat" value="{{forloop.counter}}">
+                            <p>{{forloop.counter}}</p>
+                        </div>
                         {% endif %}
                         {% endfor %}
                         {% endwith %}
+                        <div class="middleColumn"></div>
                     </div>
                     {% endfor %}
                 </div>
