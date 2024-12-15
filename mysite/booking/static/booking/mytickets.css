@@ -1,11 +1,17 @@
-#nextTravel {
-    /* background-color: mediumseagreen; */
+main {
+    padding: 1.8rem;
 }
 
-#allTickets {
-    /* background-color:  mediumslateblue; */
-    /* display: flex;
-    flex-flow: row wrap; */
+#nextTravel {
+    margin-bottom: 2.2rem;
+}
+
+#nextTravel h2 {
+    margin-bottom: 1.3rem;
+}
+
+#allTickets h2 {
+    margin-bottom: 0.4rem;
 }
 
 .ticketGroup {
@@ -58,4 +64,25 @@
 
 #nextTravel .ticket {
     border: 2px solid var(--complementary);
+}
+
+h2 {
+    display: block;
+    background-color: var(--secondary);
+    width: 40%;
+    height: 34.38px;
+    padding: 0.2rem 0 0.2rem 0.7rem;
+    position: relative;
+    color: white;
+    box-shadow: 0 4px 7px -2px rgba(0, 0, 0, 0.2);
+}
+
+h2 .square {
+    width: 48.62px;
+    height: 48.62px;;
+    background-color: var(--base);
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%,-50%) rotate(45deg);
 }
