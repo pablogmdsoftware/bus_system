@@ -7,21 +7,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'booking/normalize.css' %}">
     <link rel="stylesheet" href="{% static 'booking/navbar.css' %}">
-    <style>
-    .flex {
-        display: flex;
-        flex-flow: row wrap;
-    }
-    .ticket {
-        width: 200px;
-        height: 275px;
-        background-color: rebeccapurple;
-        display: grid;
-        place-content: center;
-        margin: 1rem;
-        color: black;
-    }
-    </style>
+    <link rel="stylesheet" href="{% static 'booking/ticket_information.css' %}">
 </head>
 <body>
     <header>
@@ -31,39 +17,39 @@
         {% if cancel_error %}
         <h2>{{cancel_error}}</h2>
         {% endif %}
-        <div class="flex">
+        <div class="ticket">
             <table>
-                <tr>
-                    <th>Origin</th>
+                <tr class="ticket__informationContainer">
+                    <th>Origin:</th>
                     <td>{{ticket.travel.origin}}</td>
                 </tr>
-                <tr>
-                    <th>Destination</th>
+                <tr class="ticket__informationContainer">
+                    <th>Destination:</th>
                     <td>{{ticket.travel.destination}}</td>
                 </tr>
-                <tr>
-                    <th>Date</th>
+                <tr class="ticket__informationContainer">
+                    <th>Date:</th>
                     <td>{{ticket.travel.schedule|date:"d-m-Y"}}</td>
                 </tr>
-                <tr>
-                    <th>Time</th>
+                <tr class="ticket__informationContainer">
+                    <th>Time:</th>
                     <td>{{ticket.travel.schedule|date:"h:i"}}</td>
                 </tr>
-                <tr>
-                    <th>Seat</th>
+                <tr class="ticket__informationContainer">
+                    <th>Seat:</th>
                     <td>{{ticket.seat_number}}</td>
                 </tr>
-                <tr>
-                    <th>Cost</th>
-                    <td>{{ticket.price}}</td>
+                <tr class="ticket__informationContainer">
+                    <th>Cost:</th>
+                    <td>{{ticket.price}} cts</td>
                 </tr>
-                <tr>
-                    <th>QR</th>
-                    <td><img src="{% static 'booking/images/linkedin_qr.svg' %}" alt="QR" width="150" height="150"></td>
+                <tr class="ticket__qrContainer">
+                    <th class="nodisplay">QR</th>
+                    <td><img src="{% static 'booking/images/linkedin_qr.svg' %}" alt="QR" width="125" height="125"></td>
                 </tr>
             </table>
             <form action="{% url 'booking:ticket_cancel' ticket.id %}">
-                <input type="submit" name="action" value="Cancel ticket">
+                <input type="submit" name="action" value="Cancel ticket" class="ticket__button">
             </form>
         </div>
     </main>
