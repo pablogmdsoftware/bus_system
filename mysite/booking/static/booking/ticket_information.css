@@ -16,9 +16,6 @@ main {
     flex-flow: column nowrap;
 }
 
-.ticket form {
-}
-
 .ticket__informationContainer {
     display: block;
     margin-bottom: 0.9rem;
@@ -34,6 +31,7 @@ main {
     position: absolute;
     top: 1.5rem;
     right: 1.5rem;
+    background-color: white;
     box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
 }
 
