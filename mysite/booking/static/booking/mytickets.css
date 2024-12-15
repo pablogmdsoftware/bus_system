@@ -28,6 +28,11 @@ main {
     display: grid;
     grid-template-rows: 3fr 1fr;
     text-decoration: none;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.ticket:hover {
+
 }
 
 .ticket__information {
@@ -37,7 +42,7 @@ main {
     border-top-right-radius: 20px;
     display: flex;
     flex-flow: column nowrap;
-    justify-content: space-around;
+    justify-content: space-around;  
     color: var(--contrast);
 }
 
@@ -50,7 +55,7 @@ main {
     color: var(--contrast);
 }
 
-.ticket:first-child .ticket__date{
+.ticket:first-child .ticket__date {
     background-color: var(--complementary);
 }
 
@@ -64,6 +69,10 @@ main {
 
 #nextTravel .ticket {
     border: 2px solid var(--complementary);
+}
+
+.ticket:hover {
+    box-shadow: 0 0 4px 3px rgba(0, 0, 0, 0.2);
 }
 
 h2 {
