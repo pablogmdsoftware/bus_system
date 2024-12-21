@@ -60,13 +60,15 @@ def select_ticket(request):
     if request.POST["action"] == "Buy":
         form2 = PurchaseTicketForm(request.POST)
         if form2.is_valid():
+            date = form2.cleaned_data["date"]
             time = form2.cleaned_data["time"]
             origin = form2.cleaned_data["origin"]
             destination = form2.cleaned_data["destination"]
             travel = Travel.objects.get(
-                schedule__time=time,
-                origin=origin,
-                destination=destination,
+                schedule__date = date,
+                schedule__time = time,
+                origin = origin,
+                destination = destination,
             )
             # Price is test
             ticket_form = TicketForm({
