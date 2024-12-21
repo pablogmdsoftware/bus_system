@@ -61,3 +61,11 @@ h3 {
 .contact h3 {
     margin-bottom: 1.2rem;
 }
+
+.contact a {
+    color: var(--primary-hover);
+}
+
+.contact a:active {
+    color: hsl(262, 75%, 28%);
+}
