@@ -169,7 +169,13 @@ main {
 }
 
 input[type="date"] {
-    font-size: 0.9rem;
+    font-size: 0.82rem;
+    font-family: inherit;
+    color: var(--contrast);
+}
+
+select, option {
+    font-family: inherit;
     color: var(--contrast);
 }
 
