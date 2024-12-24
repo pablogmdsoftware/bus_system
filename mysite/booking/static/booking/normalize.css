@@ -42,3 +42,15 @@ th {
 .nodisplay {
     display: none;
 }
+
+@media screen and (max-width: 575px) {
+    .hideOnMobile {
+        display: none !important;
+    }
+}
+
+@media screen and (min-width: 576px) {
+    .mobileOnly {
+        display: none !important;
+    }
+}
