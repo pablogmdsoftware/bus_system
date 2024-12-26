@@ -1,15 +1,17 @@
 main {
-    height: 75vh;
+    height: calc(100vh - 60px);
     display: grid;
-    place-content: center;
-}
-
-.nodisplay {
-    display: none;
+    grid-template-columns: repeat(4,1fr);
+    grid-auto-rows: auto;
+    column-gap: 16px;
+    padding: 32px 16px 0 16px;
 }
 
 .login {
-    width: 450px;
+    grid-column: 1 / 5;
+    place-self: start center;
+    width: 100%;
+    max-width: 450px;
     border-radius: 12px;
     display: grid;
     grid-template-rows: 75px 1fr 50px;
@@ -40,7 +42,6 @@ main {
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
-    /* border-top: 1px solid grey; */
 }
 
 .login__inputContainer {
@@ -66,8 +67,8 @@ main {
 }
 
 .login__button {
-    width: 30%;
-    height: 2.5rem;
+    width: 115px;
+    height: 40px;
     padding: 0.6rem 0;
     place-self: center;
     border-radius: 0.25rem;
@@ -97,4 +98,50 @@ input:-webkit-autofill:active{
     -webkit-background-clip: text;
     -webkit-text-fill-color: var(--contrast);
     box-shadow: inset 0 0 20px 20px whitesmoke;
+}
+
+/* || Tablet */
+
+@media screen and (min-width: 576px) {
+    main {
+        display: grid;
+        grid-template-columns: repeat(6,1fr);
+        column-gap: 32px;
+        padding: 32px;
+    }
+    .login {
+        grid-column: 1 / 7;
+        place-self: center;
+        margin-bottom: 20px;
+    }
+    .login__button {
+        width: 135px;
+    }
+}
+
+/* || Laptop */
+
+@media screen and (min-width: 905px) {
+    main {
+        display: grid;
+        grid-template-columns: repeat(12,1fr);
+        column-gap: 32px;
+        padding: 32px;
+    }
+    .login {
+        grid-column: 3 / 11;
+        margin-bottom: 60px;
+    }
+}
+
+/* || Desktop */
+
+@media screen and (min-width: 1440px) {
+    main {
+        display: grid;
+        grid-template-columns: repeat(12,86px);
+        column-gap: 32px;
+        margin: auto;
+        width: 1440px;
+    }
 }
