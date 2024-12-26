@@ -83,6 +83,7 @@ main {
 }
 
 .login__footer {
+    padding: 0 16px;
     place-self: top;
     text-align: center;
 }
