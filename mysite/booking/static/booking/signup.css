@@ -113,7 +113,6 @@ input:-webkit-autofill:active{
     .signup {
         grid-column: 1 / 7;
         place-self: center;
-        margin-bottom: 20px;
     }
     .signup__button {
         width: 135px;
@@ -131,7 +130,6 @@ input:-webkit-autofill:active{
     }
     .signup {
         grid-column: 3 / 11;
-        margin-bottom: 60px;
     }
 }
 
