@@ -1,16 +1,17 @@
 main {
-    min-height: 75vh;
+    min-height: calc(100vh - 60px);
     display: grid;
-    place-content: center;
-    padding: 2rem;
-}
-
-.nodisplay {
-    display: none;
+    grid-template-columns: repeat(4,1fr);
+    grid-auto-rows: auto;
+    column-gap: 16px;
+    padding: 32px 16px 32px 16px;
 }
 
 .signup {
-    width: 450px;
+    grid-column: 1 / 5;
+    place-self: start center;
+    width: 100%;
+    max-width: 450px;
     border-radius: 12px;
     display: grid;
     grid-template-rows: 75px 1fr 50px;
@@ -41,7 +42,6 @@ main {
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
-    /* border-top: 1px solid grey; */
 }
 
 .signup__inputContainer {
@@ -67,8 +67,8 @@ main {
 }
 
 .signup__button {
-    width: 36%;
-    height: 2.5rem;
+    width: 115px;
+    height: 40px;
     padding: 0.6rem 0;
     place-self: center;
     border-radius: 0.25rem;
@@ -83,6 +83,7 @@ main {
 }
 
 .signup__footer {
+    padding: 0 16px;
     place-self: top;
     text-align: center;
 }
@@ -98,4 +99,50 @@ input:-webkit-autofill:active{
     -webkit-background-clip: text;
     -webkit-text-fill-color: var(--contrast);
     box-shadow: inset 0 0 20px 20px whitesmoke;
+}
+
+/* || Tablet */
+
+@media screen and (min-width: 576px) {
+    main {
+        display: grid;
+        grid-template-columns: repeat(6,1fr);
+        column-gap: 32px;
+        padding: 32px;
+    }
+    .signup {
+        grid-column: 1 / 7;
+        place-self: center;
+        margin-bottom: 20px;
+    }
+    .signup__button {
+        width: 135px;
+    }
+}
+
+/* || Laptop */
+
+@media screen and (min-width: 905px) {
+    main {
+        display: grid;
+        grid-template-columns: repeat(12,1fr);
+        column-gap: 32px;
+        padding: 32px;
+    }
+    .signup {
+        grid-column: 3 / 11;
+        margin-bottom: 60px;
+    }
+}
+
+/* || Desktop */
+
+@media screen and (min-width: 1440px) {
+    main {
+        display: grid;
+        grid-template-columns: repeat(12,86px);
+        column-gap: 32px;
+        margin: auto;
+        width: 1440px;
+    }
 }
