@@ -1,12 +1,8 @@
 main {
-    height: calc(100vh - 65px);
+    min-height: calc(100vh - 65px);
     display: grid;
-    grid-template-columns: 25% 75%;
-    grid-auto-rows: 100%;
-}
-
-article {
-    padding: 2.5rem;
+    grid-template-columns: repeat(4,1fr);
+    grid-auto-rows: auto;
 }
 
 input[type="checkbox"] {
@@ -15,9 +11,10 @@ input[type="checkbox"] {
 }
 
 .profile {
-    height: 100%;
+    margin: 2.5rem;
     padding: 1.8rem;
-    background-color: whitesmoke;   
+    background-color: whitesmoke;
+    grid-column: 3 / 7;
 }
 
 .profile__table tbody {
@@ -114,4 +111,92 @@ input[type="checkbox"]:checked {
 
 .profile__button:hover {
     background-color: var(--secondary-hover);
+}
+
+.sidebar {
+    padding: 2rem;
+    box-shadow: 0 0.1rem 0.4rem 0.1rem rgba(0, 0, 0, 0.15);
+    grid-column: 1 / 3;
+}
+
+.sidebar ul {
+    list-style: none;
+    border: 2px solid var(--contrast);
+    border-radius: 8px;
+    padding: 1.5rem;
+    position: relative;
+}
+
+.sidebar__tag {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 0.9rem;
+    background-color: var(--base);
+    transform: translate(0.5rem,-50%);
+    padding: 0 0.4rem;
+}
+
+.sidebar ul li {
+    margin-bottom: 1rem;
+}
+
+.sidebar ul li:last-child {
+    margin-bottom: 0.5rem;
+}
+
+.sidebar__link {
+    text-decoration: none;
+    color: var(--contrast);
+}
+
+.sidebar__link:hover {
+    color: var(--secondary);
+}
+
+
+/* || Tablet */
+
+@media screen and (min-width: 576px) {
+    main {
+        display: grid;
+        grid-template-columns: repeat(6,1fr);
+    }
+    .login {
+        grid-column: 1 / 7;
+        place-self: center;
+        margin-bottom: 20px;
+    }
+    .login__button {
+        width: 135px;
+    }
+}
+
+/* || Laptop */
+
+@media screen and (min-width: 905px) {
+    main {
+        display: grid;
+        grid-template-columns: repeat(12,1fr);
+        column-gap: 32px;
+    }
+    .profile {
+        grid-column: 5 / 13;
+        margin-bottom: 60px;
+    }
+    .sidebar {
+        grid-column: 1 / 5;
+    }
+}
+
+/* || Desktop */
+
+@media screen and (min-width: 1440px) {
+    main {
+        display: grid;
+        grid-template-columns: repeat(12,86px);
+        column-gap: 32px;
+        margin: auto;
+        width: 1440px;
+    }
 }
