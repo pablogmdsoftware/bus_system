@@ -1,45 +1,49 @@
-<article>
-    <form action="{% url 'booking:profile' %}" method="post" class="profile">
-        {% csrf_token %}
-        <table class="profile__table">
-            <tbody>
-                <tr class="profile__inputContainer removePadding">
-                    <th>Username</th>
-                    <td><input type="text" value="{{user.username}}" name="username" autocorrect="off" autocapitalize="off" spellcheck="false"></td>
-                </tr>
-                <tr class="profile__inputContainer removePadding">
-                    <th>First Name</th>
-                    <td><input type="text" value="{{user.first_name}}" name="first_name" autocorrect="off" autocapitalize="off" spellcheck="false"></td>
-                </tr>
-                <tr class="profile__inputContainer removePadding">
-                    <th>Last Name</th>
-                    <td><input type="text" value="{{user.last_name}}" name="last_name" autocorrect="off" autocapitalize="off" spellcheck="false"></td>
-                </tr>
-                <tr class="profile__inputContainer removePadding">
-                    <th>Birthdate</th>
-                    <td><input type="date" value="{{user.customer.birth_date|date:'Y-m-d'}}" name="birth_date"></td>
-                </tr>
-                <tr class="profile__inputContainer removePadding">
-                    <th>Email</th>
-                    <td><input type="text" value="{{user.email}}" name="email" autocorrect="off" autocapitalize="off" spellcheck="false"></td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="profile__checks">
-            {% if user.customer.has_large_family %}
-            <div class="flex"><input type="checkbox" name="has_large_family" class="check" checked><p>Large Family</p></div>
-            {% else %}
-            <div class="flex"><input type="checkbox" name="has_large_family" class="check"><p>Large Family</p></div>
-            {% endif %}
-            {% if user.customer.has_reduced_mobility %}
-            <div class="flex"><input type="checkbox" name="has_reduced_mobility" class="check" checked><p>Reduced mobility</p></div>
-            {% else %}
-            <div class="flex"><input type="checkbox" name="has_reduced_mobility" class="check"><p>Reduced mobility</p></div>
-            {% endif %}
-        </div>
-        <div class="profile__submit">
-            <input type="submit" value="Stop editing" name="action" class="profile__button">
-            <input type="submit" value="Submit" name="action" class="profile__button">
-        </div>
-    </form>
-</article>
+<form action="{% url 'booking:profile' %}" method="post" class="profile">
+    {% csrf_token %}
+    {% if errors %}
+    <p class="error_message">{{errors}}</p>
+    {% endif %}
+    {% if form_clean_error %}
+    <p class="error_message">{{form_clean_error}}</p>
+    {% endif %}
+    <table class="profile__information">
+        <tbody>
+            <tr class="profile__dataContainer profile__dataContainer--input">
+                <th>Username</th>
+                <td><input type="text" value="{{user.username}}" name="username" autocorrect="off" autocapitalize="off" spellcheck="false"></td>
+            </tr>
+            <tr class="profile__dataContainer profile__dataContainer--input">
+                <th>First Name</th>
+                <td><input type="text" value="{{user.first_name}}" name="first_name" autocorrect="off" autocapitalize="off" spellcheck="false"></td>
+            </tr>
+            <tr class="profile__dataContainer profile__dataContainer--input">
+                <th>Last Name</th>
+                <td><input type="text" value="{{user.last_name}}" name="last_name" autocorrect="off" autocapitalize="off" spellcheck="false"></td>
+            </tr>
+            <tr class="profile__dataContainer profile__dataContainer--input">
+                <th>Birthdate</th>
+                <td><input type="date" value="{{user.customer.birth_date|date:'Y-m-d'}}" name="birth_date"></td>
+            </tr>
+            <tr class="profile__dataContainer profile__dataContainer--input">
+                <th>Email</th>
+                <td><input type="text" value="{{user.email}}" name="email" autocorrect="off" autocapitalize="off" spellcheck="false"></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="profile__checks">
+        {% if user.customer.has_large_family %}
+        <div class="flex"><input type="checkbox" name="has_large_family" class="check" checked><p>Large Family</p></div>
+        {% else %}
+        <div class="flex"><input type="checkbox" name="has_large_family" class="check"><p>Large Family</p></div>
+        {% endif %}
+        {% if user.customer.has_reduced_mobility %}
+        <div class="flex"><input type="checkbox" name="has_reduced_mobility" class="check" checked><p>Reduced mobility</p></div>
+        {% else %}
+        <div class="flex"><input type="checkbox" name="has_reduced_mobility" class="check"><p>Reduced mobility</p></div>
+        {% endif %}
+    </div>
+    <div class="profile__submitsContainer">
+        <input type="submit" value="Stop editing" name="action" class="profile__button">
+        <input type="submit" value="Submit" name="action" class="profile__button">
+    </div>
+</form>

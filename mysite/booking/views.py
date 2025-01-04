@@ -152,16 +152,22 @@ def profile(request):
             try:
                 user.save()
             except IntegrityError:
-                pass
+                context.update({
+                    "errors":"The username you chose is not available",
+                    "continue_editing":True,
+                })
             else:
                 customer.save()
                 return HttpResponseRedirect(reverse("booking:profile"))
          
         else:
-            request.POST["action"] == "Edit information"
             errors = {key:value[0] for (key,value) in profile_form.errors.items()}
             form_clean_error = errors.get("__all__")
-            context.update({"errors":errors,"form_clean_error":form_clean_error})
+            context.update({
+                "errors":errors,
+                "form_clean_error":form_clean_error,
+                "continue_editing":True,
+            })
             
     return render(request,"booking/profile.html",context)
 

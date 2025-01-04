@@ -1,21 +1,3 @@
-input[type="text"], input[type="date"] {
-    outline: none;
-    border: none;
-    padding: 0.8rem;
-    width: 100%;
-    border-radius: 4px;
-}
-
-.flex {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-}
-
-.removePadding td{
-    padding: 0;
-}
-
 .profile {
     margin: 2.5rem;
     padding: 1.8rem;
@@ -23,31 +5,40 @@ input[type="text"], input[type="date"] {
     grid-column: 3 / 7;
 }
 
-.profile__table tbody {
+.profile__information tbody {
     display: flex;
     flex-flow: row wrap;
     gap: 0 2rem;
 }
 
-.profile__inputContainer {
+.profile__dataContainer {
     width: 300px;
     display: flex;
     flex-flow: column nowrap;
 }
 
-.profile__inputContainer th {
+.profile__dataContainer th {
     margin-bottom: 0.6rem;
     color: var(--contrast);
 }
 
-.profile__inputContainer td {
+.profile__dataContainer td {
     width: 100%;
     padding: 0.8rem;
     margin-bottom: 1.2rem;
-    /* border: 1px solid black; */
     border-radius: 4px;
     color: var(--contrast);
     box-shadow: 0 0 0.1rem 0.1rem rgba(128, 128, 128, 0.5);
+}
+
+.profile__dataContainer--input td {
+    padding: 0;
+}
+
+.profile__dataContainer--input input {
+    padding: 0.8rem;
+    width: 100%;
+    border-radius: 4px;
 }
 
 .profile__checks {
@@ -80,7 +71,7 @@ input[type="text"], input[type="date"] {
     grid-column: 1 / 3;
 }
 
-.sidebar ul {
+.sidebar__list {
     list-style: none;
     border: 2px solid var(--contrast);
     border-radius: 8px;
@@ -98,11 +89,11 @@ input[type="text"], input[type="date"] {
     padding: 0 0.4rem;
 }
 
-.sidebar ul li {
+.sidebar__listElement {
     margin-bottom: 1rem;
 }
 
-.sidebar ul li:last-child {
+.sidebar__listElement:last-child {
     margin-bottom: 0.5rem;
 }
 
@@ -135,14 +126,21 @@ input[type="text"], input[type="date"] {
     background-color: var(--secondary);
 }
 
-input[type="checkbox"]:checked {
+.check[type="checkbox"]:checked {
     background-color: var(--secondary);
     box-shadow: 0 0 0 0.25rem inset var(--base), 0 0 2px 1px rgba(0, 0, 0, 0.5);
 }
 
-input[type="checkbox"] {
-    appearance: none;
-    cursor: pointer;
+.error_message {
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+    color: rgb(190, 0, 0);
+}
+
+.flex {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
 }
 
 /* Layout */
@@ -158,14 +156,6 @@ main {
     main {
         display: grid;
         grid-template-columns: repeat(6,1fr);
-    }
-    .login {
-        grid-column: 1 / 7;
-        place-self: center;
-        margin-bottom: 20px;
-    }
-    .login__button {
-        width: 135px;
     }
 }
 

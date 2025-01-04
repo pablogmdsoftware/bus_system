@@ -28,6 +28,16 @@ th {
     text-align: start;
 }
 
+input[type="checkbox"] {
+    appearance: none;
+    cursor: pointer;
+}
+
+input[type="text"], input[type="date"] {
+    outline: none;
+    border: none;
+}
+
 :root {
     --primary: #712EE1;
     --primary-hover: hsl(262, 75%, 43%);

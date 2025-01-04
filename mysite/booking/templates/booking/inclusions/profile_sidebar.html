@@ -1,13 +1,13 @@
 <nav class="sidebar">
-    <ul>
+    <ul class="sidebar__list">
         <p class="sidebar__tag">Profile navbar</p>
-        <li>
+        <li class="sidebar__listElement">
             <a href="{% url 'booking:profile' %}" class="sidebar__link">Personal information</a>
         </li>
-        <li>
+        <li class="sidebar__listElement">
             <a href="{% url 'booking:password' %}" class="sidebar__link">Change password</a>
         </li>
-        <li>
+        <li class="sidebar__listElement">
             <a href="{% url 'booking:logout' %}" class="sidebar__link">Log out</a>
         </li>
     </ul>

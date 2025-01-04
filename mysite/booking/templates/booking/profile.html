@@ -14,11 +14,8 @@
         {% include "./inclusions/navbar.html" %}
     </header>
     <main>
-        {% if errors %}
-        <h2>{{errors}}</h2>
-        {% endif %}
-        {% include "./inclusions/profile_side_navbar.html" %}
-        {% if request.action == "Edit information" %}
+        {% include "./inclusions/profile_sidebar.html" %}
+        {% if request.action == "Edit information" or continue_editing %}
         {% include "./inclusions/user_information_edit.html" %}
         {% else %}
         {% include "./inclusions/user_information.html" %}
