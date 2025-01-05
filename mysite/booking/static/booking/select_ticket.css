@@ -1,27 +1,3 @@
-p {
-    margin-bottom: 0.9rem;
-}
-
-main {
-    display: grid;
-    grid-template-columns: 420px 1fr;
-}
-
-.asideArticle {
-    height: calc(100vh - 65px);
-    align-self: start;
-    position: sticky;
-    top: 65px;
-    padding: 1.8rem;
-    box-shadow: 0 0 0.4rem 0.1rem rgba(0, 0, 0, 0.15);
-}
-
-.mainArticle {
-    display: flex;
-    justify-content: center;
-    padding: 1.8rem;
-}
-
 .searchTravel {
     width: 350px;
     height: 400px;
@@ -47,8 +23,14 @@ main {
     margin-bottom: 0.8rem;
 }
 
-.searchTravel__inputContainer label {
+.searchTravel__inputLabel {
     margin-bottom: 0.3rem;
+}
+
+.searchTravel__input{
+    font-size: 0.82rem;
+    font-family: inherit;
+    color: var(--contrast);
 }
 
 .searchTravel__button {
@@ -87,11 +69,6 @@ main {
     box-shadow: 0 0 0.4rem 0.1rem grey;
 }
 
-.errorMessage {
-    margin-bottom: 0.5rem;
-    font-size: 0.9rem;
-}
-
 .selectTicket__button {
     width: 200px;
     height: 50px;
@@ -112,16 +89,12 @@ main {
     grid-template-columns: 1fr 1fr 20px 1fr 1fr;
 }
 
-.middleColumn {
+.bus__middleColumn {
     grid-column: 3;
     grid-row: 1 / 100;
 }
 
-.nodisplay {
-    display: none;
-}
-
-.busSeat {
+.bus__seat {
     width: 26px;
     height: 26px;
     color: #333;
@@ -131,16 +104,16 @@ main {
     border-radius: 25%;
 }
 
-.busSeat--empty {
+.bus__seat--empty {
     border: none;
 }
 
-.busSeat--sold {
+.bus__seat--sold {
     background-color: var(--secondary);
     color: var(--secondary);
 }
 
-.busSeat p {
+.bus__seat p {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -148,7 +121,7 @@ main {
     line-height: 26px;
 }
 
-.busSeat input {
+.bus__seat input {
     appearance: none;
     width: 100%;
     height: 100%;
@@ -160,25 +133,68 @@ main {
     cursor: pointer;
 }
 
-.busSeat input:checked {
+.bus__seat input:checked {
     border: 2px solid var(--primary);
 }
 
-.busSeat input:checked + p {
+.bus__seat input:checked + p {
     color: var(--primary);
 }
 
-input[type="date"] {
-    font-size: 0.82rem;
-    font-family: inherit;
-    color: var(--contrast);
+/* Elements */
+
+.errorMessage {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
 }
 
-select, option {
-    font-family: inherit;
-    color: var(--contrast);
+/* Layout */
+
+main {
+    min-height: calc(100vh - 65px);
+    display: grid;
+    place-content: center;
 }
 
-.overflow {
-    overflow: auto;
+.asideArticle {
+    height: calc(100vh - 65px);
+    align-self: start;
+    position: sticky;
+    top: 65px;
+    padding: 1.8rem;
+    box-shadow: 0 0 0.4rem 0.1rem rgba(0, 0, 0, 0.15);
+}
+
+.mainArticle {
+    display: flex;
+    justify-content: center;
+    padding: 1.8rem;
+}
+
+@media screen and (min-width: 576px) {
+    main {
+        display: grid;
+        grid-template-columns: repeat(6,1fr);
+        column-gap: 32px;
+        padding: 32px;
+    }
+}
+
+@media screen and (min-width: 905px) {
+    main {
+        display: grid;
+        grid-template-columns: repeat(12,1fr);
+        column-gap: 32px;
+        padding: 32px;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    main {
+        display: grid;
+        grid-template-columns: repeat(12,86px);
+        column-gap: 32px;
+        margin: auto;
+        width: 1440px;
+    }
 }
