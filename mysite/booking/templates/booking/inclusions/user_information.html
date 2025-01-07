@@ -25,18 +25,18 @@
     </table>
     <div class="profile__checks">
         {% if user.customer.has_large_family %}
-        <div class="flex"><div class="check"><div class="innerCheck"></div></div><p>Large Family</p></div>
+        <div class="checkContainer"><div class="check"><div class="innerCheck"></div></div><p>Large Family</p></div>
         {% else %}
-        <div class="flex"><div class="check"></div><p>Large Family</p></div>
+        <div class="checkContainer"><div class="check"></div><p>Large Family</p></div>
         {% endif %}
         {% if user.customer.has_reduced_mobility %}
-        <div class="flex"><div class="check"><div class="innerCheck"></div></div><p>Reduced mobility</p></div>
+        <div class="checkContainer"><div class="check"><div class="innerCheck"></div></div><p>Reduced mobility</p></div>
         {% else %}
-        <div class="flex"><div class="check"></div><p>Reduced mobility</p></div>
+        <div class="checkContainer"><div class="check"></div><p>Reduced mobility</p></div>
         {% endif %}
     </div>
     <form action="{% url 'booking:profile' %}" method="post" class="profile__submit">
         {% csrf_token %}
-        <input type="submit" value="Edit information" name="action" class="profile__button">
+        <input type="submit" value="Edit information" name="action" class="profile__button" id="editButton">
     </form>
 </article>

@@ -38,6 +38,14 @@ input[type="text"], input[type="date"] {
     border: none;
 }
 
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
 :root {
     --primary: #712EE1;
     --primary-hover: hsl(262, 75%, 43%);
@@ -47,6 +55,8 @@ input[type="text"], input[type="date"] {
     --secondary-hover: hsl(0, 0%, 32%);
     --base: #D9D9D9;
     --contrast: #1E1E1E;
+    --cancel-red: hsl(357, 55%, 55%);
+    --cancel-red-hover: hsl(357, 55%, 50%);
 }
 
 .nodisplay {

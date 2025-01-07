@@ -32,18 +32,18 @@
     </table>
     <div class="profile__checks">
         {% if user.customer.has_large_family %}
-        <div class="flex"><input type="checkbox" name="has_large_family" class="check" checked><p>Large Family</p></div>
+        <div class="checkContainer"><input type="checkbox" name="has_large_family" class="check" checked><p>Large Family</p></div>
         {% else %}
-        <div class="flex"><input type="checkbox" name="has_large_family" class="check"><p>Large Family</p></div>
+        <div class="checkContainer"><input type="checkbox" name="has_large_family" class="check"><p>Large Family</p></div>
         {% endif %}
         {% if user.customer.has_reduced_mobility %}
-        <div class="flex"><input type="checkbox" name="has_reduced_mobility" class="check" checked><p>Reduced mobility</p></div>
+        <div class="checkContainer"><input type="checkbox" name="has_reduced_mobility" class="check" checked><p>Reduced mobility</p></div>
         {% else %}
-        <div class="flex"><input type="checkbox" name="has_reduced_mobility" class="check"><p>Reduced mobility</p></div>
+        <div class="checkContainer"><input type="checkbox" name="has_reduced_mobility" class="check"><p>Reduced mobility</p></div>
         {% endif %}
     </div>
     <div class="profile__submitsContainer">
-        <input type="submit" value="Stop editing" name="action" class="profile__button">
+        <input type="submit" value="Stop editing" name="action" class="profile__button profile__button--cancel">
         <input type="submit" value="Submit" name="action" class="profile__button">
     </div>
 </form>
