@@ -38,6 +38,10 @@ input[type="text"], input[type="date"] {
     border: none;
 }
 
+input:focus {
+    outline: none;
+}
+
 ul {
     list-style: none;
 }
