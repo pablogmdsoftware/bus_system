@@ -123,6 +123,16 @@ def mytickets(request):
     return render(request,"booking/mytickets.html",context)
 
 @login_required
+def ticket_information(request,ticket_id):
+    context = {"user":request.user,}
+    ticket = get_object_or_404(Ticket,pk=ticket_id)
+    if ticket.user == request.user:
+        context.update({"ticket":ticket})
+        return render(request,"booking/ticket_information.html",context)
+    else:
+        return HttpResponseRedirect(reverse("booking:mytickets"))
+
+@login_required
 def mypasses(request):
     context = {"user":request.user,}
     return render(request,"booking/mypasses.html",context)
@@ -245,17 +255,6 @@ def change_password(request):
         return HttpResponseRedirect(reverse("booking:profile"))
 
     return render(request,"booking/change_password.html",context)
-
-
-@login_required
-def ticket_information(request,ticket_id):
-    context = {"user":request.user,}
-    ticket = get_object_or_404(Ticket,pk=ticket_id)
-    if ticket.user == request.user:
-        context.update({"ticket":ticket})
-        return render(request,"booking/ticket_information.html",context)
-    else:
-        return HttpResponseRedirect(reverse("booking:mytickets"))
 
 @login_required
 def ticket_cancel(request,ticket_id):

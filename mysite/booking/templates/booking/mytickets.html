@@ -16,6 +16,7 @@
     <main>
         <section id="nextTravel">
             <h2>Next travel<div class="square rotate"></div></h2>
+            {% if active_tickets %}
             {% with ticket=active_tickets|first %}
             <a href="{% url 'booking:ticket_information' ticket.id %}" class="ticket">
                 <div class="ticket__information">
@@ -28,6 +29,18 @@
                 </div>
             </a>
             {% endwith %}
+            {% else %}
+            <div class="ticket">
+                <div class="ticket__information">
+                    <p>City 1 -> City 2</p>
+                    <p>Hour: 00:00</p>
+                    <p>Seat: 0</p>
+                </div>
+                <div class="ticket__date">
+                    <p>Example ticket</p>
+                </div>
+            </div>
+            {% endif %}
         </section>
         <section id="allTickets">
             <h2>All tickets<div class="square rotate"></div></h2>
@@ -44,6 +57,18 @@
                     </div>
                 </a>
                 {% endfor %}
+                {% if not active_tickets %}
+                <div class="ticket">
+                    <div class="ticket__information">
+                        <p>City 1 -> City 2</p>
+                        <p>Hour: 00:00</p>
+                        <p>Seat: 0</p>
+                    </div>
+                    <div class="ticket__date">
+                        <p>Example ticket</p>
+                    </div>
+                </div>
+                {% endif %}
             </div>
         </section>
     </main>
