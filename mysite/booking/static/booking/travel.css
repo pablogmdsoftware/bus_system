@@ -1,36 +1,42 @@
 .searchTravel {
-    width: 350px;
-    height: 400px;
-    margin: 1.8rem;
-    background-color: grey;
-    box-shadow: 0 0 0.2rem 0.1rem grey;
-    border-radius: 1rem;
-    padding: 1.8rem 5.5rem 1.8rem 1.8rem;
-    background-image: url("images/travel.jpg");
-    background-size: cover;
+    width: 100%;
 }
 
 .searchTravel__configuration {
     background-color: white;
     border: 1px rgba(128, 128, 128, 0.486) solid;
     box-shadow: 0 0 0.4rem 0.1rem grey;
-    padding: 0.8rem;
+    padding: 20px;
 }
 
 .searchTravel__inputContainer {
     display: flex;
     flex-flow: column nowrap;
-    margin-bottom: 0.8rem;
+    margin-bottom: 1rem;
 }
 
 .searchTravel__inputLabel {
-    margin: 0 0 0.3rem 0;
+    margin-bottom: 0.5rem;
+    color: var(--contrast);
 }
 
 .searchTravel__input {
     font-family: inherit;
-    font-size: 0.82rem;
+    font-size: 0.9rem;
     color: var(--contrast);
+    outline: none;
+    border: none;
+    background-color: white;
+    height: 25px;
+}
+
+.searchTravel__input, .searchTravel__input[type="date"] {
+    border: 1px solid var(--secondary);
+    border-radius: 3px;
+}
+
+.searchTravel__input[type="date"] {
+    padding-left: 0.4rem;
 }
 
 .searchTravel__button {
@@ -47,9 +53,18 @@
 /* Layout */
 
 main {
-    min-height: calc(100vh - 65px);
+    min-height: calc(100vh - 60px);
     display: grid;
-    place-content: center;
+    grid-template-columns: repeat(4,1fr);
+    column-gap: 16px;
+    padding: 16px;
+    background-image: url("images/travel.jpg");
+    background-size: cover;
+}
+
+.searchTravel {
+    grid-column: 1 / -1;
+    place-self: start center;
 }
 
 @media screen and (min-width: 576px) {
@@ -58,6 +73,10 @@ main {
         grid-template-columns: repeat(6,1fr);
         column-gap: 32px;
         padding: 32px;
+    }
+    .searchTravel {
+        width: 350px;
+        padding-top: 5vh;
     }
 }
 
@@ -68,14 +87,42 @@ main {
         column-gap: 32px;
         padding: 32px;
     }
+    .searchTravel {
+        grid-column: 2 / 12;
+        width: 100%;
+        display: flex;
+        flex-flow: row nowrap;
+        display: grid;
+        grid-template-columns: 1fr 100px;
+        grid-template-rows: 100px;
+        column-gap: 16px;
+        padding-top: 15vh;
+    }
+    .searchTravel__configuration {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 20px;
+    }
+    .searchTravel__button {
+        width: 100px;
+        height: 100%;
+        margin-top: 0;
+    }
+    .searchTravel__inputLabel {
+        margin-bottom: 0.4rem;
+        color: var(--contrast);
+    }
 }
 
 @media screen and (min-width: 1440px) {
     main {
         display: grid;
-        grid-template-columns: repeat(12,86px);
+        grid-template-columns: 1fr repeat(12,86px) 1fr;
         column-gap: 32px;
-        margin: auto;
-        width: 1440px;
+    }
+    .searchTravel {
+        grid-column: 3 / 13;
     }
 }
