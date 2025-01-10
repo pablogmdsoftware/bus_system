@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{% static 'booking/normalize.css' %}">
     <link rel="stylesheet" href="{% static 'booking/navbar.css' %}">
     <link rel="stylesheet" href="{% static 'booking/ticket_information.css' %}">
+    {% load filters %}
 </head>
 <body>
     <header>
@@ -15,17 +16,17 @@
     </header>
     <main>
         {% if cancel_error %}
-        <h2>{{cancel_error}}</h2>
+        <div class="errorContainer"><p class="errorContainer__error">{{cancel_error}}</p><div class="errorContainer__square"></div></div>
         {% endif %}
         <div class="ticket">
             <table>
                 <tr class="ticket__informationContainer">
                     <th>Origin:</th>
-                    <td>{{ticket.travel.origin}}</td>
+                    <td>{{ticket.travel.origin|to_full_name}}</td>
                 </tr>
                 <tr class="ticket__informationContainer">
                     <th>Destination:</th>
-                    <td>{{ticket.travel.destination}}</td>
+                    <td>{{ticket.travel.destination|to_full_name}}</td>
                 </tr>
                 <tr class="ticket__informationContainer">
                     <th>Date:</th>
@@ -41,17 +42,18 @@
                 </tr>
                 <tr class="ticket__informationContainer">
                     <th>Cost:</th>
-                    <td>{{ticket.price}} cts</td>
+                    <td><data class="money" value="{{ticket.price|to_euros}}">{{ticket.price|to_euros}}€</data></td>
                 </tr>
                 <tr class="ticket__qrContainer">
                     <th class="nodisplay">QR</th>
-                    <td><img src="{% static 'booking/images/linkedin_qr.svg' %}" alt="QR" width="125" height="125"></td>
+                    <td><img src="{% static 'booking/images/linkedin_qr.svg' %}" alt="QR" width="120" height="120"></td>
                 </tr>
             </table>
             <form action="{% url 'booking:ticket_cancel' ticket.id %}">
                 <input type="submit" name="action" value="Cancel ticket" class="ticket__button">
             </form>
         </div>
+        <a href="{% url 'booking:mytickets' %}" class="backButton">&#60;- Go back</a>
     </main>
 </body>
 </html>
