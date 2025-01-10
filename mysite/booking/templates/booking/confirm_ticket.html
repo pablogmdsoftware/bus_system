@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{% static 'booking/normalize.css' %}">
     <link rel="stylesheet" href="{% static 'booking/navbar.css' %}">
     <link rel="stylesheet" href="{% static 'booking/confirm_ticket.css' %}">
+    {% load filters %}
 </head>
 <body>
     <header>
@@ -19,11 +20,11 @@
             <table>
                 <tr class="ticket__informationContainer">
                     <th>Origin:</th>
-                    <td>{{ticket.travel.origin}}</td>
+                    <td>{{ticket.travel.origin|to_full_name}}</td>
                 </tr>
                 <tr class="ticket__informationContainer">
                     <th>Destination:</th>
-                    <td>{{ticket.travel.destination}}</td>
+                    <td>{{ticket.travel.destination|to_full_name}}</td>
                 </tr>
                 <tr class="ticket__informationContainer">
                     <th>Date:</th>
@@ -39,7 +40,7 @@
                 </tr>
                 <tr class="ticket__informationContainer">
                     <th>Cost:</th>
-                    <td>{{ticket.price}} cts</td>
+                    <td><data class="money" value="{{ticket.price|to_euros}}">{{ticket.price|to_euros}}€</data></td>
                 </tr>
             </table>
             <div class="ticket__buttonsContainer">

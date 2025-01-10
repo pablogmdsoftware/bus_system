@@ -3,7 +3,7 @@ main {
 }
 
 .ticket {
-    width: 350px;
+    width: 100%;
     border-radius: 25px;
     background-color: whitesmoke;
     position: relative;
@@ -25,18 +25,107 @@ main {
     margin-right: 1rem;
 }
 
+.ticket__buttonsContainer {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
 .ticket__button {
-    width: 120px;
-    height: 35px;
-    margin: 0.5rem 0;
+    width: 100%;
+    height: 45px;
+    /* margin: 0.5rem 0; */
     border-radius: 0.25rem;
     border: none;
     cursor:pointer;
     background-color: var(--secondary);
-    color: whitesmoke;
+    color: white;
     font-size: 0.9rem;
 }
 
 .ticket__button:hover {
     background-color: var(--secondary-hover);
+}
+
+.ticket__button:last-child {
+    width: 100%;
+    height: 80px;
+    margin: 5px 0 15px 0;
+}
+
+.ticket__button:first-child {
+    background-color: var(--cancel-red);
+}
+
+/* Layout */
+
+main {
+    min-height: calc(100vh - 60px);
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-auto-rows: min-content;
+    column-gap: 16px;
+    padding: 16px;
+}
+
+.ticket {
+    grid-column: 1 / -1;
+    place-self: center;
+}
+
+/* || Tablet */
+
+@media screen and (min-width: 576px) {
+    main {
+        display: grid;
+        grid-template-columns: repeat(6,1fr);
+        padding: 32px;
+        padding-top: calc(32px + 5vh);
+    }
+    .ticket {
+        width: 350px;
+        border-radius: 25px;
+        background-color: whitesmoke;
+        position: relative;
+        padding: 1.5rem;
+        box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.3);
+    }
+    .ticket__buttonsContainer {
+        flex-flow: row nowrap;
+        justify-content: space-between;
+    }
+    .ticket__button {
+        width: 145px;
+        height: 35px;
+        margin: 0.5rem 0;
+    }
+    .ticket__button:last-child {
+        width: 145px;
+        height: 35px;
+        margin: 0.5rem 0;
+    }
+    
+    .ticket__button:first-child {
+        background-color: var(--secondary);
+    }
+}
+
+/* || Laptop */
+
+@media screen and (min-width: 905px) {
+    main {
+        display: grid;
+        grid-template-columns: repeat(12,1fr);
+        column-gap: 32px;
+    }
+}
+
+/* || Desktop */
+
+@media screen and (min-width: 1440px) {
+    main {
+        display: grid;
+        grid-template-columns: repeat(12,86px);
+        margin: auto;
+        width: 1440px;
+    }
 }
