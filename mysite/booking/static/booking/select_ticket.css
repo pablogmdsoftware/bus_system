@@ -46,7 +46,7 @@
     font-size: 0.9rem;
 }
 
-.selectTicket {
+.selectTravel {
     width: 580px;
     height: 400px;
     box-shadow: 0 0 0.2rem 0.1rem grey;
@@ -59,7 +59,7 @@
     justify-content: center;
 }
 
-.selectTicket__configuration {
+.selectTravel__configuration {
     width: 230px;
     height: 250px;
     padding: 1rem;
@@ -69,7 +69,7 @@
     box-shadow: 0 0 0.4rem 0.1rem grey;
 }
 
-.selectTicket__button {
+.selectTravel__button {
     width: 200px;
     height: 50px;
     border-radius: 5px;
@@ -146,6 +146,7 @@
 .errorMessage {
     margin-bottom: 0.5rem;
     font-size: 0.9rem;
+    color: var(--cancel-red-hover);
 }
 
 /* Layout */
@@ -154,21 +155,6 @@ main {
     min-height: calc(100vh - 65px);
     display: grid;
     place-content: center;
-}
-
-.asideArticle {
-    height: calc(100vh - 65px);
-    align-self: start;
-    position: sticky;
-    top: 65px;
-    padding: 1.8rem;
-    box-shadow: 0 0 0.4rem 0.1rem rgba(0, 0, 0, 0.15);
-}
-
-.mainArticle {
-    display: flex;
-    justify-content: center;
-    padding: 1.8rem;
 }
 
 @media screen and (min-width: 576px) {
