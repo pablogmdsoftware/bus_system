@@ -7,16 +7,16 @@ const radio_buttons = document.querySelectorAll(".radioButton")
 if (time_input.value) {
     buses.forEach(bus => {
         if (bus.id == "hour" + time_input.value.replace(":","")) {
-            bus.classList.remove("nodisplay");
+            bus.classList.remove("bus--nodisplay");
         };
     });
 };
 
 time_input.addEventListener("change", (event) =>  {
     buses.forEach(bus => {
-        bus.classList.add("nodisplay");
+        bus.classList.add("bus--nodisplay");
         if (bus.id == "hour" + event.target.value.replace(":","")) {
-            bus.classList.remove("nodisplay");
+            bus.classList.remove("bus--nodisplay");
         };
     });
 });
