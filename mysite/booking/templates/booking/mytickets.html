@@ -30,7 +30,7 @@
             </a>
             {% endwith %}
             {% else %}
-            <div class="ticket">
+            <a href="{% url 'booking:ticket_information_example' %}" class="ticket">
                 <div class="ticket__information">
                     <p>City 1 -> City 2</p>
                     <p>Hour: 00:00</p>
@@ -39,7 +39,7 @@
                 <div class="ticket__date">
                     <p>Example ticket</p>
                 </div>
-            </div>
+            </a>
             {% endif %}
         </section>
         <section id="allTickets">
@@ -58,7 +58,7 @@
                 </a>
                 {% endfor %}
                 {% if not active_tickets %}
-                <div class="ticket">
+                <a href="{% url 'booking:ticket_information_example' %}" class="ticket">
                     <div class="ticket__information">
                         <p>City 1 -> City 2</p>
                         <p>Hour: 00:00</p>
@@ -67,7 +67,7 @@
                     <div class="ticket__date">
                         <p>Example ticket</p>
                     </div>
-                </div>
+                </a>
                 {% endif %}
             </div>
         </section>

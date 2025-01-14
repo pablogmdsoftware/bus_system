@@ -132,6 +132,9 @@ def ticket_information(request,ticket_id):
     else:
         return HttpResponseRedirect(reverse("booking:mytickets"))
 
+def ticket_information_example(request):
+    return render(request,"booking/ticket_information_example.html")
+
 @login_required
 def mypasses(request):
     context = {"user":request.user,}

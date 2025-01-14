@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'booking/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'booking/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'booking/ticket_information.css' %}">
+    {% load filters %}
+</head>
+<body>
+    <header>
+        {% include "./inclusions/navbar.html" %}
+    </header>
+    <main>
+        <div class="ticket">
+            <table>
+                <tr class="ticket__informationContainer">
+                    <th>Origin:</th>
+                    <td>City 1</td>
+                </tr>
+                <tr class="ticket__informationContainer">
+                    <th>Destination:</th>
+                    <td>City 2</td>
+                </tr>
+                <tr class="ticket__informationContainer">
+                    <th>Date:</th>
+                    <td>01-01-2000</td>
+                </tr>
+                <tr class="ticket__informationContainer">
+                    <th>Time:</th>
+                    <td>00:00</td>
+                </tr>
+                <tr class="ticket__informationContainer">
+                    <th>Seat:</th>
+                    <td>0</td>
+                </tr>
+                <tr class="ticket__informationContainer">
+                    <th>Cost:</th>
+                    <td><data value="0">0€</data></td>
+                </tr>
+                <tr class="ticket__qrContainer">
+                    <th class="nodisplay">QR</th>
+                    <td><img src="{% static 'booking/images/linkedin_qr.svg' %}" alt="QR" width="120" height="120"></td>
+                </tr>
+            </table>
+        </div>
+        <a href="{% url 'booking:mytickets' %}" class="backButton">&#60;- Go back</a>
+    </main>
+</body>
+</html>
