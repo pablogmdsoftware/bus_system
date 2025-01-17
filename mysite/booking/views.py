@@ -199,7 +199,10 @@ def singup(request):
             )
             customer = Customer(user=user)
             customer.save()
-            return HttpResponseRedirect(reverse("booking:login"))
+            user = authenticate(request,username=data["username"],password=data["new_password"])
+            if user is not None:
+                login(request,user)
+            return HttpResponseRedirect(reverse("booking:travel"))
         else:
             errors = {key:value[0] for (key,value) in form.errors.items()}
             form_clean_error = errors.get("__all__")
