@@ -129,7 +129,7 @@ class SingupForm(PasswordForm):
         users = User.objects.all()
         for user in users:
             if user.username == self.cleaned_data["username"]:
-                raise ValidationError("That username is already been used, please choose another")
+                raise ValidationError("That username is already in use, please choose another.")
         return self.cleaned_data["username"]
 
     def clean(self):

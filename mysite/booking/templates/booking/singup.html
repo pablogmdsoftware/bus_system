@@ -18,9 +18,6 @@
             <h2 class="signup__header">Sign up</h2>
             <form action="{% url 'booking:singup' %}" method="post" class="signup__form">
                 {% csrf_token %}
-                {% if form_clean_error and not errors.new_password and not errors.repeat_password %}
-                <p class="errorMessage">{{form_clean_error}}</p>
-                {% endif %}
                 <div class="signup__inputContainer">
                     {% if errors.username %}
                     <p class="errorMessage">{{errors.username}}</p>
@@ -37,6 +34,9 @@
                 </div>
                 {% if errors.new_password %}
                 <p class="errorMessage">{{errors.new_password}}</p>
+                {% endif %}
+                {% if form_clean_error and not errors.new_password and not errors.repeat_password %}
+                <p class="errorMessage">{{form_clean_error}}</p>
                 {% endif %}
                 <div class="signup__inputContainer">
                     <label for="new_password" class="nodisplay">Password</label>
