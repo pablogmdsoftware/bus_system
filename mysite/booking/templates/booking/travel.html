@@ -23,7 +23,7 @@
             <fieldset class="searchTravel__configuration">
                 <div class="searchTravel__inputContainer">
                     <label for="origin" class="searchTravel__inputLabel">Origin</label>
-                    <select name="origin" id="origin" class="searchTravel__input">
+                    <select name="origin" id="origin" class="searchTravel__input searchTravel__input--select">
                         {% for city, city_name in cities.items %}
                         <option value="{{city}}">{{city_name}}</option>
                         {% endfor %}
@@ -31,7 +31,7 @@
                 </div>
                 <div class="searchTravel__inputContainer">
                     <label for="destination" class="searchTravel__inputLabel">Destination</label>
-                    <select name="destination" id="destination" class="searchTravel__input">
+                    <select name="destination" id="destination" class="searchTravel__input searchTravel__input--select">
                         {% for city, city_name in cities.items %}
                         <option value="{{city}}">{{city_name}}</option>
                         {% endfor %}
