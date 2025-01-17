@@ -15,7 +15,7 @@
     </header>
     <main>
         {% if password_changed %}
-        <h2>{{password_changed}}</h2>
+        <div class="confirmation"><p class="confirmation__paragraph">{{password_changed}}</p><div class="confirmation__square hideOnMobile"></div></div>
         {% endif %}
         <article class="login">
             <h2 class="login__header">Login</h2>
