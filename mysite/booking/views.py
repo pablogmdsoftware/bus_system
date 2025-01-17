@@ -224,7 +224,7 @@ def login_view(request,password_changed=None):
             context.update({"auth_failed":"An error ocurred, please revise username and password."})
     elif password_changed == "password":
         success_message = """
-        Your password has been changed successfully. Please log in again with your new password.
+        Your password has been changed successfully. Please log in again using your new password.
         """
         context.update({"password_changed":success_message})
     return render(request,"booking/login.html",context)
