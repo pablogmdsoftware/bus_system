@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from datetime import datetime, timedelta, timezone
 from datetime import date as date_python
+from pytz import timezone as pytz
 
 from .forms import SearchTravelForm, PurchaseTicketForm, TicketForm, ProfileForm
 from .forms import PasswordForm, SingupForm
@@ -35,11 +36,11 @@ def select_ticket(request):
             origin=origin,
             destination=destination,
         )
-        # This solution works only for utc+1 timezone servers
         travel_times = []
         buses = {}
         for travel in travels:
-            travel_time = (travel.schedule+timedelta(hours=1)).strftime("%H:%M")
+            spain_tz = pytz("Europe/Madrid")
+            travel_time = (travel.schedule.astimezone(spain_tz)).strftime("%H:%M")
             travel_time_html_id_format = "hour" + travel_time.replace(":","")
             travel_times.append(travel_time)
             tickets_sold = Ticket.objects.filter(travel=travel)
