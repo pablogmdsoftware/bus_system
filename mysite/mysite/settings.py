@@ -20,12 +20,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-q@^o+u4ydna_1$_oc-@+zv#un-v7rrc6*ez_=tzkrqa+wn!kig'
+with open('/etc/webapp_settings/secret_key.txt') as file:
+    SECRET_KEY = file.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['gmdportfolio.es','www.gmdportfolio.es','localhost','127.0.0.1']
 
 
 # Application definition
@@ -74,14 +75,19 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+with open('/etc/webapp_settings/db_name.txt') as file:
+    DB_NAME = file.read().strip()
+
+with open('/etc/webapp_settings/db_user.txt') as file:
+    DB_USER = file.read().strip()
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'bus_system',
-        'USER': 'workuser',
+        'NAME': DB_NAME,
+        'USER': DB_USER,
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
