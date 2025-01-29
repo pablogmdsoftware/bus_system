@@ -131,3 +131,13 @@ STATIC_ROOT  = BASE_DIR / 'static'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# CSRF security
+
+CSRF_TRUSTED_ORIGINS = ["https://gmdportfolio.es","https://www.gmdportfolio.es"]
+
+CSRF_COOKIE_SECURE = True
+
+CSRF_USE_SESSIONS = True
+
+SESSION_COOKIE_SECURE = True
