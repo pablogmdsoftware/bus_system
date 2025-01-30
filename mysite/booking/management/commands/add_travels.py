@@ -1,14 +1,17 @@
 from django.core.management.base import BaseCommand
+from django.core.mail import send_mail
 from django.utils import timezone
 from datetime import datetime, date, timedelta
 from dateutil import tz
 from booking.models import Travel, Bus, CITIES
+from mysite.settings import EMAIL_HOST_USER
 
 class Command(BaseCommand):
     """
     This command is made for creating and adding a ton of travels into de database. It checks if
     there are enough travels created per day in the next 10 days. If not, it will create up to
-    7 travels in all possible routes.
+    7 travels in all possible routes. After successfully creating the travels, it sends a
+    confirmation email.
     """
     def handle(self, *args, **kwargs):
         tzinfo = tz.tzutc()
@@ -49,3 +52,9 @@ class Command(BaseCommand):
                                     schedule = schedule,
                                 )
                                 travel.save()
+        send_mail(
+            "[Bus System] Travels have been created successfully",
+            "",
+            EMAIL_HOST_USER,
+            ["pablogmdsoftware@gmail.com"],
+            )

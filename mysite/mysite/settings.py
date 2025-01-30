@@ -132,6 +132,7 @@ STATIC_ROOT  = BASE_DIR / 'static'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
 # CSRF security
 
 CSRF_TRUSTED_ORIGINS = ["https://gmdportfolio.es","https://www.gmdportfolio.es"]
@@ -141,3 +142,21 @@ CSRF_COOKIE_SECURE = True
 CSRF_USE_SESSIONS = True
 
 SESSION_COOKIE_SECURE = True
+
+
+# Email backend
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'smtp.gmail.com'
+
+EMAIL_PORT = 587
+
+EMAIL_HOST_USER = 'reports.gmdportfolio@gmail.com'
+
+with open('/etc/webapp_settings/email_password.txt') as file:
+    EMAIL_HOST_PASSWORD = file.read().strip()
+
+EMAIL_USE_TLS = True
+
+EMAIL_USE_SSL = False
