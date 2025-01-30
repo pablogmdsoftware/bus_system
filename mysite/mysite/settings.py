@@ -123,3 +123,21 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Email backend
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'smtp.gmail.com'
+
+EMAIL_PORT = 587
+
+EMAIL_HOST_USER = 'reports.gmdportfolio@gmail.com'
+
+with open('/etc/webapp_settings/email_password.txt') as file:
+    EMAIL_HOST_PASSWORD = file.read().strip()
+
+EMAIL_USE_TLS = True
+
+EMAIL_USE_SSL = False
