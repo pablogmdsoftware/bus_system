@@ -53,8 +53,8 @@ class Command(BaseCommand):
                                 )
                                 travel.save()
         send_mail(
-            "[Bus System] Travels have been created successfully",
-            "",
+            "Bus System",
+            "Travels have been created successfully",
             EMAIL_HOST_USER,
             ["pablogmdsoftware@gmail.com"],
             )

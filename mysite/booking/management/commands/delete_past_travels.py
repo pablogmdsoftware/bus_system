@@ -13,8 +13,8 @@ class Command(BaseCommand):
         Ticket.objects.filter(purchase_datetime__date__lt=date.today()).delete()
         Travel.objects.filter(schedule__date__lt=date.today()).delete()
         send_mail(
-            "[Bus System] Travels have been deleted successfully",
-            "",
+            "Bus System",
+            "Travels have been deleted successfully",
             EMAIL_HOST_USER,
             ["pablogmdsoftware@gmail.com"],
             )
