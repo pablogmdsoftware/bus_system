@@ -1,6 +1,6 @@
 {% load static %}
 <nav id="navbar">
-    <a href="https://www.linkedin.com/in/pablogmd/" target="_blank" id="navbar__logo" class="link">pablogmd</a>
+    <a href="{% url 'booking:home' %}" id="navbar__logo" class="link">pablogmd</a>
     <ul id="navbar__list">
         <li class="hideOnMobile"><a href="{% url 'booking:travel' %}" class="link">Travel</a></li>
         <li class="hideOnMobile"><a href="{% url 'booking:mytickets' %}" class="link">MyTickets</a></li>

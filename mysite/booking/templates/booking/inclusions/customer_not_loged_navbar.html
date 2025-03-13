@@ -1,7 +1,7 @@
 {% load static %}
 <nav id="navbar">
     <div id="navbar__logo" class="navbar__logo--notLogged">
-        <a href="https://www.linkedin.com/in/pablogmd/" target="_blank" class="link">pablogmd</a>
+        <a href="{% url 'booking:home' %}" class="link">pablogmd</a>
     </div>
     <ul id="navbar__list" class="navbar__list--notLogged">
         <li class="hideOnMobile"><a href="{% url 'booking:travel' %}" class="link">Travel</a></li>
