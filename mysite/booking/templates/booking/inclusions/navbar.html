@@ -4,7 +4,7 @@
     <ul id="navbar__list">
         <li class="hideOnMobile"><a href="{% url 'booking:travel' %}" class="link">Travel</a></li>
         <li class="hideOnMobile"><a href="{% url 'booking:mytickets' %}" class="link">MyTickets</a></li>
-        <li class="hideOnMobile"><a href="{% url 'booking:mypasses' %}" class="link">MyPasses</a></li>
+        <!-- <li class="hideOnMobile"><a href="" class="link">MyPasses</a></li> -->
         <li class="hideOnMobile"><a href="{% url 'booking:about' %}" class="link">About</a></li>
         <li class="hideOnMobile"><a href="{% url 'booking:profile' %}" class="link">Profile</a></li>
         <li class="mobileOnly"><img src="{% static 'booking/images/bars.svg' %}" alt="" width="30px" height="30px" onclick=showSidebar()></li>
@@ -13,7 +13,7 @@
         <li onclick=hideSidebar()><img src="{% static 'booking/images/xmark.svg' %}" alt="" width="36px" height="36px"></li>
         <li><a href="{% url 'booking:travel' %}" class="sidebarLink">Travel</a></li>
         <li><a href="{% url 'booking:mytickets' %}" class="sidebarLink">MyTickets</a></li>
-        <li><a href="{% url 'booking:mypasses' %}" class="sidebarLink">MyPasses</a></li>
+        <!-- <li><a href="" class="sidebarLink">MyPasses</a></li> -->
         <li><a href="{% url 'booking:about' %}" class="sidebarLink">About</a></li>
         <li><a href="{% url 'booking:profile' %}" class="sidebarLink">Profile</a></li>
     </ul>

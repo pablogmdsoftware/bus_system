@@ -136,10 +136,10 @@ def ticket_information(request,ticket_id):
 def ticket_information_example(request):
     return render(request,"booking/ticket_information_example.html")
 
-@login_required
-def mypasses(request):
-    context = {"user":request.user,}
-    return render(request,"booking/mypasses.html",context)
+# @login_required
+# def mypasses(request):
+#     context = {"user":request.user,}
+#     return render(request,"booking/mypasses.html",context)
 
 def about(request):
     context = {"user":request.user,}
