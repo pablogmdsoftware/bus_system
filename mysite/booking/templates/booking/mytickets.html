@@ -15,7 +15,7 @@
     </header>
     <main>
         <section id="nextTravel">
-            <h2>Next travel<div class="square rotate"></div></h2>
+            <h2>Next travel<div class="square rotate hideOnMobile"></div></h2>
             {% if active_tickets %}
             {% with ticket=active_tickets|first %}
             <a href="{% url 'booking:ticket_information' ticket.id %}" class="ticket">
@@ -43,7 +43,7 @@
             {% endif %}
         </section>
         <section id="allTickets">
-            <h2>All tickets<div class="square rotate"></div></h2>
+            <h2>All tickets<div class="square rotate hideOnMobile"></div></h2>
             <div class="ticketGroup">
                 {% for ticket in active_tickets %}
                 <a href="{% url 'booking:ticket_information' ticket.id %}" class="ticket">

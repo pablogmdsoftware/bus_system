@@ -88,7 +88,7 @@ h2 {
 
 h2 .square {
     width: 48.62px;
-    height: 48.62px;;
+    height: 48.62px;
     background-color: var(--base);
     position: absolute;
     top: 0;
