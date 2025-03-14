@@ -51,9 +51,11 @@
     margin: 1rem 0 0 0;
     border-radius: 5px;
     border: none;
+    outline: none;
     text-decoration: none;
     box-shadow: 0 0 0.4rem 0.1rem grey;
     cursor: pointer;
+    background-color: #EFEFEF;
 }
 
 /* Layout */
