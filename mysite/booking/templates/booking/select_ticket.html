@@ -49,6 +49,9 @@
                     {% if errors.date %}
                     <p class="errorMessage">{{errors.date}}</p>
                     {% endif %}
+                    {% if not travel_times and not form_clean_error and not errors.date%}
+                    <p class="errorMessage">There are no travels available for that date.</p>
+                    {% endif %}
                     <label for="date" class="searchTravel__inputLabel">Date</label>
                     <input type="date" name="date" value="{{request.date}}" class="searchTravel__input searchTravel__input--date">
                 </div>
@@ -86,14 +89,12 @@
                 </div>
                 <fieldset class="selectTravel__configurationContainer">
                     <div class="selectTravel__configuration">
+                        {% if travel_times %}
                         {% if integrity_error %}
                         <p class="errorMessage">{{integrity_error}}</p>
                         {% endif %}
                         {% if errors2.time %}
                         <p class="errorMessage">{{errors2.time}}</p>
-                        {% endif %}
-                        {% if not travel_times and not form_clean_error and not errors.date%}
-                        <p class="errorMessage">There are no travels available for that date.</p>
                         {% endif %}
                         <div class="selectTravel__inputContainer">
                             <label for="time" class="selectTravel__inputLabel">Time</label>
@@ -109,8 +110,10 @@
                             </select>
                         </div>
                         <p>Price: <data class="money" value="10.00">10€</data></p>
+                        {% endif %}
                     </div>
                     <div class="selectTravel__busContainer overflow">
+                        {% if travel_times %}
                         {% if errors2.seat %}
                         <p class="errorMessage">{{errors2.seat}}</p>
                         {% endif %}
@@ -137,6 +140,7 @@
                             <div class="bus__middleColumn"></div>
                         </div>
                         {% endfor %}
+                        {% endif %}
                     </div>
                 </fieldset>
                 <input type="submit" name="action" value="Buy" class="selectTravel__button">
