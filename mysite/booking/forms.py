@@ -2,8 +2,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 
-from datetime import date
-from dateutil.relativedelta import relativedelta
+from datetime import date, timedelta
 
 from .models import Ticket, Travel, Pass
 from .models import CITIES
@@ -77,6 +76,14 @@ class ProfileForm(forms.Form):
     email = forms.EmailField()
     has_large_family = forms.BooleanField(required=False)
     has_reduced_mobility = forms.BooleanField(required=False)
+
+    def clean_birth_date(self):
+        birth_date = self.cleaned_data["birth_date"]
+        if birth_date:
+            today = date.today()
+            if date(year=today.year-10,month=today.month,day=today.day) < birth_date:
+                raise ValidationError("That birth date was weird, wasn't it?")
+        return birth_date
 
 class PasswordForm(forms.Form):
     """
