@@ -112,7 +112,6 @@ input:-webkit-autofill:active{
     }
     .signup {
         grid-column: 1 / 7;
-        place-self: center;
     }
     .signup__button {
         width: 135px;
@@ -142,5 +141,13 @@ input:-webkit-autofill:active{
         column-gap: 32px;
         margin: auto;
         width: 1440px;
+    }
+}
+
+/* || Position fix */
+
+@media screen and (min-height: 650px) and (min-width: 576px) {
+    main {
+        padding-top: 10vh;
     }
 }

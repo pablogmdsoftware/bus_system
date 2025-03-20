@@ -186,6 +186,6 @@ input:-webkit-autofill:active{
 
 @media screen and (min-height: 650px) and (min-width: 576px) {
     main {
-        padding-top: 10vh;
+        padding-top: 15vh;
     }
 }
