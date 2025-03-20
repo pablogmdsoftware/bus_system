@@ -44,6 +44,23 @@
             </fieldset>
             <input type="submit" name="action" value="Search" class="searchTravel__button">
         </form>
+        <div class="introduction">
+            <div class="introduction__infoContainer">
+                <h3 class="introduction__infoHeader">How to use</h3>
+                <p class="introduction__infoParagraph">The first step is to <a href="{% url 'booking:singup' %}"  class="information__link">sign up</a>.</p>
+                <p>After successfully creating an account, you will be redirected to this page. You can now use the form above to search travels between two Spain cities.</p>
+            </div>
+            <div class="introduction__infoContainer">
+                <h3 class="introduction__infoHeader">What to expect</h3>
+                <p class="introduction__infoParagraph">You will use a CRUD webapp. You can book a lots of  tickets and check them in a dedicated page named <a href="{% url 'booking:mytickets' %}" class="information__link">MyTickets</a>. It must appear in the top navbar after logging in.</p>
+                <p class="introduction__infoParagraph">You can also check and modify your profile information in <a href="{% url 'booking:profile' %}" class="information__link">Profile</a> page.</p>
+            </div>
+            <div class="introduction__infoContainer">
+                <h3 class="introduction__infoHeader">More information</h3>
+                <p class="introduction__infoParagraph">You can read more about the project in <a href="{% url 'booking:about' %}" class="information__link">About</a> page.</p>
+                <p class="introduction__infoParagraph">If you like the project, or would like to send me some feedback, you can contact me on <a href="https://www.linkedin.com/in/pablogmd/" target="_blank" class="information__link">linkedin</a>.</p>
+            </div>
+        </div>
     </main>
 </body>
 </html>
