@@ -9,7 +9,7 @@ from datetime import date as date_python
 from pytz import timezone as pytz
 
 from .forms import SearchTravelForm, PurchaseTicketForm, TicketForm, ProfileForm
-from .forms import PasswordForm, SingupForm
+from .forms import PasswordForm, SignupForm
 from .models import Travel, Ticket, Customer, CITIES
 
 def travel(request):
@@ -185,10 +185,10 @@ def profile(request):
             
     return render(request,"booking/profile.html",context)
 
-def singup(request):
+def signup(request):
     context = {"request":request.POST}
     if request.POST.get("action") == "Create account":
-        form = SingupForm(request.POST)
+        form = SignupForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
             user = User.objects.create_user(
@@ -208,9 +208,9 @@ def singup(request):
             errors = {key:value[0] for (key,value) in form.errors.items()}
             form_clean_error = errors.get("__all__")
             context.update({"errors":errors,"form_clean_error":form_clean_error})
-            return render(request,"booking/singup.html",context)
+            return render(request,"booking/signup.html",context)
     else:
-        return render(request,"booking/singup.html",context)
+        return render(request,"booking/signup.html",context)
 
 def login_view(request,password_changed=None):
     context = {"request":request.POST}

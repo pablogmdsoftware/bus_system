@@ -123,7 +123,7 @@ class PasswordForm(forms.Form):
         if passwords.get("new_password") != passwords.get("repeat_password"):
             raise ValidationError("The passwords do not match")
 
-class SingupForm(PasswordForm):
+class SignupForm(PasswordForm):
     """
     Form to create new user accounts. It inherits the fields *new_password* and
     *repeat_password* from PasswordForm, along with the password validation.

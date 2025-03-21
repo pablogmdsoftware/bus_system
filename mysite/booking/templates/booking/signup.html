@@ -16,7 +16,7 @@
     <main>
         <article class="signup">
             <h2 class="signup__header">Sign up</h2>
-            <form action="{% url 'booking:singup' %}" method="post" class="signup__form">
+            <form action="{% url 'booking:signup' %}" method="post" class="signup__form">
                 {% csrf_token %}
                 <div class="signup__inputContainer">
                     {% if errors.username %}
